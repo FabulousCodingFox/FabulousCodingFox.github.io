@@ -1,7 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans&display=swap');
 
 :root {
-    --bg-img: url("assets/background/dark.png"); /*../assets/Windows\ 12.1\ Light.png*/
+    --bg-img: url("assets/background/dark.png");
+    /*../assets/Windows\ 12.1\ Light.png*/
     --bg-img-blur: url("assets/background/darkblur.png");
 
     --color-contrast: #fff;
@@ -59,16 +60,16 @@
 ::-webkit-scrollbar-track {
     background: transparent;
 }
-  
+
 ::-webkit-scrollbar-thumb {
     border-radius: 5px;
     background-color: var(--scrollbar-color);
     transition: background-color var(--color-change-transition-duration);
 }
 
-body{
+body {
     padding: 0px;
-    margin:0px;
+    margin: 0px;
     background-image: var(--bg-img);
     object-fit: cover;
     overflow: hidden;
@@ -77,15 +78,17 @@ body{
 }
 
 @keyframes animatedgradient {
-	0% {
-		background-position: 0% 50%;
-	}
-	50% {
-		background-position: 100% 50%;
-	}
-	100% {
-		background-position: 0% 50%;
-	}
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 
@@ -94,26 +97,49 @@ span.wave {
     transform-origin: 70% 70%;
     display: inline-block;
 }
-  
+
 @keyframes wave-animation {
-     0% { transform: rotate( 0.0deg) }
-    10% { transform: rotate(14.0deg) }
-    20% { transform: rotate(-8.0deg) }
-    30% { transform: rotate(14.0deg) }
-    40% { transform: rotate(-4.0deg) }
-    50% { transform: rotate(10.0deg) }
-    60% { transform: rotate( 0.0deg) }
-    100% { transform: rotate( 0.0deg) }
+    0% {
+        transform: rotate(0.0deg)
+    }
+
+    10% {
+        transform: rotate(14.0deg)
+    }
+
+    20% {
+        transform: rotate(-8.0deg)
+    }
+
+    30% {
+        transform: rotate(14.0deg)
+    }
+
+    40% {
+        transform: rotate(-4.0deg)
+    }
+
+    50% {
+        transform: rotate(10.0deg)
+    }
+
+    60% {
+        transform: rotate(0.0deg)
+    }
+
+    100% {
+        transform: rotate(0.0deg)
+    }
 }
 
-svg{
+svg {
     fill: var(--color-contrast);
     transition: fill var(--color-change-transition-duration);
 }
 
 
 
-.navbar{
+.navbar {
     height: var(--navbar-height);
     position: fixed;
     bottom: var(--navbar-margin);
@@ -123,7 +149,8 @@ svg{
     flex-direction: row;
     z-index: 9999999999999999999;
 }
-.navbar .wrapper{
+
+.navbar .wrapper {
     height: 100%;
     padding: var(--navbar-padding);
     background-color: var(--navbar-bg-color);
@@ -133,14 +160,16 @@ svg{
     flex-direction: row;
     transition: background-color var(--color-change-transition-duration);
 }
-.navbar .wrapper .divider{
+
+.navbar .wrapper .divider {
     height: 100%;
     width: 2px;
     margin: 0px var(--navbar-span-padding);
     background-color: var(--color-contrast);
     transition: background-color var(--color-change-transition-duration);
 }
-.navbar .wrapper button{
+
+.navbar .wrapper button {
     height: var(--navbar-btn-height);
     width: var(--navbar-btn-height);
     background-color: transparent;
@@ -148,10 +177,12 @@ svg{
     border-radius: 2px;
     transition: background-color 0.1s;
 }
-.navbar .wrapper button:hover{
+
+.navbar .wrapper button:hover {
     background-color: var(--navbar-btn-hover-color);
 }
-.navbar .wrapper button img{
+
+.navbar .wrapper button img {
     height: var(--navbar-btn-img-height);
     width: var(--navbar-btn-img-height);
     object-fit: contain;
@@ -164,7 +195,7 @@ svg{
 
 
 
-.navbar .wrapper-music{
+.navbar .wrapper-music {
     position: relative;
     height: 100%;
     min-width: var(--navbar-weather-width);
@@ -176,32 +207,36 @@ svg{
     flex-direction: row;
     align-items: center;
 }
-.navbar .wrapper-music img{
+
+.navbar .wrapper-music img {
     height: var(--navbar-btn-height);
     border-radius: 4px;
     padding: 0px var(--navbar-padding);
 }
-.navbar .wrapper-music .info{
+
+.navbar .wrapper-music .info {
     height: 100%;
     display: flex;
     align-items: flex-start;
     flex-direction: column;
 }
-.navbar .wrapper-music .info p{
+
+.navbar .wrapper-music .info p {
     font-size: 10px;
     margin: 0px;
     text-align: right;
 }
-.navbar .wrapper-music .info span{
+
+.navbar .wrapper-music .info span {
     font-size: 15px;
 }
 
-.navbar .wrapper-music button{
+.navbar .wrapper-music button {
     position: absolute;
     top: var(--navbar-padding);
     right: var(--navbar-padding);
     height: var(--navbar-btn-height);
-    width:  var(--navbar-btn-height);
+    width: var(--navbar-btn-height);
     border: none;
     background-color: transparent;
     padding: var(--navbar-padding);
@@ -211,11 +246,12 @@ svg{
     align-items: center;
     justify-content: center;
 }
-.navbar .wrapper-music button:hover{
+
+.navbar .wrapper-music button:hover {
     background-color: var(--navbar-btn-hover-color);
 }
 
-.navbar .wrapper-music button img{
+.navbar .wrapper-music button img {
     height: 100%;
 }
 
@@ -231,7 +267,7 @@ svg{
 
 
 
-.navbar .wrapper-account{
+.navbar .wrapper-account {
     height: 100%;
     padding: var(--navbar-weather-padding);
     background-color: var(--navbar-bg-color);
@@ -244,18 +280,20 @@ svg{
     overflow-y: hidden;
     transition: background-color var(--color-change-transition-duration);
 }
-.navbar .wrapper-account p{
+
+.navbar .wrapper-account p {
     margin: 0px;
     padding-right: var(--navbar-weather-padding);
     font-size: calc(var(--navbar-btn-height) / 2);
 }
-.navbar .wrapper-account img{
+
+.navbar .wrapper-account img {
     height: 100%;
     border-radius: 50%;
 }
 
 
-.window-container{
+.window-container {
     position: absolute;
     transition: opacity 0.2s;
 }
@@ -269,7 +307,7 @@ svg{
     100% {filter: none; }
 }*/
 
-.window{
+.window {
     position: relative;
     width: var(--w);
     height: var(--h);
@@ -281,7 +319,7 @@ svg{
     transition: background var(--color-change-transition-duration);
 }
 
-.window::before{
+.window::before {
     content: "";
     position: absolute;
     top: var(--window-border);
@@ -298,7 +336,7 @@ svg{
     transition: background-image var(--color-change-transition-duration), filter var(--color-change-transition-duration);
 }
 
-.window .content{
+.window .content {
     position: absolute;
     top: var(--window-border);
     left: var(--window-border);
@@ -306,10 +344,10 @@ svg{
     height: calc(100% - calc(var(--window-border) * 2));
     border-radius: 20px;
     cursor: default;
-    
+
 }
 
-.window .content .content-pane{
+.window .content .content-pane {
     position: relative;
     height: calc(100% - var(--window-topbar-height));
     overflow: auto;
@@ -321,7 +359,7 @@ svg{
     transform: translateY(0);
 }
 
-.window .content .topbar{
+.window .content .topbar {
     position: relative;
     width: 100%;
     height: var(--window-topbar-height);
@@ -330,14 +368,14 @@ svg{
     /*box-shadow: 0px 1px 4px black;*/
 }
 
-.window .content .topbar .controls{
+.window .content .topbar .controls {
     position: absolute;
     top: 50%;
     right: var(--window-controls-padding);
     transform: translateY(-50%);
 }
 
-.window .content .topbar .controls button{
+.window .content .topbar .controls button {
     height: var(--window-controls-height);
     width: var(--window-controls-height);
 
@@ -348,17 +386,17 @@ svg{
     transition: 0.1s;
 }
 
-.window .content .topbar .controls button:hover{
+.window .content .topbar .controls button:hover {
     background-color: var(--navbar-btn-hover-color);
 }
 
-.window .content .topbar .controls button img{
+.window .content .topbar .controls button img {
     width: var(--window-controls-btn-image-height);
     height: var(--window-controls-btn-image-height);
     object-fit: contain;
 }
 
-.window .content .topbar .title{
+.window .content .topbar .title {
     position: absolute;
     top: 50%;
     left: var(--window-title-padding);
@@ -370,13 +408,13 @@ svg{
     flex-direction: row;
 }
 
-.window .content .topbar .title img{
+.window .content .topbar .title img {
     width: var(--window-title-height);
     height: var(--window-title-height);
     object-fit: cover;
 }
 
-.window .content .topbar .title p{
+.window .content .topbar .title p {
     font-size: var(--window-title-height);
     margin: 0px;
     padding-left: 10px;
@@ -385,7 +423,7 @@ svg{
 
 
 
-.window .content .content-pane .sidebar{
+.window .content .content-pane .sidebar {
     position: fixed;
     top: 16px;
     left: 16px;
@@ -396,7 +434,7 @@ svg{
     overflow: auto;
 }
 
-.window .content .content-pane .sidebar .wrapper{
+.window .content .content-pane .sidebar .wrapper {
     backdrop-filter: var(--window-bg-filter-reverse);
     transition: backdrop-filter var(--color-change-transition-duration);
     width: 100%;
@@ -405,13 +443,13 @@ svg{
     border-radius: 8px;
 }
 
-.window .content .content-pane .sidebar .wrapper h3{
-    font-size:14px;
+.window .content .content-pane .sidebar .wrapper h3 {
+    font-size: 14px;
     margin: 0px;
     margin-bottom: 20px;
 }
 
-.window .content .content-pane .sidebar .wrapper button{
+.window .content .content-pane .sidebar .wrapper button {
     height: 38px;
     font-size: 16px;
     width: 100%;
@@ -423,13 +461,13 @@ svg{
     background-color: transparent;
 }
 
-.window .content .content-pane .sidebar .wrapper button:hover{
+.window .content .content-pane .sidebar .wrapper button:hover {
     background-color: var(--navbar-btn-hover-color);
     border-left: 4px solid #0874c8;
     transition: background-color 0.2s;
 }
 
-.window .content .content-pane .details{
+.window .content .content-pane .details {
     position: fixed;
     top: 16px;
     left: calc(16px + var(--sidebar));
@@ -447,7 +485,7 @@ svg{
 
 
 
-#popup{
+#popup {
     position: fixed;
     top: 35px;
     right: 35px;
@@ -459,7 +497,7 @@ svg{
     transition: opacity 0.2s;
 }
 
-#popup .topbar{
+#popup .topbar {
     position: relative;
     width: 100%;
     height: 16px;
@@ -468,13 +506,13 @@ svg{
 }
 
 
-#popup .topbar img{
+#popup .topbar img {
     height: 16px;
     padding-right: 4px;
     border-radius: 1px;
 }
 
-#popup .topbar button{
+#popup .topbar button {
     position: absolute;
     top: 0px;
     right: 0px;
@@ -484,13 +522,13 @@ svg{
     background-color: transparent;
 }
 
-#popup .topbar button svg{
+#popup .topbar button svg {
     position: relative;
     transform: translate(-12px, -7px);
     object-fit: contain;
     height: 24px;
 }
 
-#popup .topbar p{
+#popup .topbar p {
     font-size: 16px;
-}  
+}

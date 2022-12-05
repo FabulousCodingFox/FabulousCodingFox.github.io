@@ -167,15 +167,15 @@ function last(array) {
     return array[array.length - 1];
 }
 
-function updateTime(){
+function updateTime() {
     const d = new Date();
 
     const e = document.querySelector(".navbar .wrapper-account .time");
     e.innerHTML = d.getHours() + (d.getMinutes().toString().length == 1 ? ":0" : ":") + d.getMinutes();
 
     const e2 = document.querySelector(".navbar .wrapper-account .date");
-    let dt = d.getDate().toString().charAt(d.getDate().toString().length-1)
-    e2.innerHTML = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][d.getMonth()] + " " + d.getDate() + (dt=='1' ? "st" : (dt=='2' ? "nd" : (dt=='3' ? "rd" : "th")))
+    let dt = d.getDate().toString().charAt(d.getDate().toString().length - 1)
+    e2.innerHTML = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"][d.getMonth()] + " " + d.getDate() + (dt == '1' ? "st" : (dt == '2' ? "nd" : (dt == '3' ? "rd" : "th")))
 
 
 }
@@ -185,18 +185,18 @@ setInterval(updateTime, 2000);
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-function loadwindowtext(btn, id){
+function loadwindowtext(btn, id) {
     let elements = btn.parentElement.parentElement.parentElement.getElementsByClassName("details");
     Array.from(elements).forEach(function (item, index) {
-        if(item.classList.contains(id)){
+        if (item.classList.contains(id)) {
             item.style.display = "initial";
-        }else{
+        } else {
             item.style.display = "none";
         }
     });
 }
 
-function windowBuilder(img, title, content){
+function windowBuilder(img, title, content) {
     return `<div class="window-container">
                 <div class="window">
                     <div class="content">
@@ -231,14 +231,14 @@ let mouseY = 0;
 
 var colorscheme = "dark"
 
-class Window{
-    constructor(width, height, content){
+class Window {
+    constructor(width, height, content) {
         var root = this;
 
         this.windowWidth = width;
         this.windowHeight = height;
-        this.windowPosX = window.innerWidth / 2- width / 2;
-        this.windowPosY = window.innerHeight / 2- height / 2;
+        this.windowPosX = window.innerWidth / 2 - width / 2;
+        this.windowPosY = window.innerHeight / 2 - height / 2;
         this.windowContent = content;
         this.isMaxximized = false
         this.isMinimized = false
@@ -254,8 +254,8 @@ class Window{
 
         this.wd.style.left = this.windowPosX + "px";
         this.wd.style.top = this.windowPosY + "px";
-        this.wd.style.setProperty('--w', width+"px");
-        this.wd.style.setProperty('--h', height+"px");
+        this.wd.style.setProperty('--w', width + "px");
+        this.wd.style.setProperty('--h', height + "px");
         this.wd.style.setProperty('--window-border-radius', "20px")
         this.wd.style.setProperty('--sidebar', "280px")
         this.windowElement.style.cursor = "nwse-resize"
@@ -267,15 +267,15 @@ class Window{
         this.mouseHoversOnContent = false;
 
         //Resize Window
-        this.windowContent.onmouseenter = function()   {
+        this.windowContent.onmouseenter = function () {
             root.mouseHoversOnContent = true;
         };
-        this.windowContent.onmouseleave = function()   {
+        this.windowContent.onmouseleave = function () {
             root.mouseHoversOnContent = false;
         }
         this.windowElement.addEventListener("mousemove", (event) => {
-            if(resized != undefined) return;
-            if(this.mouseHoversOnContent) return;
+            if (resized != undefined) return;
+            if (this.mouseHoversOnContent) return;
 
             let r = this.windowElement.getBoundingClientRect();
 
@@ -284,18 +284,18 @@ class Window{
             let w = Math.abs(r.left - mouseX) <= 20
             let e = Math.abs(r.right - mouseX) <= 20
 
-            if(n && e){ resizedSide = "ne"; this.windowElement.style.cursor = "nesw-resize"}
-            else if(n && w){ resizedSide = "nw"; this.windowElement.style.cursor = "nwse-resize" }
-            else if(n)     { resizedSide = "n";  this.windowElement.style.cursor = "ns-resize" }
-            else if(s && e){ resizedSide = "se"; this.windowElement.style.cursor = "nwse-resize" }
-            else if(s && w){ resizedSide = "sw"; this.windowElement.style.cursor = "nesw-resize" }
-            else if(s)     { resizedSide = "s";  this.windowElement.style.cursor = "ns-resize" }
-            else if(w)     { resizedSide = "w";  this.windowElement.style.cursor = "ew-resize" }
-            else if(e)     { resizedSide = "e";  this.windowElement.style.cursor = "ew-resize" }
+            if (n && e) { resizedSide = "ne"; this.windowElement.style.cursor = "nesw-resize" }
+            else if (n && w) { resizedSide = "nw"; this.windowElement.style.cursor = "nwse-resize" }
+            else if (n) { resizedSide = "n"; this.windowElement.style.cursor = "ns-resize" }
+            else if (s && e) { resizedSide = "se"; this.windowElement.style.cursor = "nwse-resize" }
+            else if (s && w) { resizedSide = "sw"; this.windowElement.style.cursor = "nesw-resize" }
+            else if (s) { resizedSide = "s"; this.windowElement.style.cursor = "ns-resize" }
+            else if (w) { resizedSide = "w"; this.windowElement.style.cursor = "ew-resize" }
+            else if (e) { resizedSide = "e"; this.windowElement.style.cursor = "ew-resize" }
             else { resizedSide = "NONE"; }
         });
         this.windowElement.addEventListener("mousedown", (event) => {
-            if(this.mouseHoversOnContent) return;
+            if (this.mouseHoversOnContent) return;
             resized = root;
         });
 
@@ -308,17 +308,17 @@ class Window{
         this.closebtn.onclick = () => {
             this.wd.style.opacity = '0%';
             const temp = this.wd;
-            setTimeout(function(){temp.remove();},500);
+            setTimeout(function () { temp.remove(); }, 500);
         };
         this.minbtn.onclick = () => {
             this.wd.style.opacity = '0%';
             const temp = this.wd;
-            setTimeout(function(){temp.remove();},500);
+            setTimeout(function () { temp.remove(); }, 500);
         };
 
         //Focus Window
         this.wd.addEventListener("mousedown", (event) => {
-            if(this.wd.style.zIndex == windowY - 1) return;
+            if (this.wd.style.zIndex == windowY - 1) return;
             this.wd.style.zIndex = windowY;
 
             /*this.wd.classList.remove('windowAppear');
@@ -330,41 +330,41 @@ class Window{
 
         //Move window
         this.topbar.addEventListener("mousedown", (event) => {
-            if(resized != undefined) return;
+            if (resized != undefined) return;
             dragged = this;
             //wd.classList.remove('windowAppear');
         });
     }
 
-    setMaxximized(m){
-        if(!m){
+    setMaxximized(m) {
+        if (!m) {
             this.wd.style.left = this.windowPosX + "px";
             this.wd.style.top = this.windowPosY + "px";
-            this.wd.style.setProperty('--w', this.windowWidth+"px");
-            this.wd.style.setProperty('--h', this.windowHeight+"px");
+            this.wd.style.setProperty('--w', this.windowWidth + "px");
+            this.wd.style.setProperty('--h', this.windowHeight + "px");
             this.wd.style.setProperty('--window-border-radius', "20px")
-        }else{
+        } else {
             this.wd.style.left = "0px";
             this.wd.style.top = "0px";
-            this.wd.style.setProperty('--w', window.innerWidth+"px");
-            this.wd.style.setProperty('--h', window.innerHeight+"px");
+            this.wd.style.setProperty('--w', window.innerWidth + "px");
+            this.wd.style.setProperty('--h', window.innerHeight + "px");
             this.wd.style.setProperty('--window-border-radius', "0px")
         }
         this.isMaxximized = m;
     }
 
-    setPos(x, y){
+    setPos(x, y) {
         this.windowPosX = x;
         this.windowPosY = y;
         this.wd.style.left = this.windowPosX + "px";
         this.wd.style.top = this.windowPosY + "px";
     }
 
-    setDimensions(w, h){
+    setDimensions(w, h) {
         this.windowWidth = w;
         this.windowHeight = h;
-        this.wd.style.setProperty('--w', w+"px");
-        this.wd.style.setProperty('--h', h+"px");
+        this.wd.style.setProperty('--w', w + "px");
+        this.wd.style.setProperty('--h', h + "px");
     }
 }
 
@@ -379,61 +379,61 @@ document.addEventListener("mousemove", (event) => {
     mouseX = event.clientX;
     mouseY = event.clientY;
 
-    if(dragged != undefined){
-        if(dragged.isMaxximized){
+    if (dragged != undefined) {
+        if (dragged.isMaxximized) {
             dragged.setMaxximized(false);
-            dragged.setPos(event.clientX - dragged.windowWidth/2, event.clientY - 20);
+            dragged.setPos(event.clientX - dragged.windowWidth / 2, event.clientY - 20);
         }
         let currX = dragged.windowPosX;
         let currY = dragged.windowPosY;
         dragged.setPos(currX + offX, currY + offY)
     }
 
-    if(resized != undefined){
+    if (resized != undefined) {
         let currX = resized.windowPosX;
         let currY = resized.windowPosY;
         let currW = resized.windowWidth;
         let currH = resized.windowHeight;
 
-        if(resizedSide === "ne"){
+        if (resizedSide === "ne") {
             resized.setPos(currX, currY + offY)
             resized.setDimensions(currW + offX, currH - offY)
         }
-        if(resizedSide === "nw"){
+        if (resizedSide === "nw") {
             resized.setPos(currX + offX, currY + offY)
             resized.setDimensions(currW - offX, currH - offY)
         }
-        if(resizedSide === "n"){
+        if (resizedSide === "n") {
             resized.setPos(currX, currY + offY)
             resized.setDimensions(currW, currH - offY)
         }
-        if(resizedSide === "se"){
+        if (resizedSide === "se") {
             resized.setDimensions(currW + offX, currH + offY)
         }
-        if(resizedSide === "sw"){
+        if (resizedSide === "sw") {
             resized.setPos(currX + offX, currY)
             resized.setDimensions(currW - offX, currH + offY)
         }
-        if(resizedSide === "s"){
+        if (resizedSide === "s") {
             resized.setDimensions(currW, currH + offY)
         }
-        if(resizedSide === "w"){
+        if (resizedSide === "w") {
             resized.setPos(currX + offX, currY)
             resized.setDimensions(currW - offX, currH)
         }
-        if(resizedSide === "e"){
+        if (resizedSide === "e") {
             resized.setDimensions(currW + offX, currH)
         }
     }
 });
 
-function spawnWindow(content){
+function spawnWindow(content) {
     new Window(800, 600, content);
 }
 
-function toggleColorScheme(){
-    if(colorscheme==="dark"){
-        document.documentElement.style.setProperty('--bg-img',      'url("assets/background/light.png")');
+function toggleColorScheme() {
+    if (colorscheme === "dark") {
+        document.documentElement.style.setProperty('--bg-img', 'url("assets/background/light.png")');
         document.documentElement.style.setProperty('--bg-img-blur', 'url("assets/background/lightblur.png")');
 
         document.documentElement.style.setProperty('--navbar-btn-hover-color', 'rgba(0 0 0 / 20%)');
@@ -445,12 +445,12 @@ function toggleColorScheme(){
         document.documentElement.style.setProperty('--scrollbar-color', '#888');
         document.documentElement.style.setProperty('--window-border-color', 'linear-gradient(60deg, #db842d, #db654e, #db4872, #885691, #3e598f, #0c7788, #089986, #5b9669)');
 
-        colorscheme="light"
+        colorscheme = "light"
 
         document.getElementById("toggleColorScheme").innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M20.742 13.045a8.088 8.088 0 0 1-2.077.271c-2.135 0-4.14-.83-5.646-2.336a8.025 8.025 0 0 1-2.064-7.723A1 1 0 0 0 9.73 2.034a10.014 10.014 0 0 0-4.489 2.582c-3.898 3.898-3.898 10.243 0 14.143a9.937 9.937 0 0 0 7.072 2.93 9.93 9.93 0 0 0 7.07-2.929 10.007 10.007 0 0 0 2.583-4.491 1.001 1.001 0 0 0-1.224-1.224zm-2.772 4.301a7.947 7.947 0 0 1-5.656 2.343 7.953 7.953 0 0 1-5.658-2.344c-3.118-3.119-3.118-8.195 0-11.314a7.923 7.923 0 0 1 2.06-1.483 10.027 10.027 0 0 0 2.89 7.848 9.972 9.972 0 0 0 7.848 2.891 8.036 8.036 0 0 1-1.484 2.059z"></path></svg>`
 
-    }else{
-        document.documentElement.style.setProperty('--bg-img',      'url("assets/background/dark.png")');
+    } else {
+        document.documentElement.style.setProperty('--bg-img', 'url("assets/background/dark.png")');
         document.documentElement.style.setProperty('--bg-img-blur', 'url("assets/background/darkblur.png")');
 
         document.documentElement.style.setProperty('--navbar-btn-hover-color', 'rgba(255 255 255 / 20%)');
@@ -462,34 +462,34 @@ function toggleColorScheme(){
         document.documentElement.style.setProperty('--scrollbar-color', '#555');
         document.documentElement.style.setProperty('--window-border-color', 'linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82)');
 
-        colorscheme="dark"
+        colorscheme = "dark"
 
         document.getElementById("toggleColorScheme").innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 11.807A9.002 9.002 0 0 1 10.049 2a9.942 9.942 0 0 0-5.12 2.735c-3.905 3.905-3.905 10.237 0 14.142 3.906 3.906 10.237 3.905 14.143 0a9.946 9.946 0 0 0 2.735-5.119A9.003 9.003 0 0 1 12 11.807z"></path></svg>`
 
     }
 }
 
-function closePopup(){
+function closePopup() {
     const temp = document.getElementById("popup");
     temp.style.opacity = '0%';
-    setTimeout(function(){temp.remove();},500);
+    setTimeout(function () { temp.remove(); }, 500);
 }
 
 
 var audioWeAre = new Audio('https://ncs.io/track/download/b10cc907-b9d8-4285-a413-8615a2d84efd');
-function nextTrack(){
+function nextTrack() {
     audioWeAre.volume = 0.3
     audioWeAre.play();
 }
 
 var musicPaused = false;
-function pauseAudio(){
+function pauseAudio() {
     musicPaused = !musicPaused
-    if(musicPaused){
+    if (musicPaused) {
         document.getElementById("musiccontrol").innerHTML = "<img src='assets/icons/pause.svg'>"
         audioWeAre.play()
-        
-    }else{
+
+    } else {
         document.getElementById("musiccontrol").innerHTML = "<img src='assets/icons/play.svg'>"
         audioWeAre.pause()
     }
@@ -497,23 +497,23 @@ function pauseAudio(){
 
 let hasInteractedWithWindow = false;
 document.addEventListener("mousedown", (event) => {
-    if(!hasInteractedWithWindow){
+    if (!hasInteractedWithWindow) {
         hasInteractedWithWindow = true;
         nextTrack();
     }
 });
 
 
-window.addEventListener('resize', function(event){
+window.addEventListener('resize', function (event) {
     var win = window,
-    doc = document,
-    docElem = doc.documentElement,
-    body = doc.getElementsByTagName('body')[0],
-    x = win.innerWidth || docElem.clientWidth || body.clientWidth,
-    y = win.innerHeight|| docElem.clientHeight|| body.clientHeight;
-    if((x / y) < 1){
+        doc = document,
+        docElem = doc.documentElement,
+        body = doc.getElementsByTagName('body')[0],
+        x = win.innerWidth || docElem.clientWidth || body.clientWidth,
+        y = win.innerHeight || docElem.clientHeight || body.clientHeight;
+    if ((x / y) < 1) {
         document.getElementById("pageBlocker").style.display = "flex"
-    }else{
+    } else {
         document.getElementById("pageBlocker").style.display = "none"
     }
 });
