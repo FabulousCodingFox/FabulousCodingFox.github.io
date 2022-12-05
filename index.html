@@ -4,19 +4,21 @@
 <head>
     <title>FabulousFox</title>
     <link rel="stylesheet" type="text/css" href="index.css">
+    <meta charset="utf-8">
     <script src="index.js" defer></script>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
 </head>
 
 <body>
     <div class="navbar">
-        <!--<div class="wrapper-weather">
-            <img src="assets/weather/suncloudy.png">
-            <div class="temp">
-                <p><span>23°</span></p>
-                <p>Berlin</p>
+        <div id="music" class="wrapper-music" style="--color: #6e9eff">
+            <img src="https://i.scdn.co/image/ab67616d0000b273ef89d5f2c3b11aca7977e52c">
+            <div class="info">
+                <p><span>We are</span></p>
+                <p>Whales, Jo. Cohen</p>
             </div>
-        </div>-->
+            <button id="musiccontrol" onclick="pauseAudio()"><img src="assets/icons/pause.svg"></button>
+        </div>
         <div class="wrapper">
             <button onclick="spawnWindow(windowBuilder('assets/icons/github.png', 'GitHub', windowGithub))"><img src="assets/icons/github.png"></button>
             <div class="divider"></div>

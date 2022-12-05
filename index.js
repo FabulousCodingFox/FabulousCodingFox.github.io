@@ -475,6 +475,35 @@ function closePopup(){
     setTimeout(function(){temp.remove();},500);
 }
 
+
+var audioWeAre = new Audio('https://ncs.io/track/download/b10cc907-b9d8-4285-a413-8615a2d84efd');
+function nextTrack(){
+    audioWeAre.volume = 0.3
+    audioWeAre.play();
+}
+
+var musicPaused = false;
+function pauseAudio(){
+    musicPaused = !musicPaused
+    if(musicPaused){
+        document.getElementById("musiccontrol").innerHTML = "<img src='assets/icons/pause.svg'>"
+        audioWeAre.play()
+        
+    }else{
+        document.getElementById("musiccontrol").innerHTML = "<img src='assets/icons/play.svg'>"
+        audioWeAre.pause()
+    }
+}
+
+let hasInteractedWithWindow = false;
+document.addEventListener("mousedown", (event) => {
+    if(!hasInteractedWithWindow){
+        hasInteractedWithWindow = true;
+        nextTrack();
+    }
+});
+
+
 window.addEventListener('resize', function(event){
     var win = window,
     doc = document,
@@ -491,3 +520,4 @@ window.addEventListener('resize', function(event){
 
 
 spawnWindow(windowBuilder('assets/icons/github.png', 'GitHub', windowGithub));
+

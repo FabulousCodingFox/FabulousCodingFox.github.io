@@ -157,46 +157,79 @@ svg{
     object-fit: contain;
 }
 
-.navbar .wrapper-weather{
+
+
+
+
+
+
+
+.navbar .wrapper-music{
     position: relative;
     height: 100%;
     min-width: var(--navbar-weather-width);
     padding: var(--navbar-weather-padding);
-    background-image: url("assets/weather/weather_bg.png");
-    background-size: cover;
-    background-position: center;
+    background-color: var(--color);
     margin-right: 4px;
     border-radius: 3px;
     display: flex;
     flex-direction: row;
-}
-.navbar .wrapper-weather img{
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    height: 100%;
-}
-.navbar .wrapper-weather .temp{
-    height: 100%;
-
-    position: absolute;
-    top: 50%;
-    right: var(--navbar-weather-padding);
-    transform: translateY(-50%);
-
-    display: flex;
     align-items: center;
-    justify-content: center;
+}
+.navbar .wrapper-music img{
+    height: var(--navbar-btn-height);
+    border-radius: 4px;
+    padding: 0px var(--navbar-padding);
+}
+.navbar .wrapper-music .info{
+    height: 100%;
+    display: flex;
+    align-items: flex-start;
     flex-direction: column;
 }
-.navbar .wrapper-weather .temp p{
+.navbar .wrapper-music .info p{
     font-size: 10px;
     margin: 0px;
     text-align: right;
 }
-.navbar .wrapper-weather .temp span{
+.navbar .wrapper-music .info span{
     font-size: 15px;
 }
+
+.navbar .wrapper-music button{
+    position: absolute;
+    top: var(--navbar-padding);
+    right: var(--navbar-padding);
+    height: var(--navbar-btn-height);
+    width:  var(--navbar-btn-height);
+    border: none;
+    background-color: transparent;
+    padding: var(--navbar-padding);
+    transition: background-color 0.1s;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.navbar .wrapper-music button:hover{
+    background-color: var(--navbar-btn-hover-color);
+}
+
+.navbar .wrapper-music button img{
+    height: 100%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 .navbar .wrapper-account{
     height: 100%;
@@ -224,7 +257,7 @@ svg{
 
 .window-container{
     position: absolute;
-    transition: opacity 0.2s, width 0.1s, height 0.1s, left 0.1s, top 0.1s;
+    transition: opacity 0.2s;
 }
 
 /*.windowAppear {
