@@ -150,20 +150,73 @@ const windowPython =  /*html*/`
     <div class="wrapper">
         <h3>🔨 Skills</h3>
         <button onclick="loadwindowtext(this, '#0')">Compact</button>
-        <button onclick="loadwindowtext(this, '#0')">Skillset</button>
+        <button onclick="loadwindowtext(this, '#1')">Skillset</button>
     </div>
     <div class="wrapper">
         <h3>🚧 APIs / Frameworks</h3>
-        <button onclick="loadwindowtext(this, '#0')">Pygame</button>
-        <button onclick="loadwindowtext(this, '#0')">Numpy</button>
-        <button onclick="loadwindowtext(this, '#0')">Flask</button>
+        <button onclick="loadwindowtext(this, '#2')">Pygame</button>
+        <button onclick="loadwindowtext(this, '#3')">Numpy</button>
+        <button onclick="loadwindowtext(this, '#4')">Flask</button>
     </div>
     <div class="wrapper">
         <h3>👷‍♂️ Projects</h3>
-        <button onclick="loadwindowtext(this, '#4')">Sulfurium API</button>
         <button onclick="loadwindowtext(this, '#5')">Pygame Collection</button>
         <button onclick="loadwindowtext(this, '#6')">FoxScript</button>
     </div>
+</div>
+
+<div class="details #0" style="display: initial">
+    <h1 align="center">Compact</h1>
+    <p>None</p>
+</div>
+
+<div class="details #1" style="display: none">
+    <h1 align="center">Skillset</h1>
+    
+    <h3>Features</h3>
+    <ul>
+        <li>Data Structures: Lists, Dictionaries, Tuples, Sets, ...</li>
+        <li>Loops & conditionals</li>
+        <li>Type Casting & Exceptions</li>
+        <li>Recursion & Sorting Algorithms</li>
+        <li>Iterators</li>
+        <li>Decorators</li>
+        <li>Lambdas</li>
+        <li>Objects: Classes, Inheritance, Methods, ...</li>
+        <li>Custom & Builtin Modules -> PyPI & Pip</li>
+        <li>Exceptions</li>
+    </ul>
+
+    <h3>IDEs</h3>
+    <ul>
+        <li>VS Code</li>
+        <li>Pycharm</li>
+    </ul>
+</div>
+
+<div class="details #2" style="display: none">
+    <h1 align="center">Pygame</h1>
+    <!-- TODO -->
+</div>
+
+<div class="details #3" style="display: none">
+    <h1 align="center">Numpy</h1>
+    <!-- TODO -->
+</div>
+
+<div class="details #4" style="display: none">
+    <h1 align="center">Flask</h1>
+    <!-- TODO -->
+</div>
+
+<div class="details #5" style="display: none">
+    <h1 align="center">Pygame Collection</h1>
+    <!-- TODO -->
+</div>
+
+<div class="details #6" style="display: none">
+    <h1 align="center">FoxScript</h1>
+    <!-- TODO -->
 </div>
 `
 
@@ -203,32 +256,32 @@ const windowHTML =  /*html*/`
 
 <div class="details #0" style="display: initial">
     <h1 align="center">HTML</h1>
-    <p>None</p>
+    <!-- TODO -->
 </div>
 
 <div class="details #1" style="display: none">
     <h1 align="center">CSS</h1>
-    <p>None</p>
+    <!-- TODO -->
 </div>
 
 <div class="details #2" style="display: none">
     <h1 align="center">JS</h1>
-    <p>None</p>
+    <!-- TODO -->
 </div>
 
 <div class="details #3" style="display: none">
     <h1 align="center">PHP</h1>
-    <p>None</p>
+    <!-- TODO -->
 </div>
 
 <div class="details #4" style="display: none">
     <h1 align="center">Bootstrap</h1>
-    <p>None</p>
+    <!-- TODO -->
 </div>
 
 <div class="details #5" style="display: none">
     <h1 align="center">Portfolio</h1>
-    <p>None</p>
+    <!-- TODO -->
 </div>
 `
 
