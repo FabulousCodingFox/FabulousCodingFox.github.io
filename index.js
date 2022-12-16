@@ -477,31 +477,20 @@ function closePopup() {
 
 
 var audioWeAre = new Audio('https://ncs.io/track/download/b10cc907-b9d8-4285-a413-8615a2d84efd');
-function nextTrack() {
-    audioWeAre.volume = 0.3
-    audioWeAre.play();
-}
+audioWeAre.volume = 0.25
 
-var musicPaused = false;
+var musicPaused = true;
 function pauseAudio() {
     musicPaused = !musicPaused
     if (musicPaused) {
-        document.getElementById("musiccontrol").innerHTML = "<img src='assets/icons/pause.svg'>"
-        audioWeAre.play()
-
-    } else {
         document.getElementById("musiccontrol").innerHTML = "<img src='assets/icons/play.svg'>"
         audioWeAre.pause()
+
+    } else {
+        document.getElementById("musiccontrol").innerHTML = "<img src='assets/icons/pause.svg'>"
+        audioWeAre.play()
     }
 }
-
-let hasInteractedWithWindow = false;
-document.addEventListener("mousedown", (event) => {
-    if (!hasInteractedWithWindow) {
-        hasInteractedWithWindow = true;
-        nextTrack();
-    }
-});
 
 
 window.addEventListener('resize', function (event) {
