@@ -137,41 +137,6 @@ svg {
     transition: fill var(--color-change-transition-duration);
 }
 
-
-.tooltip {
-    position: relative;
-    float: left;
-}
-
-.tooltip .tooltiptext {
-    display: none;
-    background-color: black;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px 0;
-    position: absolute;
-    z-index: 1;
-    bottom: 150%;
-    left: 50%;
-    margin-left: -60px;
-}
-
-.tooltip .tooltiptext::after {
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: black transparent transparent transparent;
-}
-
-.tooltip:hover .tooltiptext {
-    display: initial;
-}
-
 .navbar {
     height: var(--navbar-height);
     position: fixed;
@@ -262,6 +227,10 @@ svg {
 
 .navbar .wrapper-music .info span {
     font-size: 15px;
+}
+
+.navbar .wrapper-music .info a {
+    text-decoration: none;
 }
 
 .navbar .wrapper-music button {
