@@ -147,7 +147,55 @@ const windowPython = `
 
 const windowOpenGL = ``
 
-const windowHTML = ``
+const windowHTML = `
+<div class="sidebar">
+    <div class="wrapper">
+        <h3>🌍Languages</h3>
+        <button onclick="loadwindowtext(this, '#0')">HTML</button>
+        <button onclick="loadwindowtext(this, '#1')">CSS</button>
+        <button onclick="loadwindowtext(this, '#2')">JS</button>
+        <button onclick="loadwindowtext(this, '#3')">PHP</button>
+    </div>
+    <div class="wrapper">
+        <h3>🚧 APIs / Frameworks</h3>
+        <button onclick="loadwindowtext(this, '#4')">Bootstrap</button>
+    </div>
+    <div class="wrapper">
+        <h3>👷‍♂️ Projects</h3>
+        <button onclick="loadwindowtext(this, '#5')">Portfolio</button>
+    </div>
+</div>
+
+<div class="details #0" style="display: initial">
+    <h1 align="center">HTML</h1>
+    <p>None</p>
+</div>
+
+<div class="details #1" style="display: none">
+    <h1 align="center">CSS</h1>
+    <p>None</p>
+</div>
+
+<div class="details #2" style="display: none">
+    <h1 align="center">JS</h1>
+    <p>None</p>
+</div>
+
+<div class="details #3" style="display: none">
+    <h1 align="center">PHP</h1>
+    <p>None</p>
+</div>
+
+<div class="details #4" style="display: none">
+    <h1 align="center">Bootstrap</h1>
+    <p>None</p>
+</div>
+
+<div class="details #5" style="display: none">
+    <h1 align="center">Portfolio</h1>
+    <p>None</p>
+</div>
+`
 
 
 
@@ -508,5 +556,5 @@ window.addEventListener('resize', function (event) {
 });
 
 
-spawnWindow(windowBuilder('assets/icons/github.png', 'GitHub', windowGithub));
+//spawnWindow(windowBuilder('assets/icons/github.png', 'GitHub', windowGithub));
 
