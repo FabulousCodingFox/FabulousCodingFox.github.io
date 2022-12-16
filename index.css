@@ -71,7 +71,8 @@ body {
     padding: 0px;
     margin: 0px;
     background-image: var(--bg-img);
-    object-fit: cover;
+    background-repeat: no-repeat;
+    background-size: cover;
     overflow: hidden;
     font-family: 'Work Sans', sans-serif;
     transition: background-image var(--color-change-transition-duration);
@@ -331,6 +332,7 @@ svg {
     border-radius: calc(var(--window-border-radius) - 1px);
 
     background-image: var(--bg-img-blur);
+    background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
     filter: var(--window-bg-filter);
