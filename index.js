@@ -1,6 +1,8 @@
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-const windowGithub = `
+
+const windowGithub = /*html*/`
 <h1 align="center">Hi <span class="wave">👋</span>, I am FabulousFox</h1>
 <h3 align="center">I mostly code useless stuff</h3>
 
@@ -34,7 +36,14 @@ const windowGithub = `
 
 <p><img src="https://github-readme-stats.vercel.app/api/top-langs?username=FabulousCodingFox&show_icons=true&locale=en&langs_count=10&theme=dracula" alt="FabulousCodingFox" /><img src="https://github-readme-stats.vercel.app/api?username=FabulousCodingFox&show_icons=true&locale=en&theme=dracula" alt="FabulousCodingFox" /></p>
 `
-const windowJava = `
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+const windowJava =  /*html*/`
 <div class="sidebar">
     <div class="wrapper">
         <h3>🔨 Skills</h3>
@@ -87,23 +96,29 @@ const windowJava = `
     <h3>Libraries</h3>
     <ul>
         <li>SimpleJSON</li>
-        <li>java.sql</li>
     </ul>
 
     <h3>Build Tools</h3>
     <ul>
         <li>Maven</li>
+        <li>IntelliJ</li>
     </ul>
 </div>
 
 <div class="details #2" style="display: none">
     <h1 align="center">LWJGL 3</h1>
-    <p>None</p>
+    
+    <h3>Submodules</h3>
+    <ul>
+        <li>OpenGL 3 & 4</li>
+        <li>GLFW</li>
+        <li>STB</li>
+    </ul>
 </div>
 
 <div class="details #3" style="display: none">
     <h1 align="center">Bukkit</h1>
-    <p>None</p>
+    <!-- TODO -->
 </div>
 
 <div class="details #4" style="display: none">
@@ -123,7 +138,14 @@ const windowJava = `
     <center><p><img src="https://user-images.githubusercontent.com/78906517/177658903-e281704d-c67c-4cf9-b776-41ee8f633626.png" style="width: 100%; max-width:600px"></p></center>
 </div>
 `
-const windowPython = `
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+const windowPython =  /*html*/`
 <div class="sidebar">
     <div class="wrapper">
         <h3>🔨 Skills</h3>
@@ -145,9 +167,22 @@ const windowPython = `
 </div>
 `
 
-const windowOpenGL = ``
 
-const windowHTML = `
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+const windowOpenGL =  /*html*/``
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+const windowHTML =  /*html*/`
 <div class="sidebar">
     <div class="wrapper">
         <h3>🌍Languages</h3>
