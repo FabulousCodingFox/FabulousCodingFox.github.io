@@ -287,15 +287,7 @@ const windowHTML =  /*html*/`
 
 
 
-
-
-
-
-
-
-
-
-
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 
@@ -368,8 +360,11 @@ let mouseY = 0;
 var colorscheme = "dark"
 
 class Window {
-    constructor(width, height, content) {
+    constructor(content) {
         var root = this;
+        
+        let width = 0.6 * (window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth);
+        let height = 0.6 * (window.innerHeight || document.documentElement.clientHeight || document.getElementsByTagName('body')[0].clientHeight);
 
         this.windowWidth = width;
         this.windowHeight = height;
@@ -564,7 +559,7 @@ document.addEventListener("mousemove", (event) => {
 });
 
 function spawnWindow(content) {
-    new Window(800, 600, content);
+    new Window(content);
 }
 
 function toggleColorScheme() {
