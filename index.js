@@ -362,9 +362,9 @@ var colorscheme = "dark"
 class Window {
     constructor(content) {
         var root = this;
-        
+
         let width = 0.6 * (window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth);
-        let height = 0.6 * (window.innerHeight || document.documentElement.clientHeight || document.getElementsByTagName('body')[0].clientHeight);
+        let height = 0.8 * (window.innerHeight || document.documentElement.clientHeight || document.getElementsByTagName('body')[0].clientHeight);
 
         this.windowWidth = width;
         this.windowHeight = height;
