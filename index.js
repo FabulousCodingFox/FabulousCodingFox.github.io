@@ -135,7 +135,7 @@ const windowJava =  /*html*/`
 <div class="details #6" style="display: none">
     <center><h1>The Backrooms</h1></center>
     <center><a href="https://github.com/FabulousCodingFox/TheBackrooms" target="_blank">https://github.com/FabulousCodingFox/TheBackrooms</a></center>
-    <center><p><img src="https://user-images.githubusercontent.com/78906517/177658903-e281704d-c67c-4cf9-b776-41ee8f633626.png" style="width: 100%; max-width:600px"></p></center>
+    <center><p><img src="https://user-images.githubusercontent.com/78906517/208268991-8869c2bc-e129-40a7-b541-8dd6ba6fa1ee.png" style="width: 100%; max-width:600px"></p></center>
 </div>
 `
 
