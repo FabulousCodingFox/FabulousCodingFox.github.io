@@ -6,7 +6,7 @@ const windowGithub = /*html*/`
 <h1 align="center">Hi <span class="wave">👋</span>, I am FabulousFox</h1>
 <h3 align="center">I mostly code useless stuff</h3>
 
-<p align="center"><a href="https://github.com/FabulousCodingFox" target="_blank">(https://github.com/FabulousCodingFox)</a></p>
+<p align="center">(<a href="https://github.com/FabulousCodingFox" target="_blank">https://github.com/FabulousCodingFox</a> || <a href="https://fabulouscodingfox.github.io/" target="_blank">https://fabulouscodingfox.github.io/</a>)</p>
 
 <hr>
 
