@@ -251,6 +251,7 @@ const windowHTML =  /*html*/`
     <div class="wrapper">
         <h3>👷‍♂️ Projects</h3>
         <button onclick="loadwindowtext(this, '#5')">Portfolio</button>
+        <button onclick="loadwindowtext(this, '#6')">Winked!</button>
     </div>
 </div>
 
@@ -282,6 +283,12 @@ const windowHTML =  /*html*/`
 <div class="details #5" style="display: none">
     <h1 align="center">Portfolio</h1>
     <!-- TODO -->
+</div>
+
+<div class="details #6" style="display: none">
+    <center><h1>Winked!</h1></center>
+    <center><a href="https://github.com/Intramo/WinkedClient" target="_blank">https://github.com/Intramo/WinkedClient</a></center>
+    <center><p><img src="https://user-images.githubusercontent.com/78906517/209948772-339cf09e-9240-4e1b-83ff-6ba6c4c31f0d.png" style="width: 100%; max-width:600px"></p></center>
 </div>
 `
 
