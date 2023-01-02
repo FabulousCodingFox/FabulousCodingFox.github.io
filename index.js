@@ -288,7 +288,7 @@ const windowHTML =  /*html*/`
 <div class="details #6" style="display: none">
     <center><h1>Winked!</h1></center>
     <center><a href="https://github.com/Intramo/WinkedClient" target="_blank">https://github.com/Intramo/WinkedClient</a></center>
-    <center><p><img src="https://user-images.githubusercontent.com/78906517/209948772-339cf09e-9240-4e1b-83ff-6ba6c4c31f0d.png" style="width: 100%; max-width:600px"></p></center>
+    <center><p><img src="https://user-images.githubusercontent.com/78906517/210170319-e2fa2fcc-e4ba-4320-bf29-b247c90ebf3f.png" style="width: 100%; max-width:600px"></p></center>
 </div>
 `
 
