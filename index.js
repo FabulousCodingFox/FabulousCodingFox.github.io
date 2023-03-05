@@ -22,9 +22,51 @@ const windowAboutMe = /*html*/`
     </div>
 </div>
 
-<div class="details #0" style="display: initial">
-    <h1 align="center">Intro</h1>
-    <p>Hi, I am FabulousFox. I am a 15 year old programmer from Germany. I mostly code useless stuff, but I also like to code useful stuff. I am currently learning Vulkan and I am working on a game engine.</p>
+<div class="details #00" style="display: initial">
+    <h1 align="center">Hi <span class="wave">👋</span>, I am FabulousFox</h1>
+    <h3 align="center">Im a 16yo software developer from Dortmund, Germany</h3>
+
+    <hr>
+
+    <h3> 💻 <b>Programming Languages</b></h3>
+    <ul>
+        <li>☕Java</li>
+        <li>🐀C++</li>
+        <li>🐍Python</li>
+        <li>🟨Javascript</li>
+    </ul>
+
+    <h3> 🚀 <b>APIs/Frameworks/Methods</b></h3>
+    <ul>
+        <li>🧮Databases: SQL</li>
+        <li>📜Web: Html/Css, Js/Ts, Bootstrap</li>
+        <li>⚡API: FastAPI, Flask</li>
+        <li>📗Minecraft: Bukkit/Spigot/Paper, Datapacks</li>
+        <li>👾Graphics: Pygame, (Modern OpenGL), Vulkan</li>
+    </ul>
+</div>
+
+<div class="details #10" style="display: none">
+    <h1 align="center">📕 Book</h1>
+    <p align="center"><img src="https://m.media-amazon.com/images/I/81oqUi82tyL.jpg" width="30%"></p>
+    <p align="center">Einen Scheiß muss ich</p>
+</div>
+
+<div class="details #11" style="display: none">
+    <h1 align="center">📺 Film</h1>
+    <p align="center"><img src="https://upload.wikimedia.org/wikipedia/en/Back_to_the_Future.jpg" width="30%"></p>
+    <p align="center">Back to the Future</p>
+</div>
+
+<div class="details #14" style="display: none">
+    <h1 align="center">Control</h1>
+    <img src="https://rare-gallery.com/uploads/posts/317336-Control-Video-Game-4K.jpg" width="100%">
+    <p align="center">I love the story, the gameplay, the graphics, the music, the characters, the world, the atmosphere, the everything. It's just a masterpiece.</p>
+    <img src="https://c4.wallpaperflare.com/wallpaper/630/821/224/control-control-2019-pc-game-office-federal-bureau-of-control-hd-wallpaper-preview.jpg" width="100%">
+    <p align="center">The Bureau of Control is a secret organization that investigates paranormal phenomena. The Bureau is led by Jesse Faden, who is the new Director of the Bureau. The Bureau is located in the Oldest House, a building that is said to be haunted by the ghost of a former Director of the Bureau.</p>
+    <img src="https://pbs.twimg.com/media/DxFijDDWoAACWx8.jpg" width="100%">
+    <p align="center">One of the greatest things about Control are the innovative weapons. The game has a wide variety of weapons, each with their own unique abilities. The most common weapon is the Service Weapon, which is a pistol that can be used to shoot enemies. Furthermore, the player has the ability to throw debris at enemies</p>
+
 </div>
 
 `
