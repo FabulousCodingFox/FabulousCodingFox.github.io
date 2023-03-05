@@ -1,6 +1,34 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
+const windowAboutMe = /*html*/`
+
+<div class="sidebar">
+    <div class="wrapper">
+        <h3>👋 Welcome!</h3>
+        <button onclick="loadwindowtext(this, '#00')">😜 Intro</button>
+    </div>
+    <div class="wrapper">
+        <h3>💙 My favourite...</h3>
+        <button onclick="loadwindowtext(this, '#10')">📕 Book</button>
+        <button onclick="loadwindowtext(this, '#11')">📺 Film</button>
+        <button onclick="loadwindowtext(this, '#12')">🎬 Show</button>
+        <button onclick="loadwindowtext(this, '#13')">🎨 Painting</button>
+        <button onclick="loadwindowtext(this, '#14')">🎮 Game</button>
+        <button onclick="loadwindowtext(this, '#15')">🎵 Song</button>
+        <button onclick="loadwindowtext(this, '#16')">🍕 Food</button>
+        <button onclick="loadwindowtext(this, '#17')">😎 Location</button>
+
+    </div>
+</div>
+
+<div class="details #0" style="display: initial">
+    <h1 align="center">Intro</h1>
+    <p>Hi, I am FabulousFox. I am a 15 year old programmer from Germany. I mostly code useless stuff, but I also like to code useful stuff. I am currently learning Vulkan and I am working on a game engine.</p>
+</div>
+
+`
+
 
 const windowGithub = /*html*/`
 <h1 align="center">Hi <span class="wave">👋</span>, I am FabulousFox</h1>
@@ -650,5 +678,5 @@ window.addEventListener('resize', function (event) {
 });
 
 
-spawnWindow(windowBuilder('assets/icons/github.png', 'GitHub', windowGithub));
+spawnWindow(windowBuilder('assets/icons/github.png', 'GitHub', windowAboutMe));
 
