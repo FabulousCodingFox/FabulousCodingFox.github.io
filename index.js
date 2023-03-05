@@ -438,6 +438,10 @@ class Window {
         });
 
         //Maximize window
+        this.topbar.ondblclick = () => {
+            this.setMaxximized(!this.isMaxximized);
+        };
+
         this.maxbtn.onclick = () => {
             this.setMaxximized(!this.isMaxximized);
         };
