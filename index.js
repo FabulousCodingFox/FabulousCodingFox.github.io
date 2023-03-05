@@ -66,8 +66,17 @@ const windowAboutMe = /*html*/`
     <p align="center">The Bureau of Control is a secret organization that investigates paranormal phenomena. The Bureau is led by Jesse Faden, who is the new Director of the Bureau. The Bureau is located in the Oldest House, a building that is said to be haunted by the ghost of a former Director of the Bureau.</p>
     <img src="https://pbs.twimg.com/media/DxFijDDWoAACWx8.jpg" width="100%">
     <p align="center">One of the greatest things about Control are the innovative weapons. The game has a wide variety of weapons, each with their own unique abilities. The most common weapon is the Service Weapon, which is a pistol that can be used to shoot enemies. Furthermore, the player has the ability to throw debris at enemies</p>
-
 </div>
+
+<div class="details #15" style="display: none">
+    <h1 align="center">🎵 Song (Top 5)</h1>
+    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/2OnqLGs0xZvr8ZNzWJELGo?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/6hmtNel4OKlBpBcTO7ao3o?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/236mI0lz8JdQjlmijARSwY?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/2K77XEe6z8Tt2iZCYOxX7G?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/0eworYWjLcwP8xhNFfKU96?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+</div>
+
 
 `
 
