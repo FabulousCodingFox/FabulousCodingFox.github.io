@@ -12,7 +12,7 @@ const THEME = {
 let DATA = {
     [WINDOWTYPE.PROJECTS]: {
         title: "Projects",
-        img: "assets/icons/avatar.gif",
+        img: "assets/windows/projects/icon.svg",
         layout: false,
         content: /*html*/`
             <div class="sidebar">
@@ -62,6 +62,11 @@ let DATA = {
 
             <div class="details #10" style="display: none">
                 <h1 align="center">Sulfurium Network</h1>
+                <p align="center">Not public</p>
+                <hr>
+                <p>My Minecraft network</p>
+                <p>-> <a target="_blank" href="https://sulfurium.net/">https://sulfurium.net/</a></p>
+                <img src="assets/windows/projects/sulfurium.png" width="100%">
             </div>
 
             <div class="details #11" style="display: none">
@@ -98,6 +103,56 @@ let DATA = {
                 
                 <p>-> <a target="_blank" href="https://github.com/FabulousCodingFox/TheBackrooms">https://github.com/FabulousCodingFox/TheBackrooms</a></p>
             </div>
+        `
+    },
+
+    [WINDOWTYPE.GITHUB]: {
+        'img': 'assets/icons/github.png',
+        'title': 'Github',
+        'content': /*html*/`
+            <h1 align="center">Hi 👋, I am FabulousFox</h1>
+            <h3 align="center">I mostly code useless stuff</h3>
+            <p align="center">(<a target="_blank" href="https://github.com/FabulousCodingFox">https://github.com/FabulousCodingFox</a> || <a href="javscript:void(0)">https://fabulouscodingfox.github.io/</a>)</p>
+            
+            <hr>
+
+            <h3> 💻 <b>Programming Languages</b></h3>
+            <ul>
+                <li>☕Java</li>
+                <li>🐀C++</li>
+                <li>🐍Python</li>
+                <li>🟨Javascript</li>
+            </ul>
+
+            <hr>
+        
+            <h3> 🚀 <b>APIs/Frameworks/Methods</b></h3>
+            <ul>
+                <li>🧮Databases: SQL</li>
+                <li>📜Web: Html/Css, Js/Ts, Bootstrap</li>
+                <li>⚡API: FastAPI, Flask</li>
+                <li>📗Minecraft: Bukkit/Spigot/Paper, Datapacks</li>
+                <li>👾Graphics: Pygame, (Modern OpenGL), Vulkan</li>
+            </ul>
+
+            <hr>
+
+            <h3> 📫 <b>Contact</b></h3>
+            <ul>
+                <li>💬Discord: FabulousFox#9057</li>
+            </ul>
+
+            <hr>
+
+            <img src="https://github-readme-stats.vercel.app/api/top-langs?username=FabulousCodingFox&show_icons=true&locale=en&langs_count=10&theme=dracula" alt="FabulousCodingFox" />
+            <img src="https://github-readme-stats.vercel.app/api?username=FabulousCodingFox&show_icons=true&locale=en&theme=dracula" alt="FabulousCodingFox" />
+        `
+    },
+
+    [WINDOWTYPE.ABOUTME]: {
+        'img': 'assets/icons/avatar.gif',
+        'title': 'About Me',
+        'content': /*html*/`
         `
     }
 }
@@ -446,4 +501,4 @@ function toggleColorScheme() {
     }
 }
 
-windowBuilder(WINDOWTYPE.PROJECTS)
+windowBuilder(WINDOWTYPE.ABOUTME)

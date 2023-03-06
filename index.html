@@ -56,11 +56,9 @@
         </div>
 
         <div class="wrapper">
-            <button onclick="spawnWindow(windowBuilder('assets/icons/github.png', 'GitHub', windowGithub))"><img src="assets/icons/github.png"></button>
-            <div class="divider"></div>
-            <button onclick="spawnWindow(windowBuilder('assets/icons/java.png', 'Java', windowJava))"><img src="assets/icons/java.png"></button>
-            <button onclick="spawnWindow(windowBuilder('assets/icons/python.png', 'Python', windowPython))"><img src="assets/icons/python.png"></button>
-            <button onclick="spawnWindow(windowBuilder('assets/icons/html.png', 'HTML', windowHTML))"><img src="assets/icons/html.png"></button>
+            <button onclick="windowBuilder(WINDOWTYPE.GITHUB)"><img src="assets/icons/github.png"></button>
+            <button onclick="windowBuilder(WINDOWTYPE.PROJECTS)"><img src="assets/windows/projects/icon.svg"></button>
+            <button onclick="windowBuilder(WINDOWTYPE.ABOUTME)"><img src="assets/icons/avatar.gif"></button>
         </div>
 
         <div class="wrapper">
@@ -81,7 +79,7 @@
                     </path>
                 </svg></button>
         </div>
-        
+
         <div class="wrapper-account">
             <p class="date">Aug 31st</p>
             <p class="time"><b>21:55</b></p>
