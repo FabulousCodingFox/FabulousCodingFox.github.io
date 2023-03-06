@@ -205,7 +205,7 @@ let DATA = {
             <p>[#TODO]</p>
         </div>
 
-        <div class="details bg #14" style="display: none; --bg: url('https://rare-gallery.com/uploads/posts/317336-Control-Video-Game-4K.jpg')">
+        <div class="details bg #14" style="display: none;" data-bg="url('https://rare-gallery.com/uploads/posts/317336-Control-Video-Game-4K.jpg')">
             <h1 align="center">🎮 My favourite game</h1>
             <h2 align="center">Control</h2>
             <hr>
@@ -542,6 +542,9 @@ function loadwindowtext(btn, id) {
     Array.from(elements).forEach(function (item, index) {
         if (item.classList.contains(id)) {
             item.style.display = "initial";
+            if(item.hasAttribute("data-bg")){
+                item.parentElement.style.setProperty("--bg", item.getAttribute("data-bg"));
+            }
         } else {
             item.style.display = "none";
         }
