@@ -1,13 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans&display=swap');
 
 :root {
-    --asset-bg-img-dark: url("assets/background/dark.png");
-    --asset-bg-img-blur-dark: url("assets/background/darkblur.png");
-    --asset-bg-img-light: url("assets/background/light.png");
-    --asset-bg-img-blur-light: url("assets/background/lightblur.png");
-
-    --bg-img: var(--asset-bg-img-dark);
-    --bg-img-blur: var(--asset-bg-img-blur-dark);
+    --bg-img: url("assets/theme/dark/bg.png");
+    --bg-img-blur: url("assets/theme/dark/bg_blur.png");
 
     --color-contrast: #fff;
     --color-change-transition-duration: 1s;
