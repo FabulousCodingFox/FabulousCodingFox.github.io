@@ -472,7 +472,7 @@ svg {
 }
 
 .window .content .content-pane .details {
-    position: fixed;
+    position: absolute;
     top: 16px;
     left: calc(16px + var(--sidebar));
     height: calc(100% - 32px);
@@ -595,18 +595,18 @@ svg {
 
 
 
+.window .content .content-pane .details.bg{
+    backdrop-filter: unset;
+}
 
 
-
-
-
-.window .content .content-pane .details.bg::before {
-    z-index: -1;
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    width: 100%;
-    height: 100%;
+.window .content .content-pane:has(.details.bg):before{
+    position: absolute;
+    top: 16px;
+    left: calc(16px + var(--sidebar));
+    height: calc(100% - 32px);
+    width: calc(100% - var(--sidebar) - 32px);
+    border-radius: 8px;
     content: "";
     background-image: var(--bg);
     background-size: cover;
