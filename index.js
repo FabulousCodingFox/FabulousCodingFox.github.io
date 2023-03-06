@@ -110,7 +110,7 @@ let DATA = {
         'img': 'assets/icons/github.png',
         'title': 'Github',
         'content': /*html*/`
-            <h1 align="center">Hi 👋, I am FabulousFox</h1>
+            <h1 align="center">Hi <span class="wave">👋</span>, I am FabulousFox</h1>
             <h3 align="center">I mostly code useless stuff</h3>
             <p align="center">(<a target="_blank" href="https://github.com/FabulousCodingFox">https://github.com/FabulousCodingFox</a> || <a href="javscript:void(0)">https://fabulouscodingfox.github.io/</a>)</p>
             
@@ -153,6 +153,91 @@ let DATA = {
         'img': 'assets/icons/avatar.gif',
         'title': 'About Me',
         'content': /*html*/`
+        <div class="sidebar">
+            <div class="wrapper">
+                <h3>👋 Welcome!</h3>
+                <button onclick="loadwindowtext(this, '#00')">😜 Intro</button>
+            </div>
+            <div class="wrapper">
+                <h3>💙 My favourite...</h3>
+                <button onclick="loadwindowtext(this, '#10')">📕 Book</button>
+                <button onclick="loadwindowtext(this, '#11')">📺 Movie</button>
+                <button onclick="loadwindowtext(this, '#12')">🎬 Show</button>
+                <button onclick="loadwindowtext(this, '#13')">🎨 Painting</button>
+                <button onclick="loadwindowtext(this, '#14')">🎮 Game</button>
+                <button onclick="loadwindowtext(this, '#15')">🎵 Song</button>
+                <button onclick="loadwindowtext(this, '#16')">🍕 Food</button>
+                <button onclick="loadwindowtext(this, '#17')">😎 Location</button>
+            </div>
+        </div>
+
+        <div class="details #00" style="display: initial;">
+            <h1 align="center"><span class="wave">👋</span> Hello there!</h1>
+            <hr>
+            <p>I am FabulousFox, a 16 year old student from Germany. I am a self-taught programmer and I love to code useless stuff. I've always had a love for technology and innovation, so I started delving into the world of programming pretty early on.</p>
+            <p>I have learned a plethora of programming languages over these eight years, including Java, C++ and Python, which I can use effectively to solve complex problems and develop innovative solutions. I have worked on a variety of projects including games, tools and even web applications.</p>
+            <p>I have a big passion for Voxels and I am currently working on a voxel game. My projects mostly include a new topic each, such as networking, graphics, AI, etc.</p>
+            <p>What I like the most about programming is the fact that you can create anything you want. You can create a game, a website, a program, a tool, a mod, a datapack, etc. The possibilities are endless!</p>
+            <p>I am proud to have gained so much experience in the world of programming at such a young age and I look forward to further developing my skills and taking on new challenges.</p>
+        </div>
+
+        <div class="details #10" style="display: none;">
+            <h1 align="center">📕 My favourite book</h1>
+            <hr>
+            <p>[#TODO]</p>
+        </div>
+
+        <div class="details #11" style="display: none;">
+            <h1 align="center">📺 My favourite movie</h1>
+            <hr>
+            <p>[#TODO]</p>
+        </div>
+
+        <div class="details #12" style="display: none;">
+            <h1 align="center">🎬 My favourite show</h1>
+            <hr>
+            <p>[#TODO]</p>
+        </div>
+
+        <div class="details #13" style="display: none;">
+            <h1 align="center">🎨 My favourite painting</h1>
+            <hr>
+            <p>[#TODO]</p>
+        </div>
+
+        <div class="details bg #14" style="display: none; --bg: url('https://rare-gallery.com/uploads/posts/317336-Control-Video-Game-4K.jpg')">
+            <h1 align="center">🎮 My favourite game</h1>
+            <h2 align="center">Control</h2>
+            <hr>
+            <p>Control is a third-person action-adventure game developed by Remedy Entertainment and published by 505 Games. It was released for Microsoft Windows, PlayStation 4, and Xbox One on 27 August 2019. The game follows Jesse Faden, the new Director of the Federal Bureau of Control, as she attempts to regain control of the Bureau's Oldest House headquarters from a mysterious force known as the Hiss.</p>  
+            <p>What i like about this game is the fact that it is a mix of a lot of different genres. It is a third-person shooter, a puzzle game, a platformer, a stealth game, a horror game and a sci-fi game at the same time. It is a very unique game and it is one of my favourite games of all time.</p>
+            <p>The most outstanding feature of this game is the well thought out story. The story is very interesting and it is very well written. The story is very mysterious and well paced; Its very hard to put the game down. The story is very well told and it is very immersive.</p>
+            <hr>
+            <center>
+                <img src="https://c4.wallpaperflare.com/wallpaper/630/821/224/control-control-2019-pc-game-office-federal-bureau-of-control-hd-wallpaper-preview.jpg" width="49%">
+                <img src="https://pbs.twimg.com/media/DxFijDDWoAACWx8.jpg" width="49%">
+            </center>
+            <hr>
+            <iframe src="https://store.steampowered.com/widget/870780/?t=With%20more%20than%2080%20awards%20to%20its%20name%2C%20Control%20is%20an%20impressive%20action-adventure%20game%20where%20the%20tension%20never%20lets%20up.%20It%20combines%20open%20environments%20with%20the%20typical%20world%20building%20and%20stories%20of%20the%20famous%20developer%20Remedy%20Entertainment.%20Control%20offers%20a%20complex%20and%20highly%20fulfilling%20gaming%20experience." frameborder="0" width="100%" height="190"></iframe>
+        </div>
+
+        <div class="details #15" style="display: none;">
+            <h1 align="center">🎵 My favourite song</h1>
+            <hr>
+            <p>[#TODO]</p>
+        </div>
+
+        <div class="details #16" style="display: none;">
+            <h1 align="center">🍕 My favourite food</h1>
+            <hr>
+            <p>[#TODO]</p>
+        </div>
+
+        <div class="details #17" style="display: none;">
+            <h1 align="center">😎 My favourite location</h1>
+            <hr>
+            <p>[#TODO]</p>
+        </div>
         `
     }
 }
