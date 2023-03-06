@@ -12,6 +12,7 @@
     <meta name="msapplication-config" content="assets/favicons/browserconfig.xml">
     <meta name="theme-color" content="#ffffff">
 
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta http-equiv="content-Type" content="text/html; utf-8" />
     <meta http-equiv="Pragma" content="cache" />
     <meta name="robots" content="INDEX,FOLLOW" />
@@ -27,11 +28,20 @@
     <meta http-equiv="Reply-to" content="" />
     <meta name="expires" content="" />
     <meta name="revisit-after" content="2 days" />
+    <meta name="distribution" content="global" />
+    <meta name="rating" content="general" />
+    <meta name="language" content="en" />
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow" />
+    <meta name="google" content="nositelinkssearchbox" />
+    <meta name="google" content="notranslate" />
+    <meta name="google" content="nocrtrans" />
+    <meta name="google" content="notranslate" />
+
     <title>FabulousFox</title>
 
     <link rel="stylesheet" type="text/css" href="index.css">
     <script src="index.js" defer></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 
 <body>
@@ -44,17 +54,15 @@
             </div>
             <button id="musiccontrol" onclick="pauseAudio()"><img src="assets/icons/play.svg"></button>
         </div>
+
         <div class="wrapper">
-            <button onclick="spawnWindow(windowBuilder('assets/icons/github.png', 'GitHub', windowGithub))"><img
-                    src="assets/icons/github.png"></button>
+            <button onclick="spawnWindow(windowBuilder('assets/icons/github.png', 'GitHub', windowGithub))"><img src="assets/icons/github.png"></button>
             <div class="divider"></div>
-            <button onclick="spawnWindow(windowBuilder('assets/icons/java.png', 'Java', windowJava))"><img
-                    src="assets/icons/java.png"></button>
-            <button onclick="spawnWindow(windowBuilder('assets/icons/python.png', 'Python', windowPython))"><img
-                    src="assets/icons/python.png"></button>
-            <button onclick="spawnWindow(windowBuilder('assets/icons/html.png', 'HTML', windowHTML))"><img
-                    src="assets/icons/html.png"></button>
+            <button onclick="spawnWindow(windowBuilder('assets/icons/java.png', 'Java', windowJava))"><img src="assets/icons/java.png"></button>
+            <button onclick="spawnWindow(windowBuilder('assets/icons/python.png', 'Python', windowPython))"><img src="assets/icons/python.png"></button>
+            <button onclick="spawnWindow(windowBuilder('assets/icons/html.png', 'HTML', windowHTML))"><img src="assets/icons/html.png"></button>
         </div>
+
         <div class="wrapper">
             <!--<button><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M21 5H3a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h18a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm-8 2h2v2h-2V7zm0 4h2v2h-2v-2zM9 7h2v2H9V7zm0 4h2v2H9v-2zM5 7h2v2H5V7zm0 4h2v2H5v-2zm12 6H7v-2h10v2zm2-4h-2v-2h2v2zm0-4h-2V7h2v2z"></path></svg></button>-->
             <button><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
@@ -73,6 +81,7 @@
                     </path>
                 </svg></button>
         </div>
+        
         <div class="wrapper-account">
             <p class="date">Aug 31st</p>
             <p class="time"><b>21:55</b></p>
