@@ -22,7 +22,7 @@ const windowAboutMe = /*html*/`
     </div>
 </div>
 
-<div class="details #00" style="display: initial">
+<div class="details-layout-control #00" style="display: none">
     <h1 align="center">Hi <span class="wave">👋</span>, I am FabulousFox</h1>
     <h3 align="center">Im a 16yo software developer from Dortmund, Germany</h3>
 
@@ -46,29 +46,42 @@ const windowAboutMe = /*html*/`
     </ul>
 </div>
 
-<div class="details #10" style="display: none">
+<div class="details-layout-control #10" style="display: none">
     <h1 align="center">📕 Book</h1>
     <p align="center"><img src="https://m.media-amazon.com/images/I/81oqUi82tyL.jpg" width="30%"></p>
     <p align="center">Einen Scheiß muss ich</p>
 </div>
 
-<div class="details #11" style="display: none">
+<div class="details-layout-control #11" style="display: none">
     <h1 align="center">📺 Film</h1>
     <p align="center"><img src="https://upload.wikimedia.org/wikipedia/en/Back_to_the_Future.jpg" width="30%"></p>
     <p align="center">Back to the Future</p>
 </div>
 
-<div class="details #14" style="display: none">
-    <h1 align="center">Control</h1>
+<div class="details-layout-control #14" style="display: initial">
+    <div class="page" style="--bgimg: url(https://rare-gallery.com/uploads/posts/317336-Control-Video-Game-4K.jpg)">
+        <div class="page-content">
+            <h1 align="center">Control</h1>
+            <p align="center">I love the story, the gameplay, the graphics, the music, the characters, the world, the atmosphere, the everything. It's just a masterpiece.</p>
+            <img src="https://c4.wallpaperflare.com/wallpaper/630/821/224/control-control-2019-pc-game-office-federal-bureau-of-control-hd-wallpaper-preview.jpg" width="100%">
+            <p align="center">The Bureau of Control is a secret organization that investigates paranormal phenomena. The Bureau is led by Jesse Faden, who is the new Director of the Bureau. The Bureau is located in the Oldest House, a building that is said to be haunted by the ghost of a former Director of the Bureau.</p>
+            <img src="https://pbs.twimg.com/media/DxFijDDWoAACWx8.jpg" width="100%">
+            <p align="center">One of the greatest things about Control are the innovative weapons. The game has a wide variety of weapons, each with their own unique abilities. The most common weapon is the Service Weapon, which is a pistol that can be used to shoot enemies. Furthermore, the player has the ability to throw debris at enemies</p>
+
+        </div>
+    </div>
+
+    <!--<h1 align="center">Control</h1>
     <img src="https://rare-gallery.com/uploads/posts/317336-Control-Video-Game-4K.jpg" width="100%">
     <p align="center">I love the story, the gameplay, the graphics, the music, the characters, the world, the atmosphere, the everything. It's just a masterpiece.</p>
     <img src="https://c4.wallpaperflare.com/wallpaper/630/821/224/control-control-2019-pc-game-office-federal-bureau-of-control-hd-wallpaper-preview.jpg" width="100%">
     <p align="center">The Bureau of Control is a secret organization that investigates paranormal phenomena. The Bureau is led by Jesse Faden, who is the new Director of the Bureau. The Bureau is located in the Oldest House, a building that is said to be haunted by the ghost of a former Director of the Bureau.</p>
     <img src="https://pbs.twimg.com/media/DxFijDDWoAACWx8.jpg" width="100%">
     <p align="center">One of the greatest things about Control are the innovative weapons. The game has a wide variety of weapons, each with their own unique abilities. The most common weapon is the Service Weapon, which is a pistol that can be used to shoot enemies. Furthermore, the player has the ability to throw debris at enemies</p>
+    -->
 </div>
 
-<div class="details #15" style="display: none">
+<div class="details-layout-control #15" style="display: none">
     <h1 align="center">🎵 Song (Top 5)</h1>
     <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/2OnqLGs0xZvr8ZNzWJELGo?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
     <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/6hmtNel4OKlBpBcTO7ao3o?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
