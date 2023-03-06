@@ -10,10 +10,95 @@ const THEME = {
 };
 
 let DATA = {
-    [WINDOWTYPE.ABOUTME]: {
-        title: "About Me",
-        img: "assets/icons/user.svg",
-        content: ""
+    [WINDOWTYPE.PROJECTS]: {
+        title: "Projects",
+        img: "assets/icons/avatar.gif",
+        layout: false,
+        content: /*html*/`
+            <div class="sidebar">
+                <div class="wrapper">
+                    <h3>🚧Web</h3>
+                    <button onclick="loadwindowtext(this, '#00')">Winked</button>
+                    <button onclick="loadwindowtext(this, '#01')">Portfolio</button>
+                </div>
+                <div class="wrapper">
+                    <h3>☕Java</h3>
+                    <button onclick="loadwindowtext(this, '#10')">Sulfurium Network</button>
+                    <button onclick="loadwindowtext(this, '#11')">The Backrooms</button>
+                </div>
+                <div class="wrapper">
+                    <h3>🐍Python</h3>
+                    <button onclick="loadwindowtext(this, '#20')">Foxscript</button>
+                </div>
+            </div>
+
+            <div class="details #00" style="display: initial">
+                <h1 align="center">Winked</h1>
+                <p align="center">
+                    <a target="_blank" href="https://github.com/Intramo/WinkedClient/blob/master/LICENSE"><img src="https://img.shields.io/github/license/Intramo/WinkedClient.svg"></a>
+                    <a target="_blank" href="https://GitHub.com/Intramo/WinkedClient/releases/"><img src="https://img.shields.io/github/release/Intramo/WinkedClient.svg"></a>
+                    <a target="_blank" href="https://GitHub.com/Intramo/WinkedClient/stargazers/"><img src="https://img.shields.io/github/stars/Intramo/WinkedClient.svg"></a>
+                </p>
+                <hr>
+                <p>Winked is a web application that allows you to create and host custom live multiplayer games. It is currently in development.</p>
+                <p>-> <a target="_blank" href="https://play.winked.app/">https://play.winked.app/</a></p>
+                <p>-> <a target="_blank" href="https://create.winked.app/">https://create.winked.app/</a></p>
+                <p>-> <a target="_blank" href="https://github.com/Intramo/WinkedClient">https://github.com/Intramo/WinkedClient</a></p>
+                <p>-> <a target="_blank" href="https://github.com/Intramo/WinkedServer">https://github.com/Intramo/WinkedServer</a></p>
+                <img src="assets/windows/projects/winked.png" width="100%">
+            </div>
+
+            <div class="details #01" style="display: none">
+                <h1 align="center">Portfolio</h1>
+                <p align="center">
+                    <a target="_blank" href="https://github.com/FabulousCodingFox/FabulousCodingFox.github.io/blob/master/LICENSE"><img src="https://img.shields.io/github/license/FabulousCodingFox/FabulousCodingFox.github.io.svg"></a>
+                    <a target="_blank" href="https://GitHub.com/FabulousCodingFox/FabulousCodingFox.github.io/releases/"><img src="https://img.shields.io/github/release/FabulousCodingFox/FabulousCodingFox.github.io.svg"></a>
+                    <a target="_blank" href="https://GitHub.com/FabulousCodingFox/FabulousCodingFox.github.io/stargazers/"><img src="https://img.shields.io/github/stars/FabulousCodingFox/FabulousCodingFox.github.io.svg"></a>
+                </p>
+                <hr>
+                <p>Its literally this website</p>
+                <p>-> <a target="_blank" href="https://github.com/FabulousCodingFox/FabulousCodingFox.github.io">https://github.com/FabulousCodingFox/FabulousCodingFox.github.io</a></p>
+            </div>
+
+            <div class="details #10" style="display: none">
+                <h1 align="center">Sulfurium Network</h1>
+            </div>
+
+            <div class="details #11" style="display: none">
+                <h1 align="center">The Backrooms</h1>
+                <p align="center">
+                    <a target="_blank" href="https://github.com/FabulousCodingFox/TheBackrooms/blob/master/LICENSE"><img src="https://img.shields.io/github/license/FabulousCodingFox/TheBackrooms.svg"></a>
+                    <a target="_blank" href="https://GitHub.com/FabulousCodingFox/TheBackrooms/releases/"><img src="https://img.shields.io/github/release/FabulousCodingFox/TheBackrooms.svg"></a>
+                    <a target="_blank" href="https://GitHub.com/FabulousCodingFox/TheBackrooms/stargazers/"><img src="https://img.shields.io/github/stars/FabulousCodingFox/TheBackrooms.svg"></a>
+                </p>
+                <hr>
+                <p>What would The Backrooms look like as an old school 90s computer game? [WIP]</p>
+                <p>-> <a target="_blank" href="https://github.com/FabulousCodingFox/TheBackrooms">https://github.com/FabulousCodingFox/TheBackrooms</a></p>
+                <img src="assets/windows/projects/backrooms.png" width="100%">
+            </div>
+
+            <div class="details #20" style="display: none">
+                <h1 align="center">Foxscript</h1>
+                <p align="center">
+                    <a target="_blank" href="https://github.com/FabulousCodingFox/FoxScript3/blob/master/LICENSE"><img src="https://img.shields.io/github/license/FabulousCodingFox/FoxScript3.svg"></a>
+                    <a target="_blank" href="https://GitHub.com/FabulousCodingFox/FoxScript3/releases/"><img src="https://img.shields.io/github/release/FabulousCodingFox/FoxScript3.svg"></a>
+                    <a target="_blank" href="https://GitHub.com/FabulousCodingFox/FoxScript3/stargazers/"><img src="https://img.shields.io/github/stars/FabulousCodingFox/FoxScript3.svg"></a>
+                </p>
+                <hr>
+                <h3>FoxScript3</h3>
+                <p>FoxScript3 is the third iteraton of the MC Datapack toolkit. The new and improved version features a lot of helpfull shortcuts for .mcfunction files!</p>
+
+                <h3>Create your OWN COMMANDS</h3>
+                <p>Using the simple JSON structure, you can create your own command in just seconds(See the wiki for more infos)!</p>
+
+                <h3>Better Loops and If Statements</h3>
+                <p>Using the simple In-File Function declarations you can easily write lopps in the same file without having 10.000+ extra files!</p>
+
+                <h3>Generate Custom BLOCKS and ITEMS with textures using a simple Json File (Beta Feature)</h3>
+                
+                <p>-> <a target="_blank" href="https://github.com/FabulousCodingFox/TheBackrooms">https://github.com/FabulousCodingFox/TheBackrooms</a></p>
+            </div>
+        `
     }
 }
 
@@ -361,4 +446,4 @@ function toggleColorScheme() {
     }
 }
 
-windowBuilder(WINDOWTYPE.ABOUTME)
+windowBuilder(WINDOWTYPE.PROJECTS)
