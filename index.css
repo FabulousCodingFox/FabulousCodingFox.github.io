@@ -541,66 +541,12 @@ svg {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .window .content .content-pane .details.bg{
     backdrop-filter: unset;
 }
 
 
-.window .content .content-pane:has(.details.bg):before{
+.window .content .content-pane:has( .details.bg):before{
     position: absolute;
     top: 16px;
     left: calc(16px + var(--sidebar));
@@ -615,29 +561,20 @@ svg {
     opacity: 40%;
 }
 
+.window .content .content-pane > video{
+    position: absolute;
+    top: 16px;
+    left: calc(16px + var(--sidebar));
+    height: calc(100% - 32px);
+    width: calc(100% - var(--sidebar) - 32px);
+    border-radius: 8px;
+    content: "";
+    opacity: 40%;
+}
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/*
 .window .content .content-pane .details-layout-control {
     position: fixed;
     top: 16px;
@@ -679,28 +616,4 @@ svg {
     height: 100%;
     padding: 28px;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+*/

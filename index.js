@@ -153,6 +153,8 @@ let DATA = {
         'img': 'assets/icons/avatar.gif',
         'title': 'About Me',
         'content': /*html*/`
+        <video autoplay muted loop src=""/>
+
         <div class="sidebar">
             <div class="wrapper">
                 <h3>👋 Welcome!</h3>
@@ -193,10 +195,12 @@ let DATA = {
             <p>[#TODO]</p>
         </div>
 
-        <div class="details #12" style="display: none;">
+        <div class="details bgvideo #12" style="display: none;">
             <h1 align="center">🎬 My favourite show</h1>
+            <h2>Dark (Netflix)</h2>
             <hr>
-            <p>[#TODO]</p>
+            <p>Dark is a German science fiction thriller streaming television series co-created by Baran bo Odar and Jantje Friese. It premiered on Netflix on 1 December 2017. The series follows the aftermath of a child's disappearance which exposes the secrets of, and hidden connections among, four estranged families as they slowly unravel a sinister time travel conspiracy which spans three generations.</p>
+            <p>The show has been ranked as the most popular Netflix original series in 2019 and 2020. Its been ranked at place 58. by the BBC in its list of the 100 Greatest Television Series of the 21st Century</p>
         </div>
 
         <div class="details #13" style="display: none;">
@@ -221,14 +225,18 @@ let DATA = {
             <iframe src="https://store.steampowered.com/widget/870780/?t=With%20more%20than%2080%20awards%20to%20its%20name%2C%20Control%20is%20an%20impressive%20action-adventure%20game%20where%20the%20tension%20never%20lets%20up.%20It%20combines%20open%20environments%20with%20the%20typical%20world%20building%20and%20stories%20of%20the%20famous%20developer%20Remedy%20Entertainment.%20Control%20offers%20a%20complex%20and%20highly%20fulfilling%20gaming%20experience." frameborder="0" width="100%" height="190"></iframe>
         </div>
 
-        <div class="details #15" style="display: none;">
+        <div class="details #15" style="display: none;" data-bg="url('https://faroutmagazine.co.uk/static/uploads/1/2022/03/The-Division-Bell-Pink-Floyd.jpg')">
             <h1 align="center">🎵 My favourite song</h1>
+            <h2 align="center">Pink Floyd - High Hopes</h2>
             <hr>
-            <p>[#TODO]</p>
+            <p>High Hopes is a song by the British band Pink Floyd. It appeared on the album The Division Bell in 1994.</p>
+            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/236mI0lz8JdQjlmijARSwY?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            
         </div>
 
         <div class="details #16" style="display: none;">
             <h1 align="center">🍕 My favourite food</h1>
+            <h2>
             <hr>
             <p>[#TODO]</p>
         </div>
