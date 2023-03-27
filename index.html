@@ -2,31 +2,6 @@
 <html>
 
 <head>
-    <link rel="apple-touch-icon" sizes="76x76" href="assets/favicons/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicons/favicon-16x16.png">
-    <link rel="manifest" href="assets/favicons/site.webmanifest">
-    <link rel="mask-icon" href="assets/favicons/safari-pinned-tab.svg" color="#5bbad5">
-    <link rel="shortcut icon" href="assets/favicons/favicon.ico">
-    <meta name="msapplication-TileColor" content="#da532c">
-    <meta name="msapplication-config" content="assets/favicons/browserconfig.xml">
-    <meta name="theme-color" content="#ffffff">
-
-    <meta http-equiv="content-Type" content="text/html; utf-8" />
-    <meta http-equiv="Pragma" content="cache" />
-    <meta name="robots" content="INDEX,FOLLOW" />
-    <meta http-equiv="content-Language" content="en" />
-    <meta name="description" content="Welcome to my portfolio 👋. Here you can find my previous work, my qualifications and what I am currently working on." />
-    <meta name="keywords" content="portfolio modern work design" />
-    <meta name="author" content="FabulousFox" />
-    <meta name="publisher" content="FabulousFox" />
-    <meta name="copyright" content="FabulousFox" />
-    <meta name="audience" content="Alle" />
-    <meta name="page-type" content="Private Homepage" />
-    <meta name="page-topic" content="Computer" />
-    <meta http-equiv="Reply-to" content="" />
-    <meta name="expires" content="" />
-    <meta name="revisit-after" content="2 days" />
     <title>FabulousFox</title>
 
     <link rel="stylesheet" type="text/css" href="index.css">
@@ -35,91 +10,7 @@
 </head>
 
 <body>
-    <div class="navbar">
-        <div id="music" class="wrapper-music" style="--color: #6e9eff">
-            <img src="https://i.scdn.co/image/ab67616d0000b273ef89d5f2c3b11aca7977e52c">
-            <div class="info">
-                <p><span>We are <a href="https://ncs.io/jcswweare" target="_blank">(C)</a></span></p>
-                <p>Whales, Jo. Cohen</p>
-            </div>
-            <button id="musiccontrol" onclick="pauseAudio()"><img src="assets/icons/play.svg"></button>
-        </div>
-        <div class="wrapper">
-            <button onclick="spawnWindow(windowBuilder('assets/icons/github.png', 'GitHub', windowGithub))"><img
-                    src="assets/icons/github.png"></button>
-            <div class="divider"></div>
-            <button onclick="spawnWindow(windowBuilder('assets/icons/java.png', 'Java', windowJava))"><img
-                    src="assets/icons/java.png"></button>
-            <button onclick="spawnWindow(windowBuilder('assets/icons/python.png', 'Python', windowPython))"><img
-                    src="assets/icons/python.png"></button>
-            <button onclick="spawnWindow(windowBuilder('assets/icons/html.png', 'HTML', windowHTML))"><img
-                    src="assets/icons/html.png"></button>
-        </div>
-        <div class="wrapper">
-            <!--<button><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M21 5H3a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h18a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm-8 2h2v2h-2V7zm0 4h2v2h-2v-2zM9 7h2v2H9V7zm0 4h2v2H9v-2zM5 7h2v2H5V7zm0 4h2v2H5v-2zm12 6H7v-2h10v2zm2-4h-2v-2h2v2zm0-4h-2V7h2v2z"></path></svg></button>-->
-            <button><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
-                    <path
-                        d="M16 21c3.527-1.547 5.999-4.909 5.999-9S19.527 4.547 16 3v2c2.387 1.386 3.999 4.047 3.999 7S18.387 17.614 16 19v2z">
-                    </path>
-                    <path
-                        d="M16 7v10c1.225-1.1 2-3.229 2-5s-.775-3.9-2-5zM4 17h2.697l5.748 3.832a1.004 1.004 0 0 0 1.027.05A1 1 0 0 0 14 20V4a1 1 0 0 0-1.554-.832L6.697 7H4c-1.103 0-2 .897-2 2v6c0 1.103.897 2 2 2zm0-8h3c.033 0 .061-.016.093-.019a1.027 1.027 0 0 0 .38-.116c.026-.015.057-.017.082-.033L12 5.868v12.264l-4.445-2.964c-.025-.017-.056-.02-.082-.033a.986.986 0 0 0-.382-.116C7.059 15.016 7.032 15 7 15H4V9z">
-                    </path>
-                </svg></button>
-            <!--<button><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M17.671 14.307C16.184 12.819 14.17 12 12 12s-4.184.819-5.671 2.307l1.414 1.414c1.11-1.11 2.621-1.722 4.257-1.722 1.636.001 3.147.612 4.257 1.722l1.414-1.414z"></path><path d="M20.437 11.292c-4.572-4.573-12.301-4.573-16.873 0l1.414 1.414c3.807-3.807 10.238-3.807 14.045 0l1.414-1.414z"></path><circle cx="12" cy="18" r="2"></circle></svg></button>-->
-            <button onclick="toggleColorScheme()" id="toggleColorScheme"><svg xmlns="http://www.w3.org/2000/svg"
-                    width="24" height="24" viewBox="0 0 24 24">
-                    <path
-                        d="M12 11.807A9.002 9.002 0 0 1 10.049 2a9.942 9.942 0 0 0-5.12 2.735c-3.905 3.905-3.905 10.237 0 14.142 3.906 3.906 10.237 3.905 14.143 0a9.946 9.946 0 0 0 2.735-5.119A9.003 9.003 0 0 1 12 11.807z">
-                    </path>
-                </svg></button>
-        </div>
-        <div class="wrapper-account">
-            <p class="date">Aug 31st</p>
-            <p class="time"><b>21:55</b></p>
-            <img src="assets/icons/avatar.gif">
-        </div>
-    </div>
-
-    <div id="popup">
-        <div class="topbar">
-            <img src="assets/icons/avatar.gif">
-            <p>Fabian F.</p>
-            <button onclick="closePopup()"><svg xmlns="http://www.w3.org/2000/svg">
-                    <path
-                        d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm4.207 12.793-1.414 1.414L12 13.414l-2.793 2.793-1.414-1.414L10.586 12 7.793 9.207l1.414-1.414L12 10.586l2.793-2.793 1.414 1.414L13.414 12l2.793 2.793z">
-                    </path>
-                </svg></button>
-        </div>
-        <p class="content">Welcome to my website. It works best in full screen mode. To learn more, use the buttons in
-            the lower taskbar. You can move the windows and adjust their size.</p>
-    </div>
-
-    <div id="pageBlocker"
-        style="display: none; position: absolute; top: 0px; left: 0px; width: 100vw; height: 100vh; overflow: hidden; justify-content: center; align-items: center; background-color: black; z-index: 99999999999999999999;">
-        <h1>This page does not work in portrait mode. Please rotate your device.</h1>
-    </div>
-
-    <!--<div class="window-container" style="--w: 1200px; --h: 600px; --window-border-radius: 20px; --sidebar: 280px; left: 100px; right: 100px;">
-        <div class="window">
-            <div class="content">
-                <div class="topbar">
-                    <div class="title">
-                        <img src="assets/icons/html.png">
-                        <p>Web</p>
-                    </div>
-                    <div class="controls">
-                        <button class="min"><img src="assets/icons/minus.svg"></button>
-                        <button class="max"><img src="assets/icons/square-rounded.svg"></button>
-                        <button class="close"><img src="assets/icons/x-circle.svg"></button>
-                    </div>
-                </div>  
-                <div class="content-pane">
-
-                </div>
-            </div>
-        </div>
-    </div>-->
-
+    
 </body>
 
 </html>
