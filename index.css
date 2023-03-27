@@ -90,22 +90,30 @@ body,
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
+    overflow: hidden;
 }
 
 #taskbar-apps>button {
     position: relative;
     height: var(--navbar-height);
     width: var(--navbar-height);
-    background-color: transparent;
+    background-color: rgba(0 0 0 / 1%);
     border: none;
     outline: none;
     cursor: default;
     padding: var(--navbar-button-padding);
+
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    user-drag: none;
 }
 
 #taskbar-apps>button>img {
     width: 100%;
     height: 100%;
+    pointer-events: none;
 }
 
 #taskbar-apps>button.active {
