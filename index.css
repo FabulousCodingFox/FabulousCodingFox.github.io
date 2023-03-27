@@ -1,5 +1,15 @@
 :root {
+    --theme-desktop-wallpaper: url(assets/background/dark.png);
+    --theme-navbar-bg-color: rgba(0 0 0 / 60%);
+    --theme-navbar-active: #ff99a1;
 
+    --navbar-height: 50px;
+    --navbar-margin: 12px;
+    --navbar-border-radius: 3px;
+    --navbar-button-padding: 10px;
+    --navbar-active-height: 2px;
+
+    --gap: 10px;
 }
 
 * {
@@ -13,4 +23,118 @@
 
     color: var(--color-contrast);
     transition: color var(--color-change-transition-duration);
+}
+
+html,
+body,
+#screen,
+#screen>*,
+#desktop {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#screen {
+    position: relative;
+}
+
+#screen>div {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#wallpaper {
+    background-image: var(--theme-desktop-wallpaper);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#desktop {
+    position: relative;
+    overflow: hidden;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+#taskbar {
+    position: absolute;
+    bottom: var(--navbar-margin);
+    height: var(--navbar-height);
+    left: 50%;
+    transform: translateX(-50%);
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    z-index: 9999999999999999999;
+}
+
+#taskbar-apps {
+    height: 100%;
+    background-color: var(--theme-navbar-bg-color);
+    border-radius: var(--navbar-border-radius);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+#taskbar-apps>button {
+    position: relative;
+    height: var(--navbar-height);
+    width: var(--navbar-height);
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: default;
+    padding: var(--navbar-button-padding);
+}
+
+#taskbar-apps>button>img {
+    width: 100%;
+    height: 100%;
+}
+
+#taskbar-apps>button.active {
+    background-color: rgba(255 255 255 / 8%);
+}
+
+#taskbar-apps>button:hover {
+    background-color: rgba(255 255 255 / 10%);
+}
+
+#taskbar-apps>button>span {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: var(--navbar-active-height);
+    background-color: var(--theme-navbar-active);
+    display: none;
+    transition: width 0.1s ease-in-out;
+}
+
+#taskbar-apps>button.open>span {
+    width: 80%;
+    display: block;
+}
+
+#taskbar-apps>button.active>span,
+#taskbar-apps>button.open:hover>span {
+    width: calc(100% - 2px);
+    display: block;
 }
