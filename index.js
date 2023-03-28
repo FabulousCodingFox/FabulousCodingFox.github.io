@@ -2,7 +2,7 @@ let draggedTaskBarIcon = null;
 let draggedTaskBarIconIndex = null;
 let taskBar = document.querySelector('#taskbar-apps');
 
-function handleDragStart(event) {
+function taskBarAppHandleDragStart(event) {
     const el = event.currentTarget;
 
     el.classList.add('dragged');
@@ -61,6 +61,10 @@ function handleDragStart(event) {
 
 for (let taskBarIcon of taskBar.children) {
     taskBarIcon.addEventListener('pointerdown', (event) => {
-        handleDragStart(event);
+        taskBarAppHandleDragStart(event);
     });
+}
+
+class Window{
+    
 }
