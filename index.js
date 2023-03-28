@@ -36,9 +36,7 @@ function handleDragStart(event) {
                 return aIndex - bIndex;
             });
             let i = -1;
-
-            let direction = newDraggedTaskBarIconIndex < draggedTaskBarIconIndex ? -1 : 1;
-            icons.splice(draggedTaskBarIconIndex + direction, 0, el)
+            icons.splice(Math.min(maxAmount - 1, Math.max(0, newDraggedTaskBarIconIndex)), 0, el)
             for(let icon of icons){
                 i++;
                 if(icon === el) continue;
