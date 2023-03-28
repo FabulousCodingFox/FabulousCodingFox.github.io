@@ -107,7 +107,7 @@ body,
     cursor: default;
     padding: var(--navbar-button-padding);
 
-    transition: left 0.3s ease-in-out;
+    transition: left 0.3s ease-in-out, background-color 0.075s ease-in-out;
 }
 
 #taskbar-apps>button.dragged{
@@ -120,11 +120,12 @@ body,
     pointer-events: none;
 }
 
-#taskbar-apps>button.active {
+#taskbar-apps.static>button.active,
+#taskbar-apps>button.dragged:hover {
     background-color: rgba(255 255 255 / 8%);
 }
 
-#taskbar-apps>button:hover {
+#taskbar-apps.static>button:hover {
     background-color: rgba(255 255 255 / 10%);
 }
 
