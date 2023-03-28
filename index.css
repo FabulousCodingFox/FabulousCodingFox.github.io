@@ -84,7 +84,9 @@ body,
 }
 
 #taskbar-apps {
+    position: relative;
     height: 100%;
+    width: calc(var(--navbar-height) * var(--app-amount));
     background-color: var(--theme-navbar-bg-color);
     border-radius: var(--navbar-border-radius);
     display: flex;
@@ -94,7 +96,9 @@ body,
 }
 
 #taskbar-apps>button {
-    position: relative;
+    position: absolute;
+    top: 0;
+    left: calc(calc(var(--index) * var(--navbar-height)) + calc(var(--offset) * var(--navbar-height)));
     height: var(--navbar-height);
     width: var(--navbar-height);
     background-color: rgba(0 0 0 / 1%);
@@ -103,11 +107,11 @@ body,
     cursor: default;
     padding: var(--navbar-button-padding);
 
-    -webkit-user-drag: none;
-    -khtml-user-drag: none;
-    -moz-user-drag: none;
-    -o-user-drag: none;
-    user-drag: none;
+    transition: left 0.3s ease-in-out;
+}
+
+#taskbar-apps>button.dragged{
+    transition: left 0s ease-in-out;
 }
 
 #taskbar-apps>button>img {
