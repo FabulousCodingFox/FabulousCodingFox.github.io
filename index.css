@@ -61,8 +61,13 @@ body,
     height: 100%;
 }
 
+html, body{
+    overflow: hidden;
+}
+
 #screen {
     position: relative;
+    overflow: hidden;
 }
 
 #screen>div {
@@ -241,6 +246,7 @@ body,
     border-radius: calc(var(--window-border-radius));
     background-color: transparent;
     backdrop-filter: blur(25px);
+    cursor: auto;
 }
 
 .window-container>div>.window-pane>div>.topbar{
