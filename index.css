@@ -325,3 +325,12 @@ html, body{
         background-position: 0% 50%;
     }
 }
+
+.window-container>div>.window-pane>div>.content-pane{
+    width: 100%;
+    height: calc(100% - var(--window-topbar-height));
+    border-bottom-left-radius: var(--window-border-radius);
+    border-bottom-right-radius: var(--window-border-radius);
+    overflow-x: hidden;
+    overflow-y: auto;
+}
