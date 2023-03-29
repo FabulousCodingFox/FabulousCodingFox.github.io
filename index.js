@@ -255,28 +255,28 @@ class Window {
         });
 
         //Maximize window
-        this.topbar.ondblclick = () => {
+        this.windowTopbarElement.ondblclick = () => {
             this.setMaxximized(!this.isMaxximized);
         };
 
-        this.maxbtn.onclick = () => {
+        this.windowTopbarMaximizeButtonElement.onclick = () => {
             this.setMaxximized(!this.isMaxximized);
         };
 
         //Close window
-        this.closebtn.onclick = () => {
+        this.windowTopbarCloseButtonElement.onclick = () => {
             this.wd.style.opacity = '0%';
             const temp = this.wd;
             setTimeout(function () { temp.remove(); }, 500);
         };
-        this.minbtn.onclick = () => {
+        this.windowTopbarMinimizeButtonElement.onclick = () => {
             this.wd.style.opacity = '0%';
             const temp = this.wd;
             setTimeout(function () { temp.remove(); }, 500);
         };
 
         //Focus Window
-        this.wd.addEventListener("mousedown", (event) => {
+        this.parentWindowContainerElement.addEventListener("mousedown", (event) => {
             if (this.wd.style.zIndex == windowY - 1) return;
             this.wd.style.zIndex = windowY;
 
@@ -288,7 +288,7 @@ class Window {
         });
 
         //Move window
-        this.topbar.addEventListener("mousedown", (event) => {
+        this.windowTopbarElement.addEventListener("mousedown", (event) => {
             if (resized != undefined) return;
             dragged = this;
             //wd.classList.remove('windowAppear');
@@ -297,17 +297,15 @@ class Window {
 
     setMaxximized(m) {
         if (!m) {
-            this.wd.style.left = this.windowPosX + "px";
-            this.wd.style.top = this.windowPosY + "px";
-            this.wd.style.setProperty('--w', this.windowWidth + "px");
-            this.wd.style.setProperty('--h', this.windowHeight + "px");
-            this.wd.style.setProperty('--window-border-radius', "20px")
+            this.parentWindowContainerElement.style.transform = "translate(" + this.windowPosX + "px, " + this.windowPosY + "px)";
+            this.parentWindowContainerElement.style.setProperty('--w', this.windowWidth + "px");
+            this.parentWindowContainerElement.style.setProperty('--h', this.windowHeight + "px");
+            this.parentWindowContainerElement.style.setProperty('--window-border-radius', "20px")
         } else {
-            this.wd.style.left = "0px";
-            this.wd.style.top = "0px";
-            this.wd.style.setProperty('--w', window.innerWidth + "px");
-            this.wd.style.setProperty('--h', window.innerHeight + "px");
-            this.wd.style.setProperty('--window-border-radius', "0px")
+            this.parentWindowContainerElement.style.transform = "translate(0px, 0px)"
+            this.parentWindowContainerElement.style.setProperty('--w', window.innerWidth + "px");
+            this.parentWindowContainerElement.style.setProperty('--h', window.innerHeight + "px");
+            this.parentWindowContainerElement.style.setProperty('--window-border-radius', "0px")
         }
         this.isMaxximized = m;
     }
