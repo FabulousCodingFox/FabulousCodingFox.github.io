@@ -195,25 +195,27 @@ class Window {
         this.windowHeight = height;
         this.windowPosX = window.innerWidth / 2 - width / 2;
         this.windowPosY = window.innerHeight / 2 - height / 2;
-        this.windowContent = content;
         this.isMaxximized = false
         this.isMinimized = false
 
+        this.windowContent = content;
         document.querySelector("body").insertAdjacentHTML('beforeend', this.windowContent);
-        this.wd = last(document.querySelector("body").getElementsByClassName("window-container"));
-        this.windowElement = this.wd.getElementsByClassName("window-inner-wrapper")[0];
-        this.topbar = this.windowElement.getElementsByClassName("topbar")[0];
-        this.closebtn = this.topbar.getElementsByClassName("controls")[0].getElementsByClassName("close")[0];
-        this.maxbtn = this.topbar.getElementsByClassName("controls")[0].getElementsByClassName("max")[0];
-        this.minbtn = this.topbar.getElementsByClassName("controls")[0].getElementsByClassName("min")[0];
 
-        this.wd.style.left = this.windowPosX + "px";
-        this.wd.style.top = this.windowPosY + "px";
+        this.parentWindowContainerElement = last(document.querySelector("body").getElementsByClassName("window-container"));
+        this.windowBorderElement = this.parentWindowContainerElement.querySelector(".window-border");
+        this.windowPaneElement = this.parentWindowContainerElement.querySelector(".window-pane");
+        this.windowContentPaneElement = this.windowPaneElement.querySelector(".content-pane");
+
+        this.windowTopbarElement = this.windowPaneElement.querySelector(".topbar");
+        this.windowTopbarCloseButtonElement = this.windowTopbarElement.querySelector(".close");
+        this.windowTopbarMaximizeButtonElement = this.windowTopbarElement.querySelector(".max");
+        this.windowTopbarMinimizeButtonElement = this.windowTopbarElement.querySelector(".min");
+
+        this.parentWindowContainerElement.style.transform = "translate(" + this.windowPosX + "px, " + this.windowPosY + "px)";
         this.wd.style.setProperty('--w', width + "px");
         this.wd.style.setProperty('--h', height + "px");
         this.wd.style.setProperty('--window-border-radius', "20px")
-        this.wd.style.setProperty('--sidebar', "280px")
-        this.windowElement.style.cursor = "nwse-resize"
+        this.parentWindowContainerElement.style.cursor = "nwse-resize"
 
         this.layer = windowY
         this.wd.style.zIndex = windowY;
