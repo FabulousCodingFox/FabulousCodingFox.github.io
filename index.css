@@ -5,7 +5,9 @@
     --theme-navbar-bg-color: rgba(0 0 0 / 60%);
     --theme-navbar-active: #ff99a1;
     --theme-button-color: #fff;
+    --theme-button-hover-color: rgba(255 255 255 / 20%);
     --theme-navbar-text-color: #fff;
+    --theme-window-title-color: #fff;
 
     --navbar-height: 50px;
     --navbar-margin: 12px;
@@ -14,6 +16,21 @@
     --navbar-active-height: 2px;
 
     --gap: 10px;
+
+    --window-width: 1200px;
+    --window-height: 800px;
+    --window-border: 3px;
+    --window-border-color: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82);
+    --window-bg-filter: brightness(0.75);
+    --window-bg-filter-reverse: brightness(1.25);
+
+    --window-topbar-height: 80px;
+    --window-controls-height: calc(var(--window-topbar-height) / 2);
+    --window-controls-padding: calc(calc(var(--window-topbar-height) - var(--window-controls-height)) / 2);
+    --window-controls-btn-image-height: calc(var(--window-controls-height) / 2);
+
+    --window-title-height: calc(var(--window-topbar-height) / 2);
+    --window-title-padding: calc(calc(var(--window-topbar-height) - var(--window-controls-height)) / 2);
 }
 
 * {
@@ -35,7 +52,9 @@ html,
 body,
 #screen,
 #screen>*,
-#desktop {
+#desktop,
+.fwrapper {
+    position: relative;
     padding: 0;
     margin: 0;
     width: 100%;
@@ -129,7 +148,9 @@ body,
     transition: left 0s ease-in-out;
 }
 
-#taskbar button>img, #taskbar button>svg, #taskbar button>svg>path  {
+#taskbar button>img,
+#taskbar button>svg,
+#taskbar button>svg>path {
     width: 100%;
     height: 100%;
     pointer-events: none;
@@ -169,11 +190,11 @@ body,
     display: block;
 }
 
-#taskbar-info{
+#taskbar-info {
     padding: var(--navbar-button-padding);
 }
 
-#taskbar-info>p{
+#taskbar-info>p {
     margin: 0px;
     padding-right: var(--gap);
     font-size: calc(var(--navbar-height) / 2);
@@ -184,4 +205,117 @@ body,
 #taskbar-info>img {
     height: 100%;
     border-radius: 50%;
+}
+
+.window-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: var(--w);
+    height: var(--h);
+    border-radius: var(--window-border-radius);
+    box-shadow: 1px 1px 5px black;
+}
+
+.window-container>div>.window-border{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /*background: var(--window-border-color);
+    animation: animatedgradient 3s ease alternate infinite;
+    border-radius: var(--window-border-radius);
+    background-size: 300% 300%;
+    clip-path: polygon(0% 0%, 0% 100%, var(--window-border) 100%, var(--window-border) var(--window-border), calc(100% - var(--window-border)) var(--window-border), calc(100% - var(--window-border)) calc(100% - var(--window-border)), var(--window-border) calc(100% - var(--window-border)), var(--window-border) 100%, 100% 100%, 100% 0%);*/
+    border : var(--window-border) solid red;
+    border-radius: var(--window-border-radius);
+}
+
+.window-container>div>.window-pane{
+    position: absolute;
+    top: var(--window-border);
+    left: var(--window-border);
+    width: calc(100% - calc(var(--window-border) * 2));
+    height: calc(100% - calc(var(--window-border) * 2));
+    border-radius: calc(var(--window-border-radius));
+    background-color: transparent;
+    backdrop-filter: blur(25px);
+}
+
+.window-container>div>.window-pane>div>.topbar{
+    position: relative;
+    width: 100%;
+    height: var(--window-topbar-height);
+    border-top-left-radius: var(--window-border-radius);
+    border-top-right-radius: var(--window-border-radius);
+    box-shadow: 0px 1px 4px black;
+}
+
+.window-container>div>.window-pane>div>.topbar>.controls{
+    position: absolute;
+    top: 50%;
+    right: var(--window-controls-padding);
+    transform: translateY(-50%);
+}
+
+.window-container>div>.window-pane>div>.topbar>.controls>button{
+    height: var(--window-controls-height);
+    width: var(--window-controls-height);
+
+    background-color: transparent;
+    border: none;
+
+    border-radius: 2px;
+    transition: background-color 0.075s ease-in-out;
+}
+
+.window-container>div>.window-pane>div>.topbar>.controls>button:hover{
+    background-color: var(--theme-button-hover-color);
+}
+
+
+.window-container>div>.window-pane>div>.topbar>.controls button img {
+    width: var(--window-controls-btn-image-height);
+    height: var(--window-controls-btn-image-height);
+    object-fit: contain;
+}
+
+.window-container>div>.window-pane>div>.topbar>.title {
+    position: absolute;
+    top: 50%;
+    left: var(--window-title-padding);
+    transform: translateY(-50%);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.window-container>div>.window-pane>div>.topbar>.title img {
+    width: var(--window-title-height);
+    height: var(--window-title-height);
+    object-fit: cover;
+}
+
+.window-container>div>.window-pane>div>.topbar>.title p {
+    font-size: var(--window-title-height);
+    margin: 0px;
+    padding-left: 10px;
+    color: var(--theme-window-title-color);
+}
+
+@keyframes animatedgradient {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
 }
