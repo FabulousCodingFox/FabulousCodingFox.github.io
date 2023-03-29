@@ -210,43 +210,43 @@ class Window {
         this.windowTopbarMinimizeButtonElement = this.windowTopbarElement.querySelector(".min");
 
         this.parentWindowContainerElement.style.transform = "translate(" + this.windowPosX + "px, " + this.windowPosY + "px)";
-        this.wd.style.setProperty('--w', width + "px");
-        this.wd.style.setProperty('--h', height + "px");
-        this.wd.style.setProperty('--window-border-radius', "20px")
-        this.parentWindowContainerElement.style.cursor = "nwse-resize"
+        this.parentWindowContainerElement.style.setProperty('--w', width + "px");
+        this.parentWindowContainerElement.style.setProperty('--h', height + "px");
+        this.parentWindowContainerElement.style.setProperty('--window-border-radius', "20px")
+        this.windowBorderElement.style.cursor = "nwse-resize"
 
         this.layer = windowY
-        this.wd.style.zIndex = windowY;
+        this.parentWindowContainerElement.style.zIndex = windowY;
         windowY++;
 
         this.mouseHoversOnContent = false;
 
         //Resize Window
-        this.parentWindowContainerElement.onmouseenter = function () {
+        this.windowPaneElement.onmouseenter = function () {
             root.mouseHoversOnContent = true;
         };
-        this.parentWindowContainerElement.onmouseleave = function () {
+        this.windowPaneElement.onmouseleave = function () {
             root.mouseHoversOnContent = false;
         }
         this.parentWindowContainerElement.addEventListener("mousemove", (event) => {
             if (resized != undefined) return;
             if (this.mouseHoversOnContent) return;
 
-            let r = this.parentWindowContainerElement.getBoundingClientRect();
+            let r = this.windowBorderElement.getBoundingClientRect();
 
             let n = Math.abs(r.top - mouseY) <= 20
             let s = Math.abs(r.bottom - mouseY) <= 20
             let w = Math.abs(r.left - mouseX) <= 20
             let e = Math.abs(r.right - mouseX) <= 20
 
-            if (n && e) { resizedSide = "ne"; this.parentWindowContainerElement.style.cursor = "nesw-resize" }
-            else if (n && w) { resizedSide = "nw"; this.parentWindowContainerElement.style.cursor = "nwse-resize" }
-            else if (n) { resizedSide = "n"; this.parentWindowContainerElement.style.cursor = "ns-resize" }
-            else if (s && e) { resizedSide = "se"; this.parentWindowContainerElement.style.cursor = "nwse-resize" }
-            else if (s && w) { resizedSide = "sw"; this.parentWindowContainerElement.style.cursor = "nesw-resize" }
-            else if (s) { resizedSide = "s"; this.parentWindowContainerElement.style.cursor = "ns-resize" }
-            else if (w) { resizedSide = "w"; this.parentWindowContainerElement.style.cursor = "ew-resize" }
-            else if (e) { resizedSide = "e"; this.parentWindowContainerElement.style.cursor = "ew-resize" }
+            if (n && e) { resizedSide = "ne"; this.windowBorderElement.style.cursor = "nesw-resize" }
+            else if (n && w) { resizedSide = "nw"; this.windowBorderElement.style.cursor = "nwse-resize" }
+            else if (n) { resizedSide = "n"; this.windowBorderElement.style.cursor = "ns-resize" }
+            else if (s && e) { resizedSide = "se"; this.windowBorderElement.style.cursor = "nwse-resize" }
+            else if (s && w) { resizedSide = "sw"; this.windowBorderElement.style.cursor = "nesw-resize" }
+            else if (s) { resizedSide = "s"; this.windowBorderElement.style.cursor = "ns-resize" }
+            else if (w) { resizedSide = "w"; this.windowBorderElement.style.cursor = "ew-resize" }
+            else if (e) { resizedSide = "e"; this.windowBorderElement.style.cursor = "ew-resize" }
             else { resizedSide = "NONE"; }
         });
         this.parentWindowContainerElement.addEventListener("mousedown", (event) => {
@@ -265,20 +265,20 @@ class Window {
 
         //Close window
         this.windowTopbarCloseButtonElement.onclick = () => {
-            this.wd.style.opacity = '0%';
-            const temp = this.wd;
+            this.parentWindowContainerElement.style.opacity = '0%';
+            const temp = this.parentWindowContainerElement;
             setTimeout(function () { temp.remove(); }, 500);
         };
         this.windowTopbarMinimizeButtonElement.onclick = () => {
-            this.wd.style.opacity = '0%';
-            const temp = this.wd;
+            this.parentWindowContainerElement.style.opacity = '0%';
+            const temp = this.parentWindowContainerElement;
             setTimeout(function () { temp.remove(); }, 500);
         };
 
         //Focus Window
         this.parentWindowContainerElement.addEventListener("mousedown", (event) => {
-            if (this.wd.style.zIndex == windowY - 1) return;
-            this.wd.style.zIndex = windowY;
+            if (this.parentWindowContainerElement.style.zIndex == windowY - 1) return;
+            this.parentWindowContainerElement.style.zIndex = windowY;
 
             /*this.wd.classList.remove('windowAppear');
             void this.wd.offsetWidth;
@@ -313,15 +313,14 @@ class Window {
     setPos(x, y) {
         this.windowPosX = x;
         this.windowPosY = y;
-        this.wd.style.left = this.windowPosX + "px";
-        this.wd.style.top = this.windowPosY + "px";
+        this.parentWindowContainerElement.style.transform = "translate(" + x + "px, " + y + "px)";
     }
 
     setDimensions(w, h) {
         this.windowWidth = w;
         this.windowHeight = h;
-        this.wd.style.setProperty('--w', w + "px");
-        this.wd.style.setProperty('--h', h + "px");
+        this.parentWindowContainerElement.style.setProperty('--w', w + "px");
+        this.parentWindowContainerElement.style.setProperty('--h', h + "px");
     }
 }
 
@@ -387,3 +386,5 @@ document.addEventListener("mousemove", (event) => {
 function spawnWindow(content) {
     new Window(content);
 }
+
+spawnWindow(windowBuilder("assets/icon/github.png", "Github", windowGithub))
