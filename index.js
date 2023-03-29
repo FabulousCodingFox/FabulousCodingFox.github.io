@@ -173,7 +173,7 @@ const windowGithub = /*html*/`
 `
 
 
-let windowY = 1000;
+let windowY = 10000;
 
 let dragged;
 let resized;
@@ -181,8 +181,6 @@ let resizedSide;
 
 let mouseX = 0;
 let mouseY = 0;
-
-var colorscheme = "dark"
 
 class Window {
     constructor(content) {
@@ -224,34 +222,34 @@ class Window {
         this.mouseHoversOnContent = false;
 
         //Resize Window
-        this.windowContent.onmouseenter = function () {
+        this.parentWindowContainerElement.onmouseenter = function () {
             root.mouseHoversOnContent = true;
         };
-        this.windowContent.onmouseleave = function () {
+        this.parentWindowContainerElement.onmouseleave = function () {
             root.mouseHoversOnContent = false;
         }
-        this.windowElement.addEventListener("mousemove", (event) => {
+        this.parentWindowContainerElement.addEventListener("mousemove", (event) => {
             if (resized != undefined) return;
             if (this.mouseHoversOnContent) return;
 
-            let r = this.windowElement.getBoundingClientRect();
+            let r = this.parentWindowContainerElement.getBoundingClientRect();
 
             let n = Math.abs(r.top - mouseY) <= 20
             let s = Math.abs(r.bottom - mouseY) <= 20
             let w = Math.abs(r.left - mouseX) <= 20
             let e = Math.abs(r.right - mouseX) <= 20
 
-            if (n && e) { resizedSide = "ne"; this.windowElement.style.cursor = "nesw-resize" }
-            else if (n && w) { resizedSide = "nw"; this.windowElement.style.cursor = "nwse-resize" }
-            else if (n) { resizedSide = "n"; this.windowElement.style.cursor = "ns-resize" }
-            else if (s && e) { resizedSide = "se"; this.windowElement.style.cursor = "nwse-resize" }
-            else if (s && w) { resizedSide = "sw"; this.windowElement.style.cursor = "nesw-resize" }
-            else if (s) { resizedSide = "s"; this.windowElement.style.cursor = "ns-resize" }
-            else if (w) { resizedSide = "w"; this.windowElement.style.cursor = "ew-resize" }
-            else if (e) { resizedSide = "e"; this.windowElement.style.cursor = "ew-resize" }
+            if (n && e) { resizedSide = "ne"; this.parentWindowContainerElement.style.cursor = "nesw-resize" }
+            else if (n && w) { resizedSide = "nw"; this.parentWindowContainerElement.style.cursor = "nwse-resize" }
+            else if (n) { resizedSide = "n"; this.parentWindowContainerElement.style.cursor = "ns-resize" }
+            else if (s && e) { resizedSide = "se"; this.parentWindowContainerElement.style.cursor = "nwse-resize" }
+            else if (s && w) { resizedSide = "sw"; this.parentWindowContainerElement.style.cursor = "nesw-resize" }
+            else if (s) { resizedSide = "s"; this.parentWindowContainerElement.style.cursor = "ns-resize" }
+            else if (w) { resizedSide = "w"; this.parentWindowContainerElement.style.cursor = "ew-resize" }
+            else if (e) { resizedSide = "e"; this.parentWindowContainerElement.style.cursor = "ew-resize" }
             else { resizedSide = "NONE"; }
         });
-        this.windowElement.addEventListener("mousedown", (event) => {
+        this.parentWindowContainerElement.addEventListener("mousedown", (event) => {
             if (this.mouseHoversOnContent) return;
             resized = root;
         });
