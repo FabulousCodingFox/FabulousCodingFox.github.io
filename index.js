@@ -387,4 +387,4 @@ function spawnWindow(content) {
     new Window(content);
 }
 
-spawnWindow(windowBuilder("assets/icon/github.png", "Github", windowGithub))
+spawnWindow(windowBuilder("assets/icons/github.png", "GitHub", windowGithub))
