@@ -113,7 +113,7 @@ html, body{
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    z-index: 9999999999999999999;
+    z-index: 999999999999999;
 
     gap: var(--gap);
 }
@@ -154,6 +154,7 @@ html, body{
 
 #taskbar-apps>button.dragged {
     transition: left 0s ease-in-out;
+    z-index: 9999999999999999;
 }
 
 #taskbar button>img,
