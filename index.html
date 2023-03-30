@@ -11,69 +11,67 @@
 
 <body>
 
-</body>
+    <div id="screen">
+        <div id="wallpaper"></div>
 
-<div id="screen">
-    <div id="wallpaper"></div>
+        <div class="wrapper">
+            <div id="desktop">
+                <div id="taskbar">
 
-    <div class="wrapper">
-        <div id="desktop">
-            <div id="taskbar">
+                    <div class="taskbar-startmenu">
+                        <button class=""><span></span><img src="assets/icons/windows.png"></button>
+                    </div>
 
-                <div class="taskbar-startmenu">
-                    <button class=""><span></span><img src="assets/icons/windows.png"></button>
-                </div>
+                    <div id="taskbar-apps" class="static" style="--app-amount: 9;">
 
-                <div id="taskbar-apps" class="static" style="--app-amount: 9;">
+                        <button class="" style="--index: 0; --offset: 0"><span></span><img
+                                src="assets/icons/discord.png"></button>
+                        <button class="open" style="--index: 1; --offset: 0"><span></span><img
+                                src="assets/icons/spotify.png"></button>
+                        <button class="open active" style="--index: 2; --offset: 0"><span></span><img
+                                src="assets/icons/github.png"></button>
+                        <button class="" style="--index: 3; --offset: 0"><span></span><img
+                                src="assets/icons/discord.png"></button>
+                        <button class="" style="--index: 4; --offset: 0"><span></span><img
+                                src="assets/icons/spotify.png"></button>
+                        <button class="" style="--index: 5; --offset: 0"><span></span><img
+                                src="assets/icons/github.png"></button>
+                        <button class="" style="--index: 6; --offset: 0"><span></span><img
+                                src="assets/icons/discord.png"></button>
+                        <button class="" style="--index: 7; --offset: 0"><span></span><img
+                                src="assets/icons/spotify.png"></button>
+                        <button class="" style="--index: 8; --offset: 0"><span></span><img
+                                src="assets/icons/github.png"></button>
 
-                    <button class="" style="--index: 0; --offset: 0"><span></span><img
-                            src="assets/icons/discord.png"></button>
-                    <button class="open" style="--index: 1; --offset: 0"><span></span><img
-                            src="assets/icons/spotify.png"></button>
-                    <button class="open active" style="--index: 2; --offset: 0"><span></span><img
-                            src="assets/icons/github.png"></button>
-                    <button class="" style="--index: 3; --offset: 0"><span></span><img
-                            src="assets/icons/discord.png"></button>
-                    <button class="" style="--index: 4; --offset: 0"><span></span><img
-                            src="assets/icons/spotify.png"></button>
-                    <button class="" style="--index: 5; --offset: 0"><span></span><img
-                            src="assets/icons/github.png"></button>
-                    <button class="" style="--index: 6; --offset: 0"><span></span><img
-                            src="assets/icons/discord.png"></button>
-                    <button class="" style="--index: 7; --offset: 0"><span></span><img
-                            src="assets/icons/spotify.png"></button>
-                    <button class="" style="--index: 8; --offset: 0"><span></span><img
-                            src="assets/icons/github.png"></button>
+                    </div>
 
-                </div>
+                    <div id="taskbar-settings">
+                        <button><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24">
+                                <path
+                                    d="M16 21c3.527-1.547 5.999-4.909 5.999-9S19.527 4.547 16 3v2c2.387 1.386 3.999 4.047 3.999 7S18.387 17.614 16 19v2z">
+                                </path>
+                                <path
+                                    d="M16 7v10c1.225-1.1 2-3.229 2-5s-.775-3.9-2-5zM4 17h2.697l5.748 3.832a1.004 1.004 0 0 0 1.027.05A1 1 0 0 0 14 20V4a1 1 0 0 0-1.554-.832L6.697 7H4c-1.103 0-2 .897-2 2v6c0 1.103.897 2 2 2zm0-8h3c.033 0 .061-.016.093-.019a1.027 1.027 0 0 0 .38-.116c.026-.015.057-.017.082-.033L12 5.868v12.264l-4.445-2.964c-.025-.017-.056-.02-.082-.033a.986.986 0 0 0-.382-.116C7.059 15.016 7.032 15 7 15H4V9z">
+                                </path>
+                            </svg></button>
 
-                <div id="taskbar-settings">
-                    <button><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24">
-                            <path
-                                d="M16 21c3.527-1.547 5.999-4.909 5.999-9S19.527 4.547 16 3v2c2.387 1.386 3.999 4.047 3.999 7S18.387 17.614 16 19v2z">
-                            </path>
-                            <path
-                                d="M16 7v10c1.225-1.1 2-3.229 2-5s-.775-3.9-2-5zM4 17h2.697l5.748 3.832a1.004 1.004 0 0 0 1.027.05A1 1 0 0 0 14 20V4a1 1 0 0 0-1.554-.832L6.697 7H4c-1.103 0-2 .897-2 2v6c0 1.103.897 2 2 2zm0-8h3c.033 0 .061-.016.093-.019a1.027 1.027 0 0 0 .38-.116c.026-.015.057-.017.082-.033L12 5.868v12.264l-4.445-2.964c-.025-.017-.056-.02-.082-.033a.986.986 0 0 0-.382-.116C7.059 15.016 7.032 15 7 15H4V9z">
-                            </path>
-                        </svg></button>
+                        <button><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24">
+                                <path
+                                    d="M20.742 13.045a8.088 8.088 0 0 1-2.077.271c-2.135 0-4.14-.83-5.646-2.336a8.025 8.025 0 0 1-2.064-7.723A1 1 0 0 0 9.73 2.034a10.014 10.014 0 0 0-4.489 2.582c-3.898 3.898-3.898 10.243 0 14.143a9.937 9.937 0 0 0 7.072 2.93 9.93 9.93 0 0 0 7.07-2.929 10.007 10.007 0 0 0 2.583-4.491 1.001 1.001 0 0 0-1.224-1.224zm-2.772 4.301a7.947 7.947 0 0 1-5.656 2.343 7.953 7.953 0 0 1-5.658-2.344c-3.118-3.119-3.118-8.195 0-11.314a7.923 7.923 0 0 1 2.06-1.483 10.027 10.027 0 0 0 2.89 7.848 9.972 9.972 0 0 0 7.848 2.891 8.036 8.036 0 0 1-1.484 2.059z">
+                                </path>
+                            </svg></button>
+                    </div>
 
-                    <button><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24">
-                            <path
-                                d="M20.742 13.045a8.088 8.088 0 0 1-2.077.271c-2.135 0-4.14-.83-5.646-2.336a8.025 8.025 0 0 1-2.064-7.723A1 1 0 0 0 9.73 2.034a10.014 10.014 0 0 0-4.489 2.582c-3.898 3.898-3.898 10.243 0 14.143a9.937 9.937 0 0 0 7.072 2.93 9.93 9.93 0 0 0 7.07-2.929 10.007 10.007 0 0 0 2.583-4.491 1.001 1.001 0 0 0-1.224-1.224zm-2.772 4.301a7.947 7.947 0 0 1-5.656 2.343 7.953 7.953 0 0 1-5.658-2.344c-3.118-3.119-3.118-8.195 0-11.314a7.923 7.923 0 0 1 2.06-1.483 10.027 10.027 0 0 0 2.89 7.848 9.972 9.972 0 0 0 7.848 2.891 8.036 8.036 0 0 1-1.484 2.059z">
-                            </path>
-                        </svg></button>
-                </div>
-
-                <div id="taskbar-info">
-                    <p class="date">Mar 28th</p>
-                    <p class="time">17:50</p>
-                    <img src="assets/icons/avatar.gif">
+                    <div id="taskbar-info">
+                        <p class="date">Mar 28th</p>
+                        <p class="time">17:50</p>
+                        <img src="assets/icons/avatar.gif">
+                    </div>
                 </div>
             </div>
-
-            
         </div>
     </div>
-</div>
+
+</body>
 
 </html>
