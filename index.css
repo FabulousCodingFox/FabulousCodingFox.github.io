@@ -221,8 +221,8 @@ html, body{
     left: 0;
     width: var(--w);
     height: var(--h);
-    border-radius: var(--window-border-radius);
-    box-shadow: 1px 1px 5px black;
+    /*border-radius: var(--window-border-radius);*/
+    user-select: all;
 }
 
 .window-container>div>.window-border{
@@ -238,6 +238,7 @@ html, body{
     clip-path: polygon(0% 0%, 0% 100%, var(--window-border) 100%, var(--window-border) var(--window-border), calc(100% - var(--window-border)) var(--window-border), calc(100% - var(--window-border)) calc(100% - var(--window-border)), var(--window-border) calc(100% - var(--window-border)), var(--window-border) 100%, 100% 100%, 100% 0%);*/
     border : var(--window-border) solid red;
     border-radius: var(--window-border-radius);
+    box-shadow: 1px 1px 5px black;
 }
 
 .window-container>div>.window-pane{

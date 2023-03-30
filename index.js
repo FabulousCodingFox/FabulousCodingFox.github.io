@@ -182,6 +182,9 @@ let resizedSide;
 let mouseX = 0;
 let mouseY = 0;
 
+let windowMinWidth = 450;
+let windowMinHeight = 200;
+
 class Window {
     constructor(content) {
         var root = this;
@@ -213,7 +216,7 @@ class Window {
         this.parentWindowContainerElement.style.setProperty('--w', width + "px");
         this.parentWindowContainerElement.style.setProperty('--h', height + "px");
         this.parentWindowContainerElement.style.setProperty('--window-border-radius', "20px")
-        this.windowBorderElement.style.cursor = "nwse-resize"
+        this.parentWindowContainerElement.style.cursor = "nwse-resize"
 
         this.layer = windowY
         this.parentWindowContainerElement.style.zIndex = windowY;
@@ -232,23 +235,24 @@ class Window {
             if (resized != undefined) return;
             if (this.mouseHoversOnContent) return;
 
-            let r = this.windowBorderElement.getBoundingClientRect();
+            let r = this.parentWindowContainerElement.getBoundingClientRect();
 
             let n = Math.abs(r.top - mouseY) <= 20
             let s = Math.abs(r.bottom - mouseY) <= 20
             let w = Math.abs(r.left - mouseX) <= 20
             let e = Math.abs(r.right - mouseX) <= 20
 
-            if (n && e) { resizedSide = "ne"; this.windowBorderElement.style.cursor = "nesw-resize" }
-            else if (n && w) { resizedSide = "nw"; this.windowBorderElement.style.cursor = "nwse-resize" }
-            else if (n) { resizedSide = "n"; this.windowBorderElement.style.cursor = "ns-resize" }
-            else if (s && e) { resizedSide = "se"; this.windowBorderElement.style.cursor = "nwse-resize" }
-            else if (s && w) { resizedSide = "sw"; this.windowBorderElement.style.cursor = "nesw-resize" }
-            else if (s) { resizedSide = "s"; this.windowBorderElement.style.cursor = "ns-resize" }
-            else if (w) { resizedSide = "w"; this.windowBorderElement.style.cursor = "ew-resize" }
-            else if (e) { resizedSide = "e"; this.windowBorderElement.style.cursor = "ew-resize" }
+            if (n && e) {      resizedSide = "ne"; this.parentWindowContainerElement.style.cursor = "nesw-resize" }
+            else if (n && w) { resizedSide = "nw"; this.parentWindowContainerElement.style.cursor = "nwse-resize" }
+            else if (n) {      resizedSide = "n";  this.parentWindowContainerElement.style.cursor = "ns-resize" }
+            else if (s && e) { resizedSide = "se"; this.parentWindowContainerElement.style.cursor = "nwse-resize" }
+            else if (s && w) { resizedSide = "sw"; this.parentWindowContainerElement.style.cursor = "nesw-resize" }
+            else if (s) {      resizedSide = "s";  this.parentWindowContainerElement.style.cursor = "ns-resize" }
+            else if (w) {      resizedSide = "w";  this.parentWindowContainerElement.style.cursor = "ew-resize" }
+            else if (e) {      resizedSide = "e";  this.parentWindowContainerElement.style.cursor = "ew-resize" }
             else { resizedSide = "NONE"; }
         });
+
         this.parentWindowContainerElement.addEventListener("mousedown", (event) => {
             if (this.mouseHoversOnContent) return;
             resized = root;
@@ -319,12 +323,17 @@ class Window {
     setDimensions(w, h) {
         this.windowWidth = w;
         this.windowHeight = h;
-        this.parentWindowContainerElement.style.setProperty('--w', w + "px");
-        this.parentWindowContainerElement.style.setProperty('--h', h + "px");
+        this.parentWindowContainerElement.style.setProperty('--w', Math.max(windowMinWidth, w) + "px");
+        this.parentWindowContainerElement.style.setProperty('--h', Math.max(windowMinHeight, h) + "px");
     }
 }
 
 document.addEventListener("mouseup", (event) => {
+    if(resized != undefined) {
+        if(resized.windowWidth < windowMinWidth) resized.setDimensions(windowMinWidth, resized.windowHeight);
+        if(resized.windowHeight < windowMinHeight) resized.setDimensions(resized.windowWidth, windowMinHeight);
+    }
+
     dragged = undefined;
     resized = undefined;
 });
