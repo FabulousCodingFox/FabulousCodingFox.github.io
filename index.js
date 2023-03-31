@@ -167,7 +167,12 @@ const THEME = {
 };
 
 const WINDOWTYPE = {
-    GITHUB: 'GITHUB'
+    GITHUB: 'GITHUB',
+    WINKED: 'WINKED',
+    BACKROOMS: 'BACKROOMS',
+    ABOUTME: 'ABOUTME',
+    CONTACT: 'CONTACT',
+    RESUME: 'RESUME' 
 };
 
 let DATA = {
@@ -212,6 +217,36 @@ let DATA = {
             <img src="https://github-readme-stats.vercel.app/api/top-langs?username=FabulousCodingFox&show_icons=true&locale=en&langs_count=10&theme=dracula" alt="FabulousCodingFox" />
             <img src="https://github-readme-stats.vercel.app/api?username=FabulousCodingFox&show_icons=true&locale=en&theme=dracula" alt="FabulousCodingFox" />
         `
+    },
+
+    [WINDOWTYPE.WINKED]: {
+        'img': 'assets/projects/winked/logosmall.png',
+        'title': 'WINKED.APP',
+        'content': /*html*/`
+        <h1 align="center">Winked.app</h1>
+        <h3 align="center">Kahoot clone</h3>
+        <p align="center"><a target="_blank" href="https://github.com/Intramo/WinkedClient">https://github.com/Intramo/WinkedClient</a></p>
+        <p align="center"><a target="_blank" href="https://play.winked.app">https://play.winked.app</a></p>
+        <h3 align="center">
+            <a href="https://github.com/Intramo/WinkedClient/blob/master/LICENSE" target="_blank"><img src="https://img.shields.io/github/license/Intramo/WinkedClient.svg"></a>
+            <a href="https://GitHub.com/Intramo/WinkedClient/releases/" target="_blank"><img src="https://img.shields.io/github/release/Intramo/WinkedClient.svg"></a>
+            <a href="https://GitHub.com/Intramo/WinkedClient/stargazers/" target="_blank"><img src="https://img.shields.io/github/stars/Intramo/WinkedClient.svg"></a>
+        </h3>
+        
+        <hr>
+
+        <h3> 📜 <b>What is Winked.app?</b></h3>
+        <p>Winked.app is a kahoot clone that was in development. It is a web app that allows you to create and play quiz games. I sadly never finished the creator, but the client & server are fully functional.</p>
+        <p>It was made using plain html, css, js and python. The server is a python websocket server, and the client is a js websocket client. The connections can be rocky and can be easily interrupted by a bad connection, which is a problem i wanted to fix.</p>
+        <p>It was made for a school project in 2 weeks, and i was the only one working on it. I was the only one who knew how to code, and i was the only one who did not want to pay the horrendous price for a kahoot subscription, which allows over 12 players in the same game.</p>
+
+        <h3> 📸 <b>Gallery</b></h3>
+        <img src="assets/projects/winked/screenshot1.png" alt="Winked.app"/>
+        `
+    },
+
+    [WINDOWTYPE.BACKROOMS]: {
+        'img': 'assets/projects/backrooms/logosmall.png',
     }
 }
 
@@ -571,4 +606,4 @@ document.addEventListener("mousemove", (event) => {
 
 //spawnWindow(windowBuilder("assets/icons/github.png", "GitHub", windowGithub))
 
-openWindow(WINDOWTYPE.GITHUB);
+openWindow(WINDOWTYPE.BACKROOMS);
