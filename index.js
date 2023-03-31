@@ -362,6 +362,11 @@ class Window {
             if (this.parentWindowContainerElement.style.zIndex == windowY - 1) return;
             this.parentWindowContainerElement.style.zIndex = windowY;
 
+            document.getElementById("taskbar-apps").querySelectorAll(".open").forEach((e) => {
+                e.classList.remove("active");
+            });
+            this.taskBarIcon.classList.add("active");
+
             /*this.wd.classList.remove('windowAppear');
             void this.wd.offsetWidth;
             this.wd.classList.add('windowAppear'); */
