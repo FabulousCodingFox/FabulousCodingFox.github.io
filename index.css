@@ -9,6 +9,14 @@
     --theme-navbar-text-color: #fff;
     --theme-window-title-color: #fff;
 
+    --theme-startmenu-text: #fff;
+
+    --theme-contrast-filter-a: 50%; /* +50% */
+    --theme-contrast-filter-b: 75%; /* +25% */
+    --theme-contrast-filter-c: 87.5%; /* +12.5% */
+    --theme-contrast-filter-d: 93.75%; /* +6.25% */
+    --theme-contrast-filter-e: 96.875%; /* +3.125% */
+
     --navbar-height: 50px;
     --navbar-margin: 12px;
     --navbar-border-radius: 3px;
@@ -16,6 +24,7 @@
     --navbar-active-height: 2px;
 
     --gap: 10px;
+    --padding: 16px;
 
     --window-width: 1200px;
     --window-height: 800px;
@@ -30,6 +39,9 @@
 
     --window-title-height: calc(var(--window-topbar-height) / 2);
     --window-title-padding: calc(calc(var(--window-topbar-height) - var(--window-controls-height)) / 2);
+
+    --startmenu-height: 700px;
+    --startmenu-width: 880px;
 }
 
 * {
@@ -224,7 +236,7 @@ body {
     height: var(--h);
     /*border-radius: var(--window-border-radius);*/
     user-select: all;
-    backdrop-filter: blur(25px);
+    backdrop-filter: blur(15px) saturate(150%) brightness(var(--theme-contrast-filter-a));
 }
 
 .window-container>div>.window-border {
@@ -244,7 +256,6 @@ body {
     background-size: 300% 300%;
 
     -webkit-mask:
-        /*4*/
         linear-gradient(#fff 0 0) padding-box,
         linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
@@ -363,3 +374,76 @@ body {
     overflow-x: hidden;
     overflow-y: auto;
 }
+
+#startmenu{
+    top: unset;
+    bottom: calc(var(--navbar-margin) * 2 + var(--navbar-height));
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#startmenu .content-pane{
+    width: 100%;
+    height: 100%;
+    border-radius: var(--window-border-radius);
+    overflow: hidden;
+    padding: var(--gap);
+}
+
+#startmenu .content-pane>.info{
+    width: 100%;
+    height: 25%;
+}
+
+#startmenu .content-pane>.apps{
+    width: 100%;
+    height: 75%;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+#startmenu .content-pane>.apps>.search{
+    height: 100%;
+    width: calc(40% - var(--gap) / 2);
+    border-radius: 3px;
+    padding: var(--gap);
+    margin-right: var(--gap);
+}
+
+#startmenu .content-pane>.apps>.pinned{
+    height: 100%;
+    width: calc(60% - var(--gap) / 2);
+    border-radius: 3px;
+    backdrop-filter: brightness(var(--theme-contrast-filter-b));
+    padding: var(--gap);
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: flex-start;
+    overflow: hidden;
+}
+
+#startmenu .content-pane>.apps>.pinned>.topbar{
+    width: 100%;
+    font-size: 1.5em;
+    color: var(--theme-startmenu-text);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
