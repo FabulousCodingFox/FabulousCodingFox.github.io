@@ -11,6 +11,7 @@
 
     --theme-startmenu-text: #fff;
     --theme-startmenu-apps-bg: rgba(255 255 255 / 20%);
+    --theme-startmenu-list-input-bg: #000;
 
     --theme-contrast-filter-a: 50%;
     --theme-contrast-filter-b: 75%;
@@ -413,14 +414,6 @@ body {
     justify-content: flex-start;
 }
 
-#startmenu .content-pane>.apps>.search {
-    height: 100%;
-    width: calc(40% - var(--gap) / 2);
-    border-radius: 3px;
-    padding: var(--gap);
-    margin-right: var(--gap);
-}
-
 #startmenu .content-pane>.apps>.pinned {
     height: 100%;
     width: calc(60% - var(--gap) / 2);
@@ -488,3 +481,55 @@ body {
     color: var(--theme-startmenu-text);
     font-size: 0.8em;
 }
+
+#startmenu .content-pane>.apps>.search {
+    height: 100%;
+    width: calc(40% - var(--gap) / 2);
+    border-radius: 3px;
+    padding: var(--padding);
+    overflow: hidden;
+    margin-right: var(--gap);
+}
+
+#startmenu .content-pane>.apps>.search>.input{
+    position: relative;
+    width: 100%;
+}
+
+#startmenu .content-pane>.apps>.search>.input>.input{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: calc(1.5em + 9px);
+    border-radius: 3px;
+    border-bottom: 3px solid transparent;
+
+    background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82) border-box;
+    animation: animatedgradient 3s ease alternate infinite;
+    background-size: 300% 300%;
+
+    -webkit-mask:
+        linear-gradient(#fff 0 0) padding-box,
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+}
+
+#startmenu .content-pane>.apps>.search>.input>input {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+
+    width: 100%;
+    border: none;
+    background-color: var(--theme-startmenu-list-input-bg);
+    color: var(--theme-startmenu-text);
+
+    font-size: 1.5em;
+}
+
+#startmenu .content-pane>.apps>.search>.input>input:focus {
+    outline: none;
+}
+
