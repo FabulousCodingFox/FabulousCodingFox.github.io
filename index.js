@@ -83,6 +83,65 @@ for (let taskBarIcon of taskBar.children) {
 
 
 
+function startmenu_search_ontype() {
+    var input, filter, ul, li, a, i, txtValue;
+    input = document.getElementById("startmenu-search-input");
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("startmenu-search-list");
+    li = ul.querySelectorAll("button");
+    for (i = 0; i < li.length; i++) {
+        a = li[i].querySelectorAll("span")[0];
+        txtValue = a.textContent || a.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
