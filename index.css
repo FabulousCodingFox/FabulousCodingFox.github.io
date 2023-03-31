@@ -19,7 +19,7 @@
 
     --window-width: 1200px;
     --window-height: 800px;
-    --window-border: 3px;
+    --window-border: 4px;
     --window-border-color: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82);
     --window-bg-filter: brightness(0.75);
     --window-bg-filter-reverse: brightness(1.25);
