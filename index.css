@@ -14,11 +14,11 @@
     --theme-startmenu-list-input-bg: #000;
     --theme-startmenu-list-item-hover: rgba(255 255 255 / 20%);
 
-    --theme-contrast-filter-a: 50%;
-    --theme-contrast-filter-b: 75%;
-    --theme-contrast-filter-c: 87.5%;
-    --theme-contrast-filter-d: 93.75%;
-    --theme-contrast-filter-e: 96.875%;
+    --theme-contrast-filter-a: 50%; /* +50% */
+    --theme-contrast-filter-b: 75%;  /* +25% */
+    --theme-contrast-filter-c: 87.5%; /* +12.5% */
+    --theme-contrast-filter-d: 93.75%; /* +6.25% */
+    --theme-contrast-filter-e: 96.875%; /* +3.125% */
 
     --theme-contrast-filter-revert-a: 150%;
     --theme-contrast-filter-revert-b: 133.33%;
@@ -564,8 +564,8 @@ body {
 #startmenu .content-pane>.info>.account{
     position: fixed;
 
-    width: 40%;
-    height: 100%;
+    width: calc(40% - var(--padding));
+    height: 25%;
     padding: var(--padding);
 
     display: flex;
@@ -595,6 +595,7 @@ body {
 }
 
 #startmenu .content-pane>.info>.time{
+    float: right;
     width: 60%;
     height: 100%;
     padding: var(--padding);
