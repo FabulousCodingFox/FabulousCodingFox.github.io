@@ -92,6 +92,23 @@ for (let taskBarIcon of taskBar.children) {
 
 
 
+function updateTime() {
+    const d = new Date();
+
+    const e = document.querySelector("#taskbar-info .time");
+    if(e == null) return;
+    e.innerHTML = d.getHours() + (d.getMinutes().toString().length == 1 ? ":0" : ":") + d.getMinutes();
+
+    const e2 = document.querySelector("#taskbar-info .date");
+    if(e2 == null) return;
+    let dt = d.getDate().toString().charAt(d.getDate().toString().length - 1)
+    e2.innerHTML = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"][d.getMonth()] + " " + d.getDate() + (dt == '1' ? "st" : (dt == '2' ? "nd" : (dt == '3' ? "rd" : "th")))
+}
+updateTime();
+setInterval(updateTime, 2000);
+
+
+
 
 
 
