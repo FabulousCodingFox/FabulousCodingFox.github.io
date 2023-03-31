@@ -100,7 +100,7 @@ function startmenu_search_ontype() {
     }
 }
 
-function startmenu_toggle(){
+function startmenu_toggle() {
     let element = document.getElementById("startmenu");
     if (element.style.display == "none" || element.style.display == "") {
         element.style.display = "block";
@@ -278,9 +278,10 @@ class Window {
         this.windowTopbarMaximizeButtonElement = this.windowTopbarElement.querySelector(".max");
         this.windowTopbarMinimizeButtonElement = this.windowTopbarElement.querySelector(".min");
 
-        this.parentWindowContainerElement.style.transform = "translate(" + this.windowPosX + "px, " + this.windowPosY + "px)";
         this.parentWindowContainerElement.style.setProperty('--w', width + "px");
         this.parentWindowContainerElement.style.setProperty('--h', height + "px");
+        this.parentWindowContainerElement.style.setProperty('--x', this.windowPosX + "px");
+        this.parentWindowContainerElement.style.setProperty('--y', this.windowPosY + "px");
         this.parentWindowContainerElement.style.setProperty('--window-border-radius', "10px")
         this.parentWindowContainerElement.style.cursor = "nwse-resize"
 
@@ -367,12 +368,14 @@ class Window {
 
     setMaxximized(m) {
         if (!m) {
-            this.parentWindowContainerElement.style.transform = "translate(" + this.windowPosX + "px, " + this.windowPosY + "px)";
+            this.parentWindowContainerElement.style.setProperty('--w', width + "px");
+            this.parentWindowContainerElement.style.setProperty('--h', height + "px");
             this.parentWindowContainerElement.style.setProperty('--w', this.windowWidth + "px");
             this.parentWindowContainerElement.style.setProperty('--h', this.windowHeight + "px");
             this.parentWindowContainerElement.style.setProperty('--window-border-radius', "20px")
         } else {
-            this.parentWindowContainerElement.style.transform = "translate(0px, 0px)"
+            this.parentWindowContainerElement.style.setProperty('--w', width + "px");
+            this.parentWindowContainerElement.style.setProperty('--h', height + "px");
             this.parentWindowContainerElement.style.setProperty('--w', window.innerWidth + "px");
             this.parentWindowContainerElement.style.setProperty('--h', window.innerHeight + "px");
             this.parentWindowContainerElement.style.setProperty('--window-border-radius', "0px")
@@ -383,7 +386,8 @@ class Window {
     setPos(x, y) {
         this.windowPosX = x;
         this.windowPosY = y;
-        this.parentWindowContainerElement.style.transform = "translate(" + x + "px, " + y + "px)";
+        this.parentWindowContainerElement.style.setProperty('--w', width + "px");
+        this.parentWindowContainerElement.style.setProperty('--h', height + "px");
     }
 
     setDimensions(w, h) {

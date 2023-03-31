@@ -251,7 +251,22 @@ body {
     /*border-radius: var(--window-border-radius);*/
     user-select: all;
     backdrop-filter: blur(15px) saturate(150%) brightness(var(--theme-contrast-filter-a));
+    animation: window-popup 1s;
+    transform: translate(var(--x), var(--y));
 }
+
+@keyframes window-popup {
+    0% {
+        transform: scale(0.5) translate(var(--x), var(--y));
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1) translate(var(--x), var(--y));
+        opacity: 1;
+    }
+}
+
 
 .window-container>div>.window-border {
     position: absolute;
@@ -394,6 +409,19 @@ body {
     bottom: calc(var(--navbar-margin) * 2 + var(--navbar-height));
     left: 50%;
     transform: translateX(-50%);
+    animation: startmenu-popup 0.4s;
+}
+
+@keyframes startmenu-popup {
+    0% {
+        bottom: -100%;
+        opacity: 0;
+    }
+
+    100% {
+        bottom: calc(var(--navbar-margin) * 2 + var(--navbar-height));
+        opacity: 1;
+    }
 }
 
 #startmenu .content-pane {
@@ -551,7 +579,6 @@ body {
     border-radius: 3px;
     background-color: var(--theme-startmenu-icon-background);
 }
-
 
 #startmenu .content-pane>.info {
     position: relative;
