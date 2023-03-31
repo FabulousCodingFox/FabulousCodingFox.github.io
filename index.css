@@ -10,28 +10,19 @@
     --theme-window-title-color: #fff;
 
     --theme-startmenu-text: #fff;
+    --theme-startmenu-apps-bg: rgba(255 255 255 / 20%);
 
     --theme-contrast-filter-a: 50%;
-    /* +50% */
     --theme-contrast-filter-b: 75%;
-    /* +25% */
     --theme-contrast-filter-c: 87.5%;
-    /* +12.5% */
     --theme-contrast-filter-d: 93.75%;
-    /* +6.25% */
     --theme-contrast-filter-e: 96.875%;
-    /* +3.125% */
 
     --theme-contrast-filter-revert-a: 150%;
-    /* -50% */
     --theme-contrast-filter-revert-b: 133.33%;
-    /* -25% */
     --theme-contrast-filter-revert-c: 120%;
-    /* -12.5% */
     --theme-contrast-filter-revert-d: 106.67%;
-    /* -6.25% */
     --theme-contrast-filter-revert-e: 93.33%;
-    /* -3.125% */
 
     --navbar-height: 50px;
     --navbar-margin: 12px;
@@ -464,7 +455,7 @@ body {
     border-radius: 3px;
     backdrop-filter: brightness(var(--theme-contrast-filter-c));
 
-    padding: 0px var(--padding);
+    padding: var(--gap) var(--padding);
 
     display: flex;
     flex-direction: column;
@@ -479,7 +470,7 @@ body {
 
 #startmenu .content-pane>.apps>.pinned>.items>.item:hover {
     backdrop-filter: brightness(var(--theme-contrast-filter-revert-c));
-    color: red;
+    background-color: var(--theme-startmenu-apps-bg);
 }
 
 #startmenu .content-pane>.apps>.pinned>.items>.item>img {
