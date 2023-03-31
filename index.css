@@ -20,7 +20,6 @@
     --window-width: 1200px;
     --window-height: 800px;
     --window-border: 4px;
-    --window-border-color: linear-gradient(var(--angle), #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82);
     --window-bg-filter: brightness(0.75);
     --window-bg-filter-reverse: brightness(1.25);
 
@@ -240,7 +239,10 @@ body {
     border: var(--window-border) solid transparent;
     border-radius: var(--window-border-radius);
 
-    background: linear-gradient(calc(1deg * var(--angle)), red, blue) border-box;
+    background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82) border-box;
+    animation: animatedgradient 3s ease alternate infinite;
+    background-size: 300% 300%;
+
     -webkit-mask:
         /*4*/
         linear-gradient(#fff 0 0) padding-box,
@@ -248,29 +250,20 @@ body {
     -webkit-mask-composite: xor;
     mask-composite: exclude;
 
-    animation: window-border-rotate 10s linear infinite;
-
     box-shadow: 1px 1px 5px black;
-
-
-    /* --angle: 0deg;
-    border: var(--window-border) solid;
-    border-image-slice: 1;
-    border-width: var(--window-border);
-
-    border-image-source: linear-gradient(var(--angle), #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82);
-    animation: 10s window-border-animation linear infinite;
-
-    border-radius: var(--window-border-radius);
-    box-shadow: 1px 1px 5px black;*/
 }
 
-@keyframes window-border-rotate {
+@keyframes animatedgradient {
     0% {
-        background: linear-gradient(1deg, red, blue) border-box;
+        background-position: 0% 50%;
     }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
     100% {
-        background: linear-gradient(60deg, red, blue) border-box;
+        background-position: 0% 50%;
     }
 }
 
