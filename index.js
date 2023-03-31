@@ -215,7 +215,7 @@ class Window {
         this.parentWindowContainerElement.style.transform = "translate(" + this.windowPosX + "px, " + this.windowPosY + "px)";
         this.parentWindowContainerElement.style.setProperty('--w', width + "px");
         this.parentWindowContainerElement.style.setProperty('--h', height + "px");
-        this.parentWindowContainerElement.style.setProperty('--window-border-radius', "20px")
+        this.parentWindowContainerElement.style.setProperty('--window-border-radius', "10px")
         this.parentWindowContainerElement.style.cursor = "nwse-resize"
 
         this.layer = windowY
