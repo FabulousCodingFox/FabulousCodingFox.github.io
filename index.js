@@ -261,6 +261,12 @@ function windowBuilder(type) {
     `;
 }
 
+let startmenuSearchListElement = document.getElementById("startmenu-search-list");
+for(const type in WINDOWTYPE) {
+    let d = DATA[type];
+    if(d == undefined) continue;
+    startmenuSearchListElement.insertAdjacentHTML("beforeend", /*html*/`<button onclick="openWindow(WINDOWTYPE.${type})"><img src="${d["img"]}"> <span>${d["title"]}</span></button>`);
+}
 
 
 
