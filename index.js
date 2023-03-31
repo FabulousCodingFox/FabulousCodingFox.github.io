@@ -266,7 +266,7 @@ class Window {
         this.isMinimized = false
 
         this.windowContent = content;
-        document.querySelector("#screen").insertAdjacentHTML('beforeend', this.windowContent);
+        document.querySelector("#desktop").insertAdjacentHTML('beforeend', this.windowContent);
 
         this.parentWindowContainerElement = last(document.querySelector("body").getElementsByClassName("window-container"));
         this.windowBorderElement = this.parentWindowContainerElement.querySelector(".window-border");
