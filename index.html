@@ -79,8 +79,9 @@
                                     <div class="info"></div>
                                     <div class="apps">
                                         <div class="search">
-                                            <input type="text" placeholder="Type here to search">
-                                            <div class="list">
+                                            <input type="text" placeholder="Type here to search"
+                                                onkeyup="startmenu_search_ontype()" id="startmenu-search-input">
+                                            <div class="list" id="startmenu-search-list">
                                                 <button><img src="assets/icons/discord.png">
                                                     <span>Discord</span></button>
                                                 <button><img src="assets/icons/spotify.png">
