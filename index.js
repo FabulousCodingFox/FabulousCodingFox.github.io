@@ -247,6 +247,26 @@ let DATA = {
 
     [WINDOWTYPE.BACKROOMS]: {
         'img': 'assets/projects/backrooms/logosmall.png',
+        'title': 'BACKROOMS',
+        'content': /*html*/`
+        <h1 align="center">Backrooms</h1>
+        <h3 align="center">A small proof-of-concept game</h3>
+        <p align="center"><a target="_blank" href="https://github.com/FabulousCodingFox/TheBackrooms">https://github.com/FabulousCodingFox/TheBackrooms</a></p>
+        <h3 align="center">
+            <a href="https://github.com/FabulousCodingFox/TheBackrooms/blob/master/LICENSE" target="_blank"><img src="https://img.shields.io/github/license/FabulousCodingFox/TheBackrooms.svg"></a>
+            <a href="https://GitHub.com/FabulousCodingFox/TheBackrooms/releases/" target="_blank"><img src="https://img.shields.io/github/release/FabulousCodingFox/TheBackrooms.svg"></a>
+            <a href="https://GitHub.com/FabulousCodingFox/TheBackrooms/stargazers/" target="_blank"><img src="https://img.shields.io/github/stars/FabulousCodingFox/TheBackrooms.svg"></a>
+        </h3>
+
+        <hr>
+
+        <h3> 📜 <b>What is Backrooms?</b></h3>
+        <p>Backrooms is a small proof-of-concept game i made in 2 weeks. It is a first-person game, where you are trapped in a infinite world, inspired by the online trend of the same name in 2022.</p>
+        <p>It was made using OpenGL 3.3 and Java using LWJGL. It is a very simple game, but it was a fun project to work on. Its main purpose was to setup a basic OpenGL template, and it nailed that.</p>
+
+        <h3> 📸 <b>Gallery</b></h3>
+        <img src="assets/projects/backrooms/screenshot1.png" alt="Backrooms"/>
+        `
     }
 }
 
