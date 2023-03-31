@@ -167,9 +167,7 @@ const THEME = {
 };
 
 const WINDOWTYPE = {
-    GITHUB: 'GITHUB',
-    DISCORD: 'DISCORD',
-    SPOTIFY: 'SPOTIFY'
+    GITHUB: 'GITHUB'
 };
 
 let DATA = {
