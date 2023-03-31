@@ -200,7 +200,7 @@ function windowBuilder(img, title, content) {
 
                     <div class="topbar">
                         <div class="title">
-                        <img src="${img}">
+                        <img class="logo" src="${img}">
                             <p>${title}</p>
                         </div>
                         <div class="controls">
@@ -266,7 +266,7 @@ class Window {
         this.isMinimized = false
 
         this.windowContent = content;
-        document.querySelector("body").insertAdjacentHTML('beforeend', this.windowContent);
+        document.querySelector("#screen").insertAdjacentHTML('beforeend', this.windowContent);
 
         this.parentWindowContainerElement = last(document.querySelector("body").getElementsByClassName("window-container"));
         this.windowBorderElement = this.parentWindowContainerElement.querySelector(".window-border");
@@ -278,8 +278,8 @@ class Window {
         this.windowTopbarMaximizeButtonElement = this.windowTopbarElement.querySelector(".max");
         this.windowTopbarMinimizeButtonElement = this.windowTopbarElement.querySelector(".min");
 
-        this.parentWindowContainerElement.style.setProperty('--w', width + "px");
-        this.parentWindowContainerElement.style.setProperty('--h', height + "px");
+        this.parentWindowContainerElement.style.setProperty('--w', this.width + "px");
+        this.parentWindowContainerElement.style.setProperty('--h', this.height + "px");
         this.parentWindowContainerElement.style.setProperty('--x', this.windowPosX + "px");
         this.parentWindowContainerElement.style.setProperty('--y', this.windowPosY + "px");
         this.parentWindowContainerElement.style.setProperty('--window-border-radius', "10px")
@@ -291,6 +291,13 @@ class Window {
 
         this.mouseHoversOnContent = false;
 
+        let taskbar_wrapper = document.getElementById("taskbar-apps");
+        let taskbar_amount = Number(getComputedStyle(taskbar_wrapper).getPropertyValue("--taskbar-amount"));
+        let logo = this.windowTopbarElement.querySelector(".logo").src;
+        taskbar_wrapper.insertAdjacentHTML('beforeend', `<button class="open active" style="--index: ` + taskbar_amount + `; --offset: 0"><span></span><img src="` + logo + `"></button>`);
+        taskbar_wrapper.style.setProperty("--taskbar-amount", taskbar_amount + 1);
+        this.taskBarIcon = last(taskbar_wrapper.getElementsByClassName("window-container"));
+        
         //Resize Window
         this.windowPaneElement.onmouseenter = function () {
             root.mouseHoversOnContent = true;
@@ -368,14 +375,14 @@ class Window {
 
     setMaxximized(m) {
         if (!m) {
-            this.parentWindowContainerElement.style.setProperty('--w', width + "px");
-            this.parentWindowContainerElement.style.setProperty('--h', height + "px");
+            this.parentWindowContainerElement.style.setProperty('--x', this.windowPosX + "px");
+            this.parentWindowContainerElement.style.setProperty('--y', this.windowPosY + "px");
             this.parentWindowContainerElement.style.setProperty('--w', this.windowWidth + "px");
             this.parentWindowContainerElement.style.setProperty('--h', this.windowHeight + "px");
             this.parentWindowContainerElement.style.setProperty('--window-border-radius', "20px")
         } else {
-            this.parentWindowContainerElement.style.setProperty('--w', width + "px");
-            this.parentWindowContainerElement.style.setProperty('--h', height + "px");
+            this.parentWindowContainerElement.style.setProperty('--x', this.windowPosX + "px");
+            this.parentWindowContainerElement.style.setProperty('--y', this.windowPosY + "px");
             this.parentWindowContainerElement.style.setProperty('--w', window.innerWidth + "px");
             this.parentWindowContainerElement.style.setProperty('--h', window.innerHeight + "px");
             this.parentWindowContainerElement.style.setProperty('--window-border-radius', "0px")
@@ -386,8 +393,8 @@ class Window {
     setPos(x, y) {
         this.windowPosX = x;
         this.windowPosY = y;
-        this.parentWindowContainerElement.style.setProperty('--w', width + "px");
-        this.parentWindowContainerElement.style.setProperty('--h', height + "px");
+        this.parentWindowContainerElement.style.setProperty('--x', this.windowPosX + "px");
+        this.parentWindowContainerElement.style.setProperty('--y', this.windowPosY + "px");
     }
 
     setDimensions(w, h) {
