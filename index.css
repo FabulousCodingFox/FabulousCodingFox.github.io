@@ -394,10 +394,15 @@ body {
     overflow-x: hidden;
     overflow-y: auto;
     color: var(--theme-content-text-color);
+    padding: var(--padding);
 }
 
 .window-container .content-pane * {
     user-select: text;
+}
+
+.window-container .content-pane img{
+    max-width: 100%;
 }
 
 #startmenu {
