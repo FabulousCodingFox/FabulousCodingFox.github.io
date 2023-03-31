@@ -70,16 +70,7 @@
                                         <div class="search">
                                             <input type="text" placeholder="Type here to search"
                                                 onkeyup="startmenu_search_ontype()" id="startmenu-search-input">
-                                            <div class="list" id="startmenu-search-list">
-                                                <button onclick="openWindow(WINDOWTYPE.DISCORD)"><img
-                                                        src="assets/icons/discord.png">
-                                                    <span>Discord</span></button>
-                                                <button onclick="openWindow(WINDOWTYPE.SPOTIFY)""><img src="
-                                                    assets/icons/spotify.png">
-                                                    <span>Spotify</span></button>
-                                                <button onclick="openWindow(WINDOWTYPE.GITHUB)""><img src="
-                                                    assets/icons/github.png"> <span>Github</span></button>
-                                            </div>
+                                            <div class="list" id="startmenu-search-list"></div>
                                         </div>
 
                                         <div class="pinned">
@@ -87,15 +78,7 @@
                                                 <div>Pinned</div>
                                             </div>
                                             <div class="items" style="--items-per-row: 6">
-                                                <button class="item">
-                                                    <img src="assets/icons/discord.png">
-                                                    <div>Discord</div>
-                                                </button>
-                                                <button class="item">
-                                                    <img src="assets/icons/spotify.png">
-                                                    <div>Spotify</div>
-                                                </button>
-                                                <button class="item">
+                                                <button class="item" onclick="openWindow(WINDOWTYPE.GITHUB)">
                                                     <img src="assets/icons/github.png">
                                                     <div>Github</div>
                                                 </button>
