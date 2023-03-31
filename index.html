@@ -19,7 +19,7 @@
                 <div id="taskbar">
 
                     <div class="taskbar-startmenu">
-                        <button class=""><span></span><img src="assets/icons/windows.png"></button>
+                        <button class="" onclick="startmenu_toggle()"><span></span><img src="assets/icons/windows.png"></button>
                     </div>
 
                     <div id="taskbar-apps" class="static" style="--app-amount: 9;">
@@ -70,7 +70,7 @@
                 </div>
 
                 <div id="startmenu" class="window-container"
-                    style="--w: var(--startmenu-width); --h: var(--startmenu-height); --window-border-radius: 10px;">
+                    style="--w: var(--startmenu-width); --h: var(--startmenu-height); --window-border-radius: 10px; display: block;">
                     <div class="fwrapper window-inner-wrapper">
                         <div class="window-border"></div>
                         <div class="window-pane">
