@@ -100,7 +100,14 @@ function startmenu_search_ontype() {
     }
 }
 
-
+function startmenu_toggle(){
+    let element = document.getElementById("startmenu");
+    if (element.style.display == "none" || element.style.display == "") {
+        element.style.display = "block";
+    } else {
+        element.style.display = "none";
+    }
+}
 
 
 
