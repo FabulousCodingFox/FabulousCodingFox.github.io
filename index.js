@@ -126,70 +126,68 @@ function startmenu_toggle() {
 
 
 
+const THEME = {
+    DARK: 'DARK'
+};
 
+const WINDOWTYPE = {
+    GITHUB: 'GITHUB',
+    DISCORD: 'DISCORD',
+    SPOTIFY: 'SPOTIFY'
+};
 
+let DATA = {
+    [WINDOWTYPE.GITHUB]: {
+        'img': 'assets/icons/github.png',
+        'title': 'Github',
+        'content': /*html*/`
+            <h1 align="center">Hi <span class="wave">👋</span>, I am FabulousFox</h1>
+            <h3 align="center">I mostly code useless stuff</h3>
+            <p align="center">(<a target="_blank" href="https://github.com/FabulousCodingFox">https://github.com/FabulousCodingFox</a> || <a href="javscript:void(0)">https://fabulouscodingfox.github.io/</a>)</p>
+            
+            <hr>
 
+            <h3> 💻 <b>Programming Languages</b></h3>
+            <ul>
+                <li>☕Java</li>
+                <li>🐀C++</li>
+                <li>🐍Python</li>
+                <li>🟨Javascript</li>
+            </ul>
 
+            <hr>
+        
+            <h3> 🚀 <b>APIs/Frameworks/Methods</b></h3>
+            <ul>
+                <li>🧮Databases: SQL</li>
+                <li>📜Web: Html/Css, Js/Ts, Bootstrap</li>
+                <li>⚡API: FastAPI, Flask</li>
+                <li>📗Minecraft: Bukkit/Spigot/Paper, Datapacks</li>
+                <li>👾Graphics: Pygame, (Modern OpenGL), Vulkan</li>
+            </ul>
 
+            <hr>
 
+            <h3> 📫 <b>Contact</b></h3>
+            <ul>
+                <li>💬Discord: FabulousFox#9057</li>
+            </ul>
 
+            <hr>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function loadwindowtext(btn, id) {
-    let elements = btn.parentElement.parentElement.parentElement.getElementsByClassName("details");
-    Array.from(elements).forEach(function (item, index) {
-        if (item.classList.contains(id)) {
-            item.style.display = "initial";
-        } else {
-            item.style.display = "none";
-        }
-    });
+            <img src="https://github-readme-stats.vercel.app/api/top-langs?username=FabulousCodingFox&show_icons=true&locale=en&langs_count=10&theme=dracula" alt="FabulousCodingFox" />
+            <img src="https://github-readme-stats.vercel.app/api?username=FabulousCodingFox&show_icons=true&locale=en&theme=dracula" alt="FabulousCodingFox" />
+        `
+    }
 }
 
-function windowBuilder(img, title, content) {
+function windowBuilder(type) {
+
+    let d = DATA[type];
+    img = d["img"];
+    title = d["title"];
+    content = d["content"];
+
     let width = 0.6 * (window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth);
     let height = 0.8 * (window.innerHeight || document.documentElement.clientHeight || document.getElementsByTagName('body')[0].clientHeight);
 
@@ -231,19 +229,23 @@ function windowBuilder(img, title, content) {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function last(array) {
     return array[array.length - 1];
 }
-
-
-
-const windowGithub = /*html*/`
-<h1 align="center">Hi <span class="wave">👋</span>, I am FabulousFox</h1>
-<h3 align="center">I mostly code useless stuff</h3>
-<p align="center">(<a href="https://github.com/FabulousCodingFox" target="_blank">https://github.com/FabulousCodingFox</a> || <a href="https://fabulouscodingfox.github.io/" target="_blank">https://fabulouscodingfox.github.io/</a>)</p>
-<hr>
-`
-
 
 let windowY = 10000;
 
