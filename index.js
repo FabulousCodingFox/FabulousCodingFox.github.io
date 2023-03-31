@@ -392,7 +392,7 @@ class Window {
 
         //Focus taskbar
         this.taskBarIcon.addEventListener("mouseup", (event) => {
-            if(this.prevTaskBarIconIndex !== Number(getComputedStyle(this.taskBarIcon).getPropertyValue("--index"))) {
+            if (this.prevTaskBarIconIndex !== Number(getComputedStyle(this.taskBarIcon).getPropertyValue("--index"))) {
                 this.prevTaskBarIconIndex = Number(getComputedStyle(this.taskBarIcon).getPropertyValue("--index"));
                 return;
             }
