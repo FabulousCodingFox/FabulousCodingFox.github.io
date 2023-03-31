@@ -427,7 +427,7 @@ body {
     }
 }
 
-@keyframes startmenu-popout{
+@keyframes startmenu-popout {
     0% {
         bottom: calc(var(--navbar-margin) * 2 + var(--navbar-height));
         opacity: 1;
