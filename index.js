@@ -102,10 +102,11 @@ function startmenu_search_ontype() {
 
 function startmenu_toggle() {
     let element = document.getElementById("startmenu");
-    if (element.style.display == "none" || element.style.display == "") {
+    if (element.classList.contains("hidden")) {
+        element.classList.remove("hidden");
         element.style.display = "block";
     } else {
-        element.style.display = "none";
+        element.classList.add("hidden");
     }
 }
 
@@ -182,17 +183,13 @@ let DATA = {
 }
 
 function openWindow(type) {
-    if(document.getElementById("startmenu").style.display == "block") startmenu_toggle();
+    if (!document.getElementById("startmenu").classList.contains("hidden")) startmenu_toggle();
     let window = windowBuilder(type);
     new Window(window);
 }
 
 function windowBuilder(type) {
-
     let d = DATA[type];
-    img = d["img"];
-    title = d["title"];
-    content = d["content"];
 
     let width = 0.6 * (window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth);
     let height = 0.8 * (window.innerHeight || document.documentElement.clientHeight || document.getElementsByTagName('body')[0].clientHeight);
@@ -207,11 +204,10 @@ function windowBuilder(type) {
             <div class="window-border"></div>
             <div class="window-pane">
                 <div class="fwrapper">
-
                     <div class="topbar">
                         <div class="title">
-                        <img class="logo" src="${img}">
-                            <p>${title}</p>
+                        <img class="logo" src="${d["img"]}">
+                            <p>${d["title"]}</p>
                         </div>
                         <div class="controls">
                             <button class="min"><img src="assets/icons/minus.svg"></button>
@@ -219,11 +215,9 @@ function windowBuilder(type) {
                             <button class="close"><img src="assets/icons/x-circle.svg"></button>
                         </div>
                     </div>
-
                     <div class="content-pane">
-                        ${content}
+                        ${d["content"]}
                     </div>
-                    
                 </div>
             </div>
         </div>
@@ -373,13 +367,13 @@ class Window {
         });
 
         //Focus taskbar
-        this.taskBarIcon.addEventListener("mousedown", (event) => {
-            if(this.taskBarIcon.classList.contains("active")){
+        this.taskBarIcon.addEventListener("mouseup", (event) => {
+            if (this.taskBarIcon.classList.contains("active")) {
                 this.setMinimized(true);
             }
-            else if(this.isMinimized){
+            else if (this.isMinimized) {
                 this.setMinimized(false);
-            }else{
+            } else {
                 this.setWindowActive();
                 this.setTaskbarActive();
             }
