@@ -190,9 +190,15 @@ function loadwindowtext(btn, id) {
 }
 
 function windowBuilder(img, title, content) {
+    let width = 0.6 * (window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth);
+    let height = 0.8 * (window.innerHeight || document.documentElement.clientHeight || document.getElementsByTagName('body')[0].clientHeight);
+
+    let windowPosX = window.innerWidth / 2 - width / 2;
+    let windowPosY = window.innerHeight / 2 - height / 2;
+
     return /*html*/`
 
-    <div class="window-container" style="--w: 1048px; --h: 700px; --window-border-radius: 20px;">
+    <div class="window-container" style="--w: ${width}px; --h: ${height}px; --window-border-radius: 20px; --x: ${windowPosX}px; --y: ${windowPosY}px;">
         <div class="fwrapper window-inner-wrapper">
             <div class="window-border"></div>
             <div class="window-pane">
@@ -278,8 +284,8 @@ class Window {
         this.windowTopbarMaximizeButtonElement = this.windowTopbarElement.querySelector(".max");
         this.windowTopbarMinimizeButtonElement = this.windowTopbarElement.querySelector(".min");
 
-        this.parentWindowContainerElement.style.setProperty('--w', this.width + "px");
-        this.parentWindowContainerElement.style.setProperty('--h', this.height + "px");
+        this.parentWindowContainerElement.style.setProperty('--w', this.windowWidth + "px");
+        this.parentWindowContainerElement.style.setProperty('--h', this.windowHeight + "px");
         this.parentWindowContainerElement.style.setProperty('--x', this.windowPosX + "px");
         this.parentWindowContainerElement.style.setProperty('--y', this.windowPosY + "px");
         this.parentWindowContainerElement.style.setProperty('--window-border-radius', "10px")
@@ -292,12 +298,14 @@ class Window {
         this.mouseHoversOnContent = false;
 
         let taskbar_wrapper = document.getElementById("taskbar-apps");
-        let taskbar_amount = Number(getComputedStyle(taskbar_wrapper).getPropertyValue("--taskbar-amount"));
+        let taskbar_amount = Number(getComputedStyle(taskbar_wrapper).getPropertyValue("--app-amount"));
         let logo = this.windowTopbarElement.querySelector(".logo").src;
-        taskbar_wrapper.insertAdjacentHTML('beforeend', `<button class="open active" style="--index: ` + taskbar_amount + `; --offset: 0"><span></span><img src="` + logo + `"></button>`);
-        taskbar_wrapper.style.setProperty("--taskbar-amount", taskbar_amount + 1);
-        this.taskBarIcon = last(taskbar_wrapper.getElementsByClassName("window-container"));
-        
+        let cont = `<button class="open active" style="--index: ${taskbar_amount}; --offset: 0"><span></span><img src="${logo}"></button>`
+        taskbar_wrapper.insertAdjacentHTML('beforeend', cont);
+        taskbar_wrapper.style.setProperty("--app-amount", taskbar_amount + 1);
+        this.taskBarIcon = last(taskbar_wrapper.children);
+        console.log(this.taskBarIcon);
+
         //Resize Window
         this.windowPaneElement.onmouseenter = function () {
             root.mouseHoversOnContent = true;
@@ -343,14 +351,10 @@ class Window {
 
         //Close window
         this.windowTopbarCloseButtonElement.onclick = () => {
-            this.parentWindowContainerElement.style.opacity = '0%';
-            const temp = this.parentWindowContainerElement;
-            setTimeout(function () { temp.remove(); }, 500);
+            this.remove();
         };
         this.windowTopbarMinimizeButtonElement.onclick = () => {
-            this.parentWindowContainerElement.style.opacity = '0%';
-            const temp = this.parentWindowContainerElement;
-            setTimeout(function () { temp.remove(); }, 500);
+            this.remove();
         };
 
         //Focus Window
@@ -402,6 +406,16 @@ class Window {
         this.windowHeight = h;
         this.parentWindowContainerElement.style.setProperty('--w', Math.max(windowMinWidth, w) + "px");
         this.parentWindowContainerElement.style.setProperty('--h', Math.max(windowMinHeight, h) + "px");
+    }
+
+    remove() {
+        this.parentWindowContainerElement.style.opacity = '0%';
+        let t = document.getElementById("taskbar-apps");
+        this.taskBarIcon.remove();
+        t.style.setProperty('--app-amount', Number(getComputedStyle(t).getPropertyValue("--app-amount")) - 1);
+
+        const temp = this.parentWindowContainerElement;
+        setTimeout(() => { temp.remove(); }, 500);
     }
 }
 
