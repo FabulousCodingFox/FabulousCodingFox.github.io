@@ -20,7 +20,7 @@
     --window-width: 1200px;
     --window-height: 800px;
     --window-border: 4px;
-    --window-border-color: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82);
+    --window-border-color: linear-gradient(var(--angle), #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82);
     --window-bg-filter: brightness(0.75);
     --window-bg-filter-reverse: brightness(1.25);
 
@@ -61,7 +61,8 @@ body,
     height: 100%;
 }
 
-html, body{
+html,
+body {
     overflow: hidden;
 }
 
@@ -227,23 +228,30 @@ html, body{
     backdrop-filter: blur(25px);
 }
 
-.window-container>div>.window-border{
+.window-container>div>.window-border {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    /*background: var(--window-border-color);
-    animation: animatedgradient 3s ease alternate infinite;
-    border-radius: var(--window-border-radius);
-    background-size: 300% 300%;
-    clip-path: polygon(0% 0%, 0% 100%, var(--window-border) 100%, var(--window-border) var(--window-border), calc(100% - var(--window-border)) var(--window-border), calc(100% - var(--window-border)) calc(100% - var(--window-border)), var(--window-border) calc(100% - var(--window-border)), var(--window-border) 100%, 100% 100%, 100% 0%);*/
-    border : var(--window-border) solid red;
+
+    --angle: 0deg;
+    border: var(--window-border) solid;
+    border-image-slice: 1;
+    border-image-source: var(--window-border-color) 1;
+    animation: 10s window-border-animation linear infinite;
+
     border-radius: var(--window-border-radius);
     box-shadow: 1px 1px 5px black;
 }
 
-.window-container>div>.window-pane{
+@keyframes window-border-animation {
+    to {
+        --angle: 360deg;
+    }
+}
+
+.window-container>div>.window-pane {
     position: absolute;
     top: var(--window-border);
     left: var(--window-border);
@@ -254,7 +262,7 @@ html, body{
     cursor: auto;
 }
 
-.window-container>div>.window-pane>div>.topbar{
+.window-container>div>.window-pane>div>.topbar {
     position: relative;
     width: 100%;
     height: var(--window-topbar-height);
@@ -263,14 +271,14 @@ html, body{
     box-shadow: 0px 1px 4px black;
 }
 
-.window-container>div>.window-pane>div>.topbar>.controls{
+.window-container>div>.window-pane>div>.topbar>.controls {
     position: absolute;
     top: 50%;
     right: var(--window-controls-padding);
     transform: translateY(-50%);
 }
 
-.window-container>div>.window-pane>div>.topbar>.controls>button{
+.window-container>div>.window-pane>div>.topbar>.controls>button {
     height: var(--window-controls-height);
     width: var(--window-controls-height);
 
@@ -281,7 +289,7 @@ html, body{
     transition: background-color 0.075s ease-in-out;
 }
 
-.window-container>div>.window-pane>div>.topbar>.controls>button:hover{
+.window-container>div>.window-pane>div>.topbar>.controls>button:hover {
     background-color: var(--theme-button-hover-color);
 }
 
@@ -331,7 +339,7 @@ html, body{
     }
 }
 
-.window-container>div>.window-pane>div>.content-pane{
+.window-container>div>.window-pane>div>.content-pane {
     width: 100%;
     height: calc(100% - var(--window-topbar-height));
     border-bottom-left-radius: var(--window-border-radius);
