@@ -170,6 +170,8 @@ const WINDOWTYPE = {
     GITHUB: 'GITHUB',
     WINKED: 'WINKED',
     BACKROOMS: 'BACKROOMS',
+    MINECRAFT: 'MINECRAFT',
+
     ABOUTME: 'ABOUTME',
     CONTACT: 'CONTACT',
     RESUME: 'RESUME' 
@@ -267,7 +269,9 @@ let DATA = {
         <h3> 📸 <b>Gallery</b></h3>
         <img src="assets/projects/backrooms/screenshot1.png" alt="Backrooms"/>
         `
-    }
+    },
+
+    [WINDOWTYPE.ABOUTME]: {}
 }
 
 function openWindow(type) {
