@@ -2,6 +2,20 @@ let draggedTaskBarIcon = null;
 let draggedTaskBarIconIndex = null;
 let taskBar = document.querySelector('#taskbar-apps');
 
+function rebuildTaskBar() {
+    let icons = [...taskBar.children];
+    icons.sort((a, b) => {
+        let aIndex = Number(getComputedStyle(a).getPropertyValue('--index'));
+        let bIndex = Number(getComputedStyle(b).getPropertyValue('--index'));
+        return aIndex - bIndex;
+    });
+    let i = -1;
+    for (let icon of icons) {
+        i++;
+        icon.style.setProperty('--index', i);
+    }
+}
+
 function taskBarAppHandleDragStart(event) {
     const el = event.currentTarget;
 
@@ -434,6 +448,7 @@ class Window {
         this.parentWindowContainerElement.style.opacity = '0%';
         let t = document.getElementById("taskbar-apps");
         this.taskBarIcon.remove();
+        rebuildTaskBar();
         t.style.setProperty('--app-amount', Number(getComputedStyle(t).getPropertyValue("--app-amount")) - 1);
 
         const temp = this.parentWindowContainerElement;
