@@ -14,6 +14,10 @@ function rebuildTaskBar() {
         i++;
         icon.style.setProperty('--index', i);
     }
+
+    windows.forEach((window) => {
+        window.prevTaskBarIconIndex = Number(getComputedStyle(window.taskBarIcon).getPropertyValue('--index'));
+    });
 }
 
 function taskBarAppHandleDragStart(event) {
@@ -199,7 +203,7 @@ let DATA = {
 function openWindow(type) {
     if (!document.getElementById("startmenu").classList.contains("hidden")) startmenu_toggle();
     let window = windowBuilder(type);
-    new Window(window);
+    windows.push(new Window(window));
 }
 
 function windowBuilder(type) {
@@ -273,6 +277,8 @@ let mouseY = 0;
 let windowMinWidth = 450;
 let windowMinHeight = 200;
 
+let windows = [];
+
 class Window {
     constructor(content) {
         var root = this;
@@ -320,6 +326,10 @@ class Window {
         taskbar_wrapper.insertAdjacentHTML('beforeend', cont);
         taskbar_wrapper.style.setProperty("--app-amount", taskbar_amount + 1);
         this.taskBarIcon = last(taskbar_wrapper.children);
+        this.taskBarIcon.addEventListener('pointerdown', (event) => {
+            taskBarAppHandleDragStart(event);
+        });
+        this.prevTaskBarIconIndex = taskbar_amount;
 
         this.setTaskbarActive();
 
@@ -382,6 +392,11 @@ class Window {
 
         //Focus taskbar
         this.taskBarIcon.addEventListener("mouseup", (event) => {
+            if(this.prevTaskBarIconIndex !== Number(getComputedStyle(this.taskBarIcon).getPropertyValue("--index"))) {
+                this.prevTaskBarIconIndex = Number(getComputedStyle(this.taskBarIcon).getPropertyValue("--index"));
+                return;
+            }
+
             if (this.taskBarIcon.classList.contains("active")) {
                 this.setMinimized(true);
             }
