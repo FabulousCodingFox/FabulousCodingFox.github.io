@@ -181,6 +181,12 @@ let DATA = {
     }
 }
 
+function openWindow(type) {
+    if(document.getElementById("startmenu").style.display == "block") startmenu_toggle();
+    let window = windowBuilder(type);
+    new Window(window);
+}
+
 function windowBuilder(type) {
 
     let d = DATA[type];
@@ -357,7 +363,7 @@ class Window {
             this.remove();
         };
         this.windowTopbarMinimizeButtonElement.onclick = () => {
-            this.remove();
+            this.setMinimized(true)
         };
 
         //Focus Window
@@ -368,8 +374,15 @@ class Window {
 
         //Focus taskbar
         this.taskBarIcon.addEventListener("mousedown", (event) => {
-            this.setWindowActive();
-            this.setTaskbarActive();
+            if(this.taskBarIcon.classList.contains("active")){
+                this.setMinimized(true);
+            }
+            else if(this.isMinimized){
+                this.setMinimized(false);
+            }else{
+                this.setWindowActive();
+                this.setTaskbarActive();
+            }
         });
 
         //Move window
@@ -395,6 +408,18 @@ class Window {
             this.parentWindowContainerElement.style.setProperty('--window-border-radius', "0px")
         }
         this.isMaxximized = m;
+    }
+
+    setMinimized(m) {
+        if (m) {
+            this.parentWindowContainerElement.style.display = "none";
+            this.taskBarIcon.classList.remove("active");
+        } else {
+            this.parentWindowContainerElement.style.display = "block";
+            this.setWindowActive();
+            this.setTaskbarActive();
+        }
+        this.isMinimized = m;
     }
 
     setPos(x, y) {
@@ -499,8 +524,6 @@ document.addEventListener("mousemove", (event) => {
     }
 });
 
-function spawnWindow(content) {
-    new Window(content);
-}
-
 //spawnWindow(windowBuilder("assets/icons/github.png", "GitHub", windowGithub))
+
+openWindow(WINDOWTYPE.GITHUB);
