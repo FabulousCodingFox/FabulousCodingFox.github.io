@@ -224,6 +224,7 @@ html, body{
     height: var(--h);
     /*border-radius: var(--window-border-radius);*/
     user-select: all;
+    backdrop-filter: blur(25px);
 }
 
 .window-container>div>.window-border{
@@ -250,7 +251,6 @@ html, body{
     height: calc(100% - calc(var(--window-border) * 2));
     border-radius: calc(var(--window-border-radius));
     background-color: transparent;
-    backdrop-filter: blur(25px);
     cursor: auto;
 }
 
