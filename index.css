@@ -267,30 +267,6 @@ body {
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .window-container>div>.window-pane {
     position: absolute;
     top: var(--window-border);

@@ -242,14 +242,14 @@ class Window {
             let w = Math.abs(r.left - mouseX) <= 20
             let e = Math.abs(r.right - mouseX) <= 20
 
-            if (n && e) {      resizedSide = "ne"; this.parentWindowContainerElement.style.cursor = "nesw-resize" }
+            if (n && e) { resizedSide = "ne"; this.parentWindowContainerElement.style.cursor = "nesw-resize" }
             else if (n && w) { resizedSide = "nw"; this.parentWindowContainerElement.style.cursor = "nwse-resize" }
-            else if (n) {      resizedSide = "n";  this.parentWindowContainerElement.style.cursor = "ns-resize" }
+            else if (n) { resizedSide = "n"; this.parentWindowContainerElement.style.cursor = "ns-resize" }
             else if (s && e) { resizedSide = "se"; this.parentWindowContainerElement.style.cursor = "nwse-resize" }
             else if (s && w) { resizedSide = "sw"; this.parentWindowContainerElement.style.cursor = "nesw-resize" }
-            else if (s) {      resizedSide = "s";  this.parentWindowContainerElement.style.cursor = "ns-resize" }
-            else if (w) {      resizedSide = "w";  this.parentWindowContainerElement.style.cursor = "ew-resize" }
-            else if (e) {      resizedSide = "e";  this.parentWindowContainerElement.style.cursor = "ew-resize" }
+            else if (s) { resizedSide = "s"; this.parentWindowContainerElement.style.cursor = "ns-resize" }
+            else if (w) { resizedSide = "w"; this.parentWindowContainerElement.style.cursor = "ew-resize" }
+            else if (e) { resizedSide = "e"; this.parentWindowContainerElement.style.cursor = "ew-resize" }
             else { resizedSide = "NONE"; }
         });
 
@@ -329,9 +329,9 @@ class Window {
 }
 
 document.addEventListener("mouseup", (event) => {
-    if(resized != undefined) {
-        if(resized.windowWidth < windowMinWidth) resized.setDimensions(windowMinWidth, resized.windowHeight);
-        if(resized.windowHeight < windowMinHeight) resized.setDimensions(resized.windowWidth, windowMinHeight);
+    if (resized != undefined) {
+        if (resized.windowWidth < windowMinWidth) resized.setDimensions(windowMinWidth, resized.windowHeight);
+        if (resized.windowHeight < windowMinHeight) resized.setDimensions(resized.windowWidth, windowMinHeight);
     }
 
     dragged = undefined;
