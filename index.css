@@ -9,6 +9,8 @@
     --theme-navbar-text-color: #fff;
     --theme-window-title-color: #fff;
 
+    --theme-content-text-color: #fff;
+
     --theme-startmenu-text: #fff;
     --theme-startmenu-apps-bg: rgba(255 255 255 / 20%);
     --theme-startmenu-list-input-bg: #000;
@@ -251,18 +253,18 @@ body {
     /*border-radius: var(--window-border-radius);*/
     user-select: all;
     backdrop-filter: blur(15px) saturate(150%) brightness(var(--theme-contrast-filter-a));
-    animation: window-popup 1s;
+    animation: window-popup 0.8s;
     transform: translate(var(--x), var(--y));
 }
 
 @keyframes window-popup {
     0% {
-        transform: scale(0.5) translate(var(--x), var(--y));
+        transform: translate(var(--x), 100vh);
         opacity: 0;
     }
 
     100% {
-        transform: scale(1) translate(var(--x), var(--y));
+        transform: translate(var(--x), var(--y));
         opacity: 1;
     }
 }
@@ -384,27 +386,18 @@ body {
     color: var(--theme-window-title-color);
 }
 
-@keyframes animatedgradient {
-    0% {
-        background-position: 0% 50%;
-    }
-
-    50% {
-        background-position: 100% 50%;
-    }
-
-    100% {
-        background-position: 0% 50%;
-    }
-}
-
-.window-container>div>.window-pane>div>.content-pane {
+.window-container .content-pane {
     width: 100%;
     height: calc(100% - var(--window-topbar-height));
     border-bottom-left-radius: var(--window-border-radius);
     border-bottom-right-radius: var(--window-border-radius);
     overflow-x: hidden;
     overflow-y: auto;
+    color: var(--theme-content-text-color);
+}
+
+.window-container .content-pane * {
+    user-select: text;
 }
 
 #startmenu {
@@ -413,6 +406,13 @@ body {
     left: 50%;
     transform: translateX(-50%);
     animation: startmenu-popup 0.4s;
+    z-index: 99999999999999999;
+}
+
+#startmenu.hidden {
+    animation: startmenu-popout 0.4s;
+    bottom: -100%;
+    opacity: 0;
 }
 
 @keyframes startmenu-popup {
@@ -424,6 +424,18 @@ body {
     100% {
         bottom: calc(var(--navbar-margin) * 2 + var(--navbar-height));
         opacity: 1;
+    }
+}
+
+@keyframes startmenu-popout{
+    0% {
+        bottom: calc(var(--navbar-margin) * 2 + var(--navbar-height));
+        opacity: 1;
+    }
+
+    100% {
+        bottom: -100%;
+        opacity: 0;
     }
 }
 
