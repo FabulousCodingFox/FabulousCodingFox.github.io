@@ -304,7 +304,8 @@ class Window {
         taskbar_wrapper.insertAdjacentHTML('beforeend', cont);
         taskbar_wrapper.style.setProperty("--app-amount", taskbar_amount + 1);
         this.taskBarIcon = last(taskbar_wrapper.children);
-        console.log(this.taskBarIcon);
+
+        this.setTaskbarActive();
 
         //Resize Window
         this.windowPaneElement.onmouseenter = function () {
@@ -359,19 +360,14 @@ class Window {
 
         //Focus Window
         this.parentWindowContainerElement.addEventListener("mousedown", (event) => {
-            if (this.parentWindowContainerElement.style.zIndex == windowY - 1) return;
-            this.parentWindowContainerElement.style.zIndex = windowY;
+            this.setWindowActive();
+            this.setTaskbarActive();
+        });
 
-            document.getElementById("taskbar-apps").querySelectorAll(".open").forEach((e) => {
-                e.classList.remove("active");
-            });
-            this.taskBarIcon.classList.add("active");
-
-            /*this.wd.classList.remove('windowAppear');
-            void this.wd.offsetWidth;
-            this.wd.classList.add('windowAppear'); */
-
-            windowY++;
+        //Focus taskbar
+        this.taskBarIcon.addEventListener("mousedown", (event) => {
+            this.setWindowActive();
+            this.setTaskbarActive();
         });
 
         //Move window
@@ -390,8 +386,8 @@ class Window {
             this.parentWindowContainerElement.style.setProperty('--h', this.windowHeight + "px");
             this.parentWindowContainerElement.style.setProperty('--window-border-radius', "20px")
         } else {
-            this.parentWindowContainerElement.style.setProperty('--x', this.windowPosX + "px");
-            this.parentWindowContainerElement.style.setProperty('--y', this.windowPosY + "px");
+            this.parentWindowContainerElement.style.setProperty('--x', 0 + "px");
+            this.parentWindowContainerElement.style.setProperty('--y', 0 + "px");
             this.parentWindowContainerElement.style.setProperty('--w', window.innerWidth + "px");
             this.parentWindowContainerElement.style.setProperty('--h', window.innerHeight + "px");
             this.parentWindowContainerElement.style.setProperty('--window-border-radius', "0px")
@@ -421,6 +417,19 @@ class Window {
 
         const temp = this.parentWindowContainerElement;
         setTimeout(() => { temp.remove(); }, 500);
+    }
+
+    setTaskbarActive() {
+        document.getElementById("taskbar-apps").querySelectorAll(".open").forEach((e) => {
+            e.classList.remove("active");
+        });
+        this.taskBarIcon.classList.add("active");
+    }
+
+    setWindowActive() {
+        if (this.parentWindowContainerElement.style.zIndex == windowY - 1) return;
+        this.parentWindowContainerElement.style.zIndex = windowY;
+        windowY++;
     }
 }
 
