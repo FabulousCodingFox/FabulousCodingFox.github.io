@@ -1,36 +1,45 @@
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans&display=swap');
 
 :root {
-    --asset-bg-img-dark: url("assets/background/dark.png");
-    --asset-bg-img-blur-dark: url("assets/background/darkblur.png");
-    --asset-bg-img-light: url("assets/background/light.png");
-    --asset-bg-img-blur-light: url("assets/background/lightblur.png");
+    --theme-desktop-wallpaper: url(assets/background/dark.png);
+    --theme-navbar-bg-color: rgba(0 0 0 / 60%);
+    --theme-navbar-active: #ff99a1;
+    --theme-button-color: #fff;
+    --theme-button-hover-color: rgba(255 255 255 / 20%);
+    --theme-navbar-text-color: #fff;
+    --theme-window-title-color: #fff;
 
-    --bg-img: var(--asset-bg-img-dark);
-    --bg-img-blur: var(--asset-bg-img-blur-dark);
+    --theme-content-text-color: #fff;
 
-    --color-contrast: #fff;
-    --color-change-transition-duration: 1s;
+    --theme-startmenu-text: #fff;
+    --theme-startmenu-apps-bg: rgba(255 255 255 / 20%);
+    --theme-startmenu-list-input-bg: #000;
+    --theme-startmenu-list-item-hover: rgba(255 255 255 / 20%);
 
-    --scrollbar-color: #555;
+    --theme-darken-a: rgba(0 0 0 / 25%);
+    --theme-darken-b: rgba(0 0 0 / 12.5%);
+    --theme-darken-c: rgba(0 0 0 / 6.25%);
+    --theme-darken-d: rgba(0 0 0 / 3.125%);
+    --theme-darken-e: rgba(0 0 0 / 1.5625%);
+
+    --theme-lighten-a: rgba(255 255 255 / 25%);
+    --theme-lighten-b: rgba(255 255 255 / 12.5%);
+    --theme-lighten-c: rgba(255 255 255 / 6.25%);
+    --theme-lighten-d: rgba(255 255 255 / 3.125%);
+    --theme-lighten-e: rgba(255 255 255 / 1.5625%);
 
     --navbar-height: 50px;
-    --navbar-btn-height: 42px;
-    --navbar-padding: calc(calc(var(--navbar-height) - var(--navbar-btn-height)) / 2);
     --navbar-margin: 12px;
-    --navbar-btn-img-height: 26px;
-    --navbar-btn-img-color: grayscale(1) brightness(100000%);
-    --navbar-btn-hover-color: rgba(255 255 255 / 20%);
-    --navbar-span-padding: 9px;
-    --navbar-bg-color: rgba(0 0 0 / 60%);
-    --navbar-weather-padding: calc(var(--navbar-padding) + calc(calc(var(--navbar-btn-height) - var(--navbar-btn-img-height)) / 2));
-    --navbar-weather-width: 230px;
-    --navbar-account-padding: var(--navbar-weather-padding);
+    --navbar-border-radius: 3px;
+    --navbar-button-padding: 10px;
+    --navbar-active-height: 2px;
+
+    --gap: 10px;
+    --padding: 16px;
 
     --window-width: 1200px;
     --window-height: 800px;
-    --window-border: 3px;
-    --window-border-color: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82);
+    --window-border: 4px;
     --window-bg-filter: brightness(0.75);
     --window-bg-filter-reverse: brightness(1.25);
 
@@ -41,6 +50,9 @@
 
     --window-title-height: calc(var(--window-topbar-height) / 2);
     --window-title-padding: calc(calc(var(--window-topbar-height) - var(--window-controls-height)) / 2);
+
+    --startmenu-height: 700px;
+    --startmenu-width: 880px;
 }
 
 * {
@@ -52,35 +64,252 @@
     -ms-user-select: none;
     user-select: none;
 
+    font-family: 'Work Sans', sans-serif;
+
     color: var(--color-contrast);
     transition: color var(--color-change-transition-duration);
 }
 
-::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
+html,
+body,
+#screen,
+#screen>*,
+#desktop,
+.fwrapper {
+    position: relative;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
 }
 
-::-webkit-scrollbar-track {
-    background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-    border-radius: 5px;
-    background-color: var(--scrollbar-color);
-    transition: background-color var(--color-change-transition-duration);
-}
-
+html,
 body {
-    padding: 0px;
-    margin: 0px;
-    background-image: var(--bg-img);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
     overflow: hidden;
-    font-family: 'Work Sans', sans-serif;
-    transition: background-image var(--color-change-transition-duration);
+}
+
+#screen {
+    position: relative;
+    overflow: hidden;
+}
+
+#screen>div {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#wallpaper {
+    background-image: var(--theme-desktop-wallpaper);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    width: 100%;
+    height: 100%;
+}
+
+#desktop {
+    position: relative;
+    overflow: hidden;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+#taskbar {
+    position: absolute;
+    bottom: var(--navbar-margin);
+    height: var(--navbar-height);
+    left: 50%;
+    transform: translateX(-50%);
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    z-index: 999999999999999;
+
+    gap: var(--gap);
+}
+
+#taskbar>div {
+    position: relative;
+    height: 100%;
+    background-color: var(--theme-navbar-bg-color);
+    border-radius: var(--navbar-border-radius);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow: hidden;
+    align-items: center;
+}
+
+#taskbar-apps {
+    width: calc(var(--navbar-height) * var(--app-amount));
+}
+
+#taskbar button {
+    height: var(--navbar-height);
+    width: var(--navbar-height);
+    background-color: rgba(0 0 0 / 1%);
+    border: none;
+    outline: none;
+    cursor: default;
+    padding: var(--navbar-button-padding);
+    transition: background-color 0.075s ease-in-out;
+}
+
+#taskbar-apps>button {
+    position: absolute;
+    top: 0;
+    left: calc(calc(var(--index) * var(--navbar-height)) + calc(var(--offset) * var(--navbar-height)));
+    transition: left 0.3s ease-in-out;
+}
+
+#taskbar-apps>button.dragged {
+    transition: left 0s ease-in-out;
+    z-index: 9999999999999999;
+}
+
+#taskbar button>img,
+#taskbar button>svg,
+#taskbar button>svg>path {
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    color: var(--theme-button-color);
+    fill: var(--theme-button-color);
+}
+
+#taskbar-apps.static>button.active,
+#taskbar-apps>button.dragged:hover {
+    background-color: rgba(255 255 255 / 8%);
+}
+
+#taskbar-apps.static>button:hover {
+    background-color: rgba(255 255 255 / 10%);
+}
+
+#taskbar-apps>button>span {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: var(--navbar-active-height);
+    background-color: var(--theme-navbar-active);
+    display: none;
+    transition: width 0.1s ease-in-out;
+}
+
+#taskbar-apps>button.open>span {
+    width: 80%;
+    display: block;
+}
+
+#taskbar-apps>button.active>span,
+#taskbar-apps>button.open:hover>span {
+    width: calc(100% - 2px);
+    display: block;
+}
+
+#taskbar-info {
+    padding: var(--navbar-button-padding);
+}
+
+#taskbar-info>p {
+    margin: 0px;
+    padding-right: var(--gap);
+    font-size: calc(var(--navbar-height) / 2);
+    white-space: nowrap;
+    color: var(--theme-navbar-text-color);
+}
+
+#taskbar-info>img {
+    height: 100%;
+    border-radius: 50%;
+}
+
+.window-container {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: var(--w);
+    height: var(--h);
+    border-radius: var(--window-border-radius);
+    user-select: all;
+    background-color: var(--theme-darken-a);
+    backdrop-filter: blur(15px);
+    animation: window-popup 0.4s;
+    transform: translate(var(--x), var(--y));
+}
+
+.window-container.hidden {
+    animation: window-popout 0.4s;
+    transform: translate(var(--x), 100vh);
+}
+
+@keyframes window-popup {
+    0% {
+        transform: translate(var(--x), 100vh);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translate(var(--x), var(--y));
+        opacity: 1;
+    }
+}
+
+@keyframes window-popout {
+    0% {
+        transform: translate(var(--x), var(--y));
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(var(--x), 100vh);
+        opacity: 0;
+    }
+}
+
+
+.window-container>div>.window-border {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    /*Create a rounded border gradient*/
+
+    border: var(--window-border) solid transparent;
+    border-radius: var(--window-border-radius);
+
+    background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82) border-box;
+    animation: animatedgradient 3s ease alternate infinite;
+    background-size: 300% 300%;
+
+    -webkit-mask:
+        linear-gradient(#fff 0 0) padding-box,
+        linear-gradient(#fff 0 0);
+    mask:
+        linear-gradient(#fff 0 0) padding-box,
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+
+    box-shadow: 1px 1px 5px black;
 }
 
 @keyframes animatedgradient {
@@ -97,294 +326,34 @@ body {
     }
 }
 
-
-span.wave {
-    animation: wave-animation 2.5s infinite;
-    transform-origin: 70% 70%;
-    display: inline-block;
-}
-
-@keyframes wave-animation {
-    0% {
-        transform: rotate(0.0deg)
-    }
-
-    10% {
-        transform: rotate(14.0deg)
-    }
-
-    20% {
-        transform: rotate(-8.0deg)
-    }
-
-    30% {
-        transform: rotate(14.0deg)
-    }
-
-    40% {
-        transform: rotate(-4.0deg)
-    }
-
-    50% {
-        transform: rotate(10.0deg)
-    }
-
-    60% {
-        transform: rotate(0.0deg)
-    }
-
-    100% {
-        transform: rotate(0.0deg)
-    }
-}
-
-svg {
-    fill: var(--color-contrast);
-    transition: fill var(--color-change-transition-duration);
-}
-
-.navbar {
-    height: var(--navbar-height);
-    position: fixed;
-    bottom: var(--navbar-margin);
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    flex-direction: row;
-    z-index: 9999999999999999999;
-}
-
-.navbar .wrapper {
-    height: 100%;
-    padding: var(--navbar-padding);
-    background-color: var(--navbar-bg-color);
-    margin-right: 4px;
-    border-radius: 3px;
-    display: flex;
-    flex-direction: row;
-    transition: background-color var(--color-change-transition-duration);
-}
-
-.navbar .wrapper .divider {
-    height: 100%;
-    width: 2px;
-    margin: 0px var(--navbar-span-padding);
-    background-color: var(--color-contrast);
-    transition: background-color var(--color-change-transition-duration);
-}
-
-.navbar .wrapper button {
-    height: var(--navbar-btn-height);
-    width: var(--navbar-btn-height);
-    background-color: transparent;
-    border: none;
-    border-radius: 2px;
-    transition: background-color 0.1s;
-}
-
-.navbar .wrapper button:hover {
-    background-color: var(--navbar-btn-hover-color);
-}
-
-.navbar .wrapper button img {
-    height: var(--navbar-btn-img-height);
-    width: var(--navbar-btn-img-height);
-    object-fit: contain;
-}
-
-
-
-
-
-
-
-
-.navbar .wrapper-music {
-    position: relative;
-    height: 100%;
-    min-width: var(--navbar-weather-width);
-    padding: var(--navbar-weather-padding);
-    background-color: var(--color);
-    margin-right: 4px;
-    border-radius: 3px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-
-.navbar .wrapper-music img {
-    height: var(--navbar-btn-height);
-    border-radius: 4px;
-    padding: 0px var(--navbar-padding);
-}
-
-.navbar .wrapper-music .info {
-    height: 100%;
-    display: flex;
-    align-items: flex-start;
-    flex-direction: column;
-}
-
-.navbar .wrapper-music .info p {
-    font-size: 10px;
-    margin: 0px;
-    text-align: right;
-}
-
-.navbar .wrapper-music .info span {
-    font-size: 15px;
-}
-
-.navbar .wrapper-music .info a {
-    text-decoration: none;
-}
-
-.navbar .wrapper-music button {
-    position: absolute;
-    top: var(--navbar-padding);
-    right: var(--navbar-padding);
-    height: var(--navbar-btn-height);
-    width: var(--navbar-btn-height);
-    border: none;
-    background-color: transparent;
-    padding: var(--navbar-padding);
-    transition: background-color 0.1s;
-    border-radius: 2px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.navbar .wrapper-music button:hover {
-    background-color: var(--navbar-btn-hover-color);
-}
-
-.navbar .wrapper-music button img {
-    height: 100%;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-.navbar .wrapper-account {
-    height: 100%;
-    padding: var(--navbar-weather-padding);
-    background-color: var(--navbar-bg-color);
-    margin-right: 4px;
-    border-radius: 3px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: row;
-    overflow-y: hidden;
-    transition: background-color var(--color-change-transition-duration);
-}
-
-.navbar .wrapper-account p {
-    margin: 0px;
-    padding-right: var(--navbar-weather-padding);
-    font-size: calc(var(--navbar-btn-height) / 2);
-}
-
-.navbar .wrapper-account img {
-    height: 100%;
-    border-radius: 50%;
-}
-
-
-.window-container {
-    position: absolute;
-    transition: opacity 0.2s;
-}
-
-/*.windowAppear {
-    animation: window_appear 0.1s ease-out;
-}
-
-@keyframes window_appear {
-    0% {filter: grayscale(0.5)}
-    100% {filter: none; }
-}*/
-
-.window {
-    position: relative;
-    width: var(--w);
-    height: var(--h);
-    background: var(--window-border-color);
-    animation: animatedgradient 3s ease alternate infinite;
-    background-size: 300% 300%;
-    border-radius: var(--window-border-radius);
-    box-shadow: 1px 1px 5px black;
-    transition: background var(--color-change-transition-duration);
-}
-
-.window::before {
-    content: "";
+.window-container>div>.window-pane {
     position: absolute;
     top: var(--window-border);
     left: var(--window-border);
     width: calc(100% - calc(var(--window-border) * 2));
     height: calc(100% - calc(var(--window-border) * 2));
-    border-radius: calc(var(--window-border-radius) - 1px);
-
-    background-image: var(--bg-img-blur);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
-    filter: var(--window-bg-filter);
-
-    transition: background-image var(--color-change-transition-duration), filter var(--color-change-transition-duration);
+    border-radius: calc(var(--window-border-radius));
+    background-color: transparent;
+    cursor: auto;
 }
 
-.window .content {
-    position: absolute;
-    top: var(--window-border);
-    left: var(--window-border);
-    width: calc(100% - calc(var(--window-border) * 2));
-    height: calc(100% - calc(var(--window-border) * 2));
-    border-radius: 20px;
-    cursor: default;
-
-}
-
-.window .content .content-pane {
-    position: relative;
-    height: calc(100% - var(--window-topbar-height));
-    overflow: auto;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-    padding-left: 8px;
-    padding-right: 8px;
-    padding-bottom: 8px;
-    transform: translateY(0);
-}
-
-.window .content .topbar {
+.window-container>div>.window-pane>div>.topbar {
     position: relative;
     width: 100%;
     height: var(--window-topbar-height);
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    /*box-shadow: 0px 1px 4px black;*/
+    border-top-left-radius: var(--window-border-radius);
+    border-top-right-radius: var(--window-border-radius);
+    box-shadow: 0px 1px 4px black;
 }
 
-.window .content .topbar .controls {
+.window-container>div>.window-pane>div>.topbar>.controls {
     position: absolute;
     top: 50%;
     right: var(--window-controls-padding);
     transform: translateY(-50%);
 }
 
-.window .content .topbar .controls button {
+.window-container>div>.window-pane>div>.topbar>.controls>button {
     height: var(--window-controls-height);
     width: var(--window-controls-height);
 
@@ -392,20 +361,21 @@ svg {
     border: none;
 
     border-radius: 2px;
-    transition: 0.1s;
+    transition: background-color 0.075s ease-in-out;
 }
 
-.window .content .topbar .controls button:hover {
-    background-color: var(--navbar-btn-hover-color);
+.window-container>div>.window-pane>div>.topbar>.controls>button:hover {
+    background-color: var(--theme-button-hover-color);
 }
 
-.window .content .topbar .controls button img {
+
+.window-container>div>.window-pane>div>.topbar>.controls button img {
     width: var(--window-controls-btn-image-height);
     height: var(--window-controls-btn-image-height);
     object-fit: contain;
 }
 
-.window .content .topbar .title {
+.window-container>div>.window-pane>div>.topbar>.title {
     position: absolute;
     top: 50%;
     left: var(--window-title-padding);
@@ -417,127 +387,281 @@ svg {
     flex-direction: row;
 }
 
-.window .content .topbar .title img {
+.window-container>div>.window-pane>div>.topbar>.title img {
     width: var(--window-title-height);
     height: var(--window-title-height);
     object-fit: cover;
 }
 
-.window .content .topbar .title p {
+.window-container>div>.window-pane>div>.topbar>.title p {
     font-size: var(--window-title-height);
     margin: 0px;
     padding-left: 10px;
+    color: var(--theme-window-title-color);
 }
 
-
-
-
-.window .content .content-pane .sidebar {
-    position: fixed;
-    top: 16px;
-    left: 16px;
-
-    height: calc(100% - 32px);
-    width: calc(var(--sidebar) - 32px);
-
-    overflow: auto;
-}
-
-.window .content .content-pane .sidebar .wrapper {
-    backdrop-filter: var(--window-bg-filter-reverse);
-    transition: backdrop-filter var(--color-change-transition-duration);
+.window-container .content-pane {
     width: 100%;
-    padding: 28px;
-    margin-bottom: 16px;
-    border-radius: 8px;
+    height: calc(100% - var(--window-topbar-height));
+    border-bottom-left-radius: var(--window-border-radius);
+    border-bottom-right-radius: var(--window-border-radius);
+    overflow-x: hidden;
+    overflow-y: auto;
+    color: var(--theme-content-text-color);
+    padding: var(--padding);
 }
 
-.window .content .content-pane .sidebar .wrapper h3 {
-    font-size: 14px;
-    margin: 0px;
-    margin-bottom: 20px;
+.window-container .content-pane * {
+    user-select: text;
 }
 
-.window .content .content-pane .sidebar .wrapper button {
-    height: 38px;
-    font-size: 16px;
+.window-container .content-pane img {
+    max-width: 100%;
+}
+
+#startmenu {
+    top: unset;
+    bottom: calc(var(--navbar-margin) * 2 + var(--navbar-height));
+    left: 50%;
+    transform: translateX(-50%);
+    animation: startmenu-popup 0.4s;
+    z-index: 99999999999999999;
+}
+
+#startmenu.hidden {
+    animation: startmenu-popout 0.4s;
+    bottom: -100%;
+    opacity: 0;
+}
+
+@keyframes startmenu-popup {
+    0% {
+        bottom: -100%;
+        opacity: 0;
+    }
+
+    100% {
+        bottom: calc(var(--navbar-margin) * 2 + var(--navbar-height));
+        opacity: 1;
+    }
+}
+
+@keyframes startmenu-popout {
+    0% {
+        bottom: calc(var(--navbar-margin) * 2 + var(--navbar-height));
+        opacity: 1;
+    }
+
+    100% {
+        bottom: -100%;
+        opacity: 0;
+    }
+}
+
+#startmenu .content-pane {
     width: 100%;
-    padding-left: 20px;
-    border: none;
-    border-left: 4px solid transparent;
+    height: 100%;
+    border-radius: var(--window-border-radius);
+    overflow: hidden;
+    padding: var(--gap);
+}
+
+#startmenu .content-pane>.apps {
+    width: 100%;
+    height: 80%;
+
     display: flex;
-    align-items: center;
-    background-color: transparent;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    justify-content: flex-start;
 }
 
-.window .content .content-pane .sidebar .wrapper button:hover {
-    background-color: var(--navbar-btn-hover-color);
-    border-left: 4px solid #0874c8;
-    transition: background-color 0.2s;
-}
-
-.window .content .content-pane .details {
-    position: fixed;
-    top: 16px;
-    left: calc(16px + var(--sidebar));
-    height: calc(100% - 32px);
-    width: calc(100% - var(--sidebar) - 32px);
-
-    overflow: auto;
-
-    border-radius: 8px;
-    padding: 28px;
-    backdrop-filter: var(--window-bg-filter-reverse);
-    transition: backdrop-filter var(--color-change-transition-duration);
-}
-
-
-
-
-#popup {
-    position: fixed;
-    top: 35px;
-    right: 35px;
-    background-color: var(--navbar-bg-color);
-    transition: background-color var(--color-change-transition-duration);
+#startmenu .content-pane>.apps>.pinned {
+    height: 100%;
+    width: 60%;
     border-radius: 3px;
-    width: 360px;
-    padding: 18px;
-    transition: opacity 0.2s;
+    background-color: var(--theme-darken-b);
+    padding: var(--padding);
+
+    overflow: hidden;
 }
 
-#popup .topbar {
-    position: relative;
+#startmenu .content-pane>.apps>.pinned>.topbar {
     width: 100%;
-    height: 16px;
+    font-size: 1.5em;
+    color: var(--theme-startmenu-text);
+    padding-bottom: var(--padding);
+}
+
+#startmenu .content-pane>.apps>.pinned>.items {
+    width: 100%;
+    height: calc(100% - 1.5em - var(--gap));
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+#startmenu .content-pane>.apps>.pinned>.items>.item {
+    width: calc(100% / var(--items-per-row));
+
+    border-radius: 3px;
+    background-color: var(--theme-darken-c);
+
+    padding: var(--gap) var(--padding);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--gap);
+
+    background-color: transparent;
+    outline: none;
+    border: none;
+}
+
+#startmenu .content-pane>.apps>.pinned>.items>.item:hover {
+    background-color: var(--theme-startmenu-apps-bg);
+}
+
+#startmenu .content-pane>.apps>.pinned>.items>.item>img {
+    width: 75%;
+    height: 100%;
+    border-radius: 3px;
+    background-color: var(--theme-startmenu-icon-background);
     display: flex;
     align-items: center;
+    justify-content: center;
+    pointer-events: none;
 }
 
-
-#popup .topbar img {
-    height: 16px;
-    padding-right: 4px;
-    border-radius: 1px;
+#startmenu .content-pane>.apps>.pinned>.items>.item>div {
+    color: var(--theme-startmenu-text);
+    font-size: 0.8em;
 }
 
-#popup .topbar button {
-    position: absolute;
-    top: 0px;
-    right: 0px;
-    height: 16px;
-    width: 16px;
+#startmenu .content-pane>.apps>.search {
+    height: 100%;
+    width: 40%;
+    border-radius: 3px;
+    padding: var(--padding);
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    flex-wrap: nowrap;
+}
+
+#startmenu .content-pane>.apps>.search>input {
+    width: 100%;
+    height: 35px;
+    border: none;
+    background-color: var(--theme-startmenu-list-input-bg);
+    color: var(--theme-startmenu-text);
+    font-size: 1.5em;
+    padding: 5px;
+    margin-bottom: var(--gap);
+
+    border-radius: 3px;
+    border-bottom: 1px solid white;
+}
+
+#startmenu .content-pane>.apps>.search>input:focus {
+    outline: none;
+}
+
+#startmenu .content-pane>.apps>.search>.list {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    padding: 0px var(--padding);
+}
+
+#startmenu .content-pane>.apps>.search>.list>button {
+    width: 100%;
+    height: 40px;
+    padding: var(--padding);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    color: var(--theme-startmenu-text);
+    gap: var(--gap);
+    border-radius: 3px;
+
+    outline: none;
     border: none;
     background-color: transparent;
 }
 
-#popup .topbar button svg {
-    position: relative;
-    transform: translate(-12px, -7px);
-    object-fit: contain;
-    height: 24px;
+#startmenu .content-pane>.apps>.search>.list>button:hover {
+    background-color: var(--theme-startmenu-list-item-hover);
 }
 
-#popup .topbar p {
-    font-size: 16px;
+#startmenu .content-pane>.apps>.search>.list>button>img {
+    width: 20px;
+    border-radius: 3px;
+    background-color: var(--theme-startmenu-icon-background);
+}
+
+#startmenu .content-pane>.info {
+    position: relative;
+
+    width: 100%;
+    height: 20%;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+#startmenu .content-pane>.info>.account {
+    position: fixed;
+
+    width: calc(40% - var(--padding));
+    height: 20%;
+    padding: var(--padding);
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: flex-start;
+
+    transform: translateY(calc(0px - var(--padding) - var(--gap) - var(--window-border) - 32px));
+    gap: var(--gap);
+}
+
+#startmenu .content-pane>.info>.account>.name {
+    color: var(--theme-window-title-color);
+    font-size: 1.3em;
+}
+
+#startmenu .content-pane>.info>.account>.email {
+    color: var(--theme-window-title-color);
+    font-size: 1em;
+}
+
+#startmenu .content-pane>.info>.account>img {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+}
+
+#startmenu .content-pane>.info>.time {
+    float: right;
+    width: 60%;
+    height: 100%;
+    padding: var(--padding);
 }

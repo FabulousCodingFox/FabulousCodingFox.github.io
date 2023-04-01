@@ -1,300 +1,343 @@
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+let draggedTaskBarIcon = null;
+let draggedTaskBarIconIndex = null;
+let taskBar = document.querySelector('#taskbar-apps');
+
+function rebuildTaskBar() {
+    let icons = [...taskBar.children];
+    icons.sort((a, b) => {
+        let aIndex = Number(getComputedStyle(a).getPropertyValue('--index'));
+        let bIndex = Number(getComputedStyle(b).getPropertyValue('--index'));
+        return aIndex - bIndex;
+    });
+    let i = -1;
+    for (let icon of icons) {
+        i++;
+        icon.style.setProperty('--index', i);
+    }
+
+    windows.forEach((window) => {
+        window.prevTaskBarIconIndex = Number(getComputedStyle(window.taskBarIcon).getPropertyValue('--index'));
+    });
+}
+
+function taskBarAppHandleDragStart(event) {
+    const el = event.currentTarget;
+
+    el.classList.add('dragged');
+    taskBar.classList.remove('static');
+
+    draggedTaskBarIconIndex = Number(getComputedStyle(el).getPropertyValue('--index'));
+
+    const move = (event) => {
+        let btnSize = 50;
+        let maxAmount = Number(getComputedStyle(taskBar).getPropertyValue('--app-amount'));
+
+        let newDraggedTaskBarIconIndex = Math.floor((event.clientX - taskBar.getBoundingClientRect().left) / btnSize);
+        let draggedTaskBarIconOffset = (-((taskBar.getBoundingClientRect().left + (newDraggedTaskBarIconIndex * btnSize)) - event.clientX) / btnSize) - 0.5;
+        if (newDraggedTaskBarIconIndex < 0 || (newDraggedTaskBarIconIndex == 0 && draggedTaskBarIconOffset < 0)) draggedTaskBarIconOffset = 0;
+        if (newDraggedTaskBarIconIndex > maxAmount - 1 || (newDraggedTaskBarIconIndex == maxAmount - 1 && draggedTaskBarIconOffset > 0)) draggedTaskBarIconOffset = 0;
+        el.style.setProperty('--offset', draggedTaskBarIconOffset);
+
+        if (newDraggedTaskBarIconIndex != draggedTaskBarIconIndex) {
+            el.style.setProperty('--index', Math.min(maxAmount - 1, Math.max(0, newDraggedTaskBarIconIndex)));
+            //Rebuild all indexes
+            let icons = [...taskBar.children];
+            //Remove the dragged item from the list
+            for (let i = 0; i < icons.length; i++) {
+                if (icons[i] === el) {
+                    icons.splice(i, 1);
+                }
+            }
+            icons.sort((a, b) => {
+                let aIndex = Number(getComputedStyle(a).getPropertyValue('--index'));
+                let bIndex = Number(getComputedStyle(b).getPropertyValue('--index'));
+                return aIndex - bIndex;
+            });
+            let i = -1;
+            icons.splice(Math.min(maxAmount - 1, Math.max(0, newDraggedTaskBarIconIndex)), 0, el)
+            for (let icon of icons) {
+                i++;
+                if (icon === el) continue;
+                icon.style.setProperty('--index', i);
+            }
+
+            draggedTaskBarIconIndex = newDraggedTaskBarIconIndex;
+        }
+    };
+
+    const up = () => {
+        removeEventListener("pointermove", move);
+        removeEventListener("pointerup", up);
+        el.style.setProperty('--offset', "0");
+        el.classList.remove('dragged');
+        taskBar.classList.add('static');
+    };
+
+    addEventListener("pointermove", move);
+    addEventListener("pointerup", up);
+}
+
+for (let taskBarIcon of taskBar.children) {
+    taskBarIcon.addEventListener('pointerdown', (event) => {
+        taskBarAppHandleDragStart(event);
+    });
+}
 
 
 
-const windowGithub = /*html*/`
-<h1 align="center">Hi <span class="wave">👋</span>, I am FabulousFox</h1>
-<h3 align="center">I mostly code useless stuff</h3>
-
-<p align="center">(<a href="https://github.com/FabulousCodingFox" target="_blank">https://github.com/FabulousCodingFox</a> || <a href="https://fabulouscodingfox.github.io/" target="_blank">https://fabulouscodingfox.github.io/</a>)</p>
-
-<hr>
-
-<h3> 💻 <b>Programming Languages</b></h3>
-<ul>
-    <li>🐍Python</li>
-    <li>☕Java</li>
-    <li>🟥Html+Css+Js+PHP</li>
-</ul>
-
-<h3> 🚀 <b>APIs/Frameworks/Methods</b></h3>
-<ul>
-    <li>🧮SQL</li>
-    <li>📗Bukkit/Spigot/Paper, Datapacks</li>
-    <li>📜Html/Css, Flask, Eel</li>
-    <li>👾Pygame, Modern OpenGL, Ray Marching/Tracing/Casting</li>
-</ul>
-
-<hr>
-
-<h3> 📫 <b>Contact</b></h3>
-<ul>
-    <li>💬Discord: FabulousFox#9057</li>
-</ul>
-
-<hr>
-
-<p><img src="https://github-readme-stats.vercel.app/api/top-langs?username=FabulousCodingFox&show_icons=true&locale=en&langs_count=10&theme=dracula" alt="FabulousCodingFox" /><img src="https://github-readme-stats.vercel.app/api?username=FabulousCodingFox&show_icons=true&locale=en&theme=dracula" alt="FabulousCodingFox" /></p>
-`
 
 
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 
-const windowJava =  /*html*/`
-<div class="sidebar">
-    <div class="wrapper">
-        <h3>🔨 Skills</h3>
-        <button onclick="loadwindowtext(this, '#0')">Compact</button>
-        <button onclick="loadwindowtext(this, '#1')">Skillset</button>
+
+function updateTime() {
+    const d = new Date();
+
+    const e = document.querySelector("#taskbar-info .time");
+    if (e == null) return;
+    e.innerHTML = d.getHours() + (d.getMinutes().toString().length == 1 ? ":0" : ":") + d.getMinutes();
+
+    const e2 = document.querySelector("#taskbar-info .date");
+    if (e2 == null) return;
+    let dt = d.getDate().toString().charAt(d.getDate().toString().length - 1)
+    e2.innerHTML = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"][d.getMonth()] + " " + d.getDate() + (dt == '1' ? "st" : (dt == '2' ? "nd" : (dt == '3' ? "rd" : "th")))
+}
+updateTime();
+setInterval(updateTime, 2000);
+
+
+
+
+
+
+
+
+
+
+
+
+function startmenu_search_ontype() {
+    var input, filter, ul, li, a, i, txtValue;
+    input = document.getElementById("startmenu-search-input");
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("startmenu-search-list");
+    li = ul.querySelectorAll("button");
+    for (i = 0; i < li.length; i++) {
+        a = li[i].querySelectorAll("span")[0];
+        txtValue = a.textContent || a.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
+        }
+    }
+}
+
+function startmenu_toggle() {
+    let element = document.getElementById("startmenu");
+    if (element.classList.contains("hidden")) {
+        element.classList.remove("hidden");
+        element.style.display = "block";
+    } else {
+        element.classList.add("hidden");
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const THEME = {
+    DARK: 'DARK'
+};
+
+const WINDOWTYPE = {
+    GITHUB: 'GITHUB',
+    WINKED: 'WINKED',
+    BACKROOMS: 'BACKROOMS',
+    MINECRAFT: 'MINECRAFT',
+
+    ABOUTME: 'ABOUTME',
+    CONTACT: 'CONTACT',
+    RESUME: 'RESUME'
+};
+
+let DATA = {
+    [WINDOWTYPE.GITHUB]: {
+        'img': 'assets/icons/github.png',
+        'title': 'Github',
+        'content': /*html*/`
+            <h1 align="center">Hi <span class="wave">👋</span>, I am FabulousFox</h1>
+            <h3 align="center">I mostly code useless stuff</h3>
+            <p align="center">(<a target="_blank" href="https://github.com/FabulousCodingFox">https://github.com/FabulousCodingFox</a> || <a href="javscript:void(0)">https://fabulouscodingfox.github.io/</a>)</p>
+            
+            <hr>
+
+            <h3> 💻 <b>Programming Languages</b></h3>
+            <ul>
+                <li>☕Java</li>
+                <li>🐀C++</li>
+                <li>🐍Python</li>
+                <li>🟨Javascript</li>
+            </ul>
+
+            <hr>
+        
+            <h3> 🚀 <b>APIs/Frameworks/Methods</b></h3>
+            <ul>
+                <li>🧮Databases: SQL</li>
+                <li>📜Web: Html/Css, Js/Ts, Bootstrap</li>
+                <li>⚡API: FastAPI, Flask</li>
+                <li>📗Minecraft: Bukkit/Spigot/Paper, Datapacks</li>
+                <li>👾Graphics: Pygame, (Modern OpenGL), Vulkan</li>
+            </ul>
+
+            <hr>
+
+            <h3> 📫 <b>Contact</b></h3>
+            <ul>
+                <li>💬Discord: FabulousFox#9057</li>
+            </ul>
+
+            <hr>
+
+            <img src="https://github-readme-stats.vercel.app/api/top-langs?username=FabulousCodingFox&show_icons=true&locale=en&langs_count=10&theme=dracula" alt="FabulousCodingFox" />
+            <img src="https://github-readme-stats.vercel.app/api?username=FabulousCodingFox&show_icons=true&locale=en&theme=dracula" alt="FabulousCodingFox" />
+        `
+    },
+
+    [WINDOWTYPE.WINKED]: {
+        'img': 'assets/projects/winked/logosmall.png',
+        'title': 'WINKED.APP',
+        'content': /*html*/`
+        <h1 align="center">Winked.app</h1>
+        <h3 align="center">Kahoot clone</h3>
+        <p align="center"><a target="_blank" href="https://github.com/Intramo/WinkedClient">https://github.com/Intramo/WinkedClient</a></p>
+        <p align="center"><a target="_blank" href="https://play.winked.app">https://play.winked.app</a></p>
+        <h3 align="center">
+            <a href="https://github.com/Intramo/WinkedClient/blob/master/LICENSE" target="_blank"><img src="https://img.shields.io/github/license/Intramo/WinkedClient.svg"></a>
+            <a href="https://GitHub.com/Intramo/WinkedClient/releases/" target="_blank"><img src="https://img.shields.io/github/release/Intramo/WinkedClient.svg"></a>
+            <a href="https://GitHub.com/Intramo/WinkedClient/stargazers/" target="_blank"><img src="https://img.shields.io/github/stars/Intramo/WinkedClient.svg"></a>
+        </h3>
+        
+        <hr>
+
+        <h3> 📜 <b>What is Winked.app?</b></h3>
+        <p>Winked.app is a kahoot clone that was in development. It is a web app that allows you to create and play quiz games. I sadly never finished the creator, but the client & server are fully functional.</p>
+        <p>It was made using plain html, css, js and python. The server is a python websocket server, and the client is a js websocket client. The connections can be rocky and can be easily interrupted by a bad connection, which is a problem i wanted to fix.</p>
+        <p>It was made for a school project in 2 weeks, and i was the only one working on it. I was the only one who knew how to code, and i was the only one who did not want to pay the horrendous price for a kahoot subscription, which allows over 12 players in the same game.</p>
+
+        <h3> 📸 <b>Gallery</b></h3>
+        <img src="assets/projects/winked/screenshot1.png" alt="Winked.app"/>
+        `
+    },
+
+    [WINDOWTYPE.BACKROOMS]: {
+        'img': 'assets/projects/backrooms/logosmall.png',
+        'title': 'BACKROOMS',
+        'content': /*html*/`
+        <h1 align="center">Backrooms</h1>
+        <h3 align="center">A small proof-of-concept game</h3>
+        <p align="center"><a target="_blank" href="https://github.com/FabulousCodingFox/TheBackrooms">https://github.com/FabulousCodingFox/TheBackrooms</a></p>
+        <h3 align="center">
+            <a href="https://github.com/FabulousCodingFox/TheBackrooms/blob/master/LICENSE" target="_blank"><img src="https://img.shields.io/github/license/FabulousCodingFox/TheBackrooms.svg"></a>
+            <a href="https://GitHub.com/FabulousCodingFox/TheBackrooms/releases/" target="_blank"><img src="https://img.shields.io/github/release/FabulousCodingFox/TheBackrooms.svg"></a>
+            <a href="https://GitHub.com/FabulousCodingFox/TheBackrooms/stargazers/" target="_blank"><img src="https://img.shields.io/github/stars/FabulousCodingFox/TheBackrooms.svg"></a>
+        </h3>
+
+        <hr>
+
+        <h3> 📜 <b>What is Backrooms?</b></h3>
+        <p>Backrooms is a small proof-of-concept game i made in 2 weeks. It is a first-person game, where you are trapped in a infinite world, inspired by the online trend of the same name in 2022.</p>
+        <p>It was made using OpenGL 3.3 and Java using LWJGL. It is a very simple game, but it was a fun project to work on. Its main purpose was to setup a basic OpenGL template, and it nailed that.</p>
+
+        <h3> 📸 <b>Gallery</b></h3>
+        <img src="assets/projects/backrooms/screenshot1.png" alt="Backrooms"/>
+        `
+    },
+
+    [WINDOWTYPE.ABOUTME]: {}
+}
+
+function openWindow(type, icon) {
+    if (!document.getElementById("startmenu").classList.contains("hidden")) startmenu_toggle();
+    let window = windowBuilder(type);
+    windows.push(new Window(window, icon));
+}
+
+function windowBuilder(type) {
+    let d = DATA[type];
+
+    let width = 0.6 * (window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth);
+    let height = 0.8 * (window.innerHeight || document.documentElement.clientHeight || document.getElementsByTagName('body')[0].clientHeight);
+
+    let windowPosX = window.innerWidth / 2 - width / 2;
+    let windowPosY = window.innerHeight / 2 - height / 2;
+
+    return /*html*/`
+
+    <div class="window-container" style="--w: ${width}px; --h: ${height}px; --window-border-radius: 20px; --x: ${windowPosX}px; --y: ${windowPosY}px;">
+        <div class="fwrapper window-inner-wrapper">
+            <div class="window-border"></div>
+            <div class="window-pane">
+                <div class="fwrapper">
+                    <div class="topbar">
+                        <div class="title">
+                        <img class="logo" src="${d["img"]}">
+                            <p>${d["title"]}</p>
+                        </div>
+                        <div class="controls">
+                            <button class="min"><img src="assets/icons/minus.svg"></button>
+                            <button class="max"><img src="assets/icons/square-rounded.svg"></button>
+                            <button class="close"><img src="assets/icons/x-circle.svg"></button>
+                        </div>
+                    </div>
+                    <div class="content-pane">
+                        ${d["content"]}
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="wrapper">
-        <h3>🚧 APIs / Frameworks</h3>
-        <button onclick="loadwindowtext(this, '#2')">LWJGL3</button>
-        <button onclick="loadwindowtext(this, '#3')">Bukkit</button>
-    </div>
-    <div class="wrapper">
-        <h3>👷‍♂️ Projects</h3>
-        <button onclick="loadwindowtext(this, '#4')">Sulfurium</button>
-        <button onclick="loadwindowtext(this, '#5')">Vixels</button>
-        <button onclick="loadwindowtext(this, '#6')">Backrooms</button>
-    </div>
-</div>
-
-<div class="details #0" style="display: initial">
-    <h1 align="center">Compact</h1>
-    <p>None</p>
-</div>
-
-<div class="details #1" style="display: none">
-    <h1 align="center">Skillset</h1>
-
-    <h3>Features</h3>
-    <ul>
-        <li>Data Structures: Arrays, Linkedlist, Arraylist, Stack, Queue, ...</li>
-        <li>Objects: Classes, Interfaces, Objects, Inheritance, Abstraction, ...</li>
-        <li>Packages</li>
-        <li>Loops: for, while & forEach</li>
-        <li>Exceptions</li>
-        <li>Conditionals: If & Switch</li>
-        <li>Functions</li>
-        <li>Serialization</li>
-        <li>Networking: HttpURLConnection, Sockets, ...</li>
-        <li>Streams</li>
-        <li>Threads</li>
-    </ul>
-
-    <h3>IDEs</h3>
-    <ul>
-        <li>IntelliJ IDEA (Ultimate & Community)</li>
-        <li>VS Code</li>
-        <li>BlueJ</li>
-    </ul>
-
-    <h3>Libraries</h3>
-    <ul>
-        <li>SimpleJSON</li>
-    </ul>
-
-    <h3>Build Tools</h3>
-    <ul>
-        <li>Maven</li>
-        <li>IntelliJ</li>
-    </ul>
-</div>
-
-<div class="details #2" style="display: none">
-    <h1 align="center">LWJGL 3</h1>
     
-    <h3>Submodules</h3>
-    <ul>
-        <li>OpenGL 3 & 4</li>
-        <li>GLFW</li>
-        <li>STB</li>
-    </ul>
-</div>
+    `;
+}
 
-<div class="details #3" style="display: none">
-    <h1 align="center">Bukkit</h1>
-    <!-- TODO -->
-</div>
-
-<div class="details #4" style="display: none">
-    <h1 align="center">Sulfurium</h1>
-    <center><a href="https://sulfurium.net/" target="_blank">https://sulfurium.net/</a></center>
-</div>
-
-<div class="details #5" style="display: none">
-    <center><h1>Vixels</h1></center>
-    <center><a href="https://github.com/FabulousCodingFox/Vixels" target="_blank">https://github.com/FabulousCodingFox/Vixels</a></center>
-    <center><p><img src="https://user-images.githubusercontent.com/78906517/177133758-ed6fdfba-556d-41c0-bc66-9cabc5320cb7.png" style="width: 100%; max-width:600px"></p></center>
-</div>
-
-<div class="details #6" style="display: none">
-    <center><h1>The Backrooms</h1></center>
-    <center><a href="https://github.com/FabulousCodingFox/TheBackrooms" target="_blank">https://github.com/FabulousCodingFox/TheBackrooms</a></center>
-    <center><p><img src="https://user-images.githubusercontent.com/78906517/208268991-8869c2bc-e129-40a7-b541-8dd6ba6fa1ee.png" style="width: 100%; max-width:600px"></p></center>
-</div>
-`
-
-
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-const windowPython =  /*html*/`
-<div class="sidebar">
-    <div class="wrapper">
-        <h3>🔨 Skills</h3>
-        <button onclick="loadwindowtext(this, '#0')">Compact</button>
-        <button onclick="loadwindowtext(this, '#1')">Skillset</button>
-    </div>
-    <div class="wrapper">
-        <h3>🚧 APIs / Frameworks</h3>
-        <button onclick="loadwindowtext(this, '#2')">Pygame</button>
-        <button onclick="loadwindowtext(this, '#3')">Numpy</button>
-        <button onclick="loadwindowtext(this, '#4')">Flask</button>
-    </div>
-    <div class="wrapper">
-        <h3>👷‍♂️ Projects</h3>
-        <button onclick="loadwindowtext(this, '#5')">Pygame Collection</button>
-        <button onclick="loadwindowtext(this, '#6')">FoxScript</button>
-    </div>
-</div>
-
-<div class="details #0" style="display: initial">
-    <h1 align="center">Compact</h1>
-    <p>None</p>
-</div>
-
-<div class="details #1" style="display: none">
-    <h1 align="center">Skillset</h1>
-    
-    <h3>Features</h3>
-    <ul>
-        <li>Data Structures: Lists, Dictionaries, Tuples, Sets, ...</li>
-        <li>Loops & conditionals</li>
-        <li>Type Casting & Exceptions</li>
-        <li>Recursion & Sorting Algorithms</li>
-        <li>Iterators</li>
-        <li>Decorators</li>
-        <li>Lambdas</li>
-        <li>Objects: Classes, Inheritance, Methods, ...</li>
-        <li>Custom & Builtin Modules -> PyPI & Pip</li>
-        <li>Exceptions</li>
-    </ul>
-
-    <h3>IDEs</h3>
-    <ul>
-        <li>VS Code</li>
-        <li>Pycharm</li>
-    </ul>
-</div>
-
-<div class="details #2" style="display: none">
-    <h1 align="center">Pygame</h1>
-    <!-- TODO -->
-</div>
-
-<div class="details #3" style="display: none">
-    <h1 align="center">Numpy</h1>
-    <!-- TODO -->
-</div>
-
-<div class="details #4" style="display: none">
-    <h1 align="center">Flask</h1>
-    <!-- TODO -->
-</div>
-
-<div class="details #5" style="display: none">
-    <h1 align="center">Pygame Collection</h1>
-    <!-- TODO -->
-</div>
-
-<div class="details #6" style="display: none">
-    <h1 align="center">FoxScript</h1>
-    <!-- TODO -->
-</div>
-`
-
-
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+let startmenuSearchListElement = document.getElementById("startmenu-search-list");
+for (const type in WINDOWTYPE) {
+    let d = DATA[type];
+    if (d == undefined) continue;
+    startmenuSearchListElement.insertAdjacentHTML("beforeend", /*html*/`<button onclick="openWindow(WINDOWTYPE.${type}, null)"><img src="${d["img"]}"> <span>${d["title"]}</span></button>`);
+}
 
 
 
 
-const windowOpenGL =  /*html*/``
 
 
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 
-const windowHTML =  /*html*/`
-<div class="sidebar">
-    <div class="wrapper">
-        <h3>🌍Languages</h3>
-        <button onclick="loadwindowtext(this, '#0')">HTML</button>
-        <button onclick="loadwindowtext(this, '#1')">CSS</button>
-        <button onclick="loadwindowtext(this, '#2')">JS</button>
-        <button onclick="loadwindowtext(this, '#3')">PHP</button>
-    </div>
-    <div class="wrapper">
-        <h3>🚧 APIs / Frameworks</h3>
-        <button onclick="loadwindowtext(this, '#4')">Bootstrap</button>
-    </div>
-    <div class="wrapper">
-        <h3>👷‍♂️ Projects</h3>
-        <button onclick="loadwindowtext(this, '#5')">Portfolio</button>
-        <button onclick="loadwindowtext(this, '#6')">Winked!</button>
-    </div>
-</div>
-
-<div class="details #0" style="display: initial">
-    <h1 align="center">HTML</h1>
-    <!-- TODO -->
-</div>
-
-<div class="details #1" style="display: none">
-    <h1 align="center">CSS</h1>
-    <!-- TODO -->
-</div>
-
-<div class="details #2" style="display: none">
-    <h1 align="center">JS</h1>
-    <!-- TODO -->
-</div>
-
-<div class="details #3" style="display: none">
-    <h1 align="center">PHP</h1>
-    <!-- TODO -->
-</div>
-
-<div class="details #4" style="display: none">
-    <h1 align="center">Bootstrap</h1>
-    <!-- TODO -->
-</div>
-
-<div class="details #5" style="display: none">
-    <h1 align="center">Portfolio</h1>
-    <!-- TODO -->
-</div>
-
-<div class="details #6" style="display: none">
-    <center><h1>Winked!</h1></center>
-    <center><a href="https://github.com/Intramo/WinkedClient" target="_blank">https://github.com/Intramo/WinkedClient</a></center>
-    <center><p><img src="https://user-images.githubusercontent.com/78906517/210170319-e2fa2fcc-e4ba-4320-bf29-b247c90ebf3f.png" style="width: 100%; max-width:600px"></p></center>
-</div>
-`
 
 
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 
 
@@ -302,60 +345,7 @@ function last(array) {
     return array[array.length - 1];
 }
 
-function updateTime() {
-    const d = new Date();
-
-    const e = document.querySelector(".navbar .wrapper-account .time");
-    e.innerHTML = d.getHours() + (d.getMinutes().toString().length == 1 ? ":0" : ":") + d.getMinutes();
-
-    const e2 = document.querySelector(".navbar .wrapper-account .date");
-    let dt = d.getDate().toString().charAt(d.getDate().toString().length - 1)
-    e2.innerHTML = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"][d.getMonth()] + " " + d.getDate() + (dt == '1' ? "st" : (dt == '2' ? "nd" : (dt == '3' ? "rd" : "th")))
-
-
-}
-updateTime();
-setInterval(updateTime, 2000);
-
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-function loadwindowtext(btn, id) {
-    let elements = btn.parentElement.parentElement.parentElement.getElementsByClassName("details");
-    Array.from(elements).forEach(function (item, index) {
-        if (item.classList.contains(id)) {
-            item.style.display = "initial";
-        } else {
-            item.style.display = "none";
-        }
-    });
-}
-
-function windowBuilder(img, title, content) {
-    return `<div class="window-container">
-                <div class="window">
-                    <div class="content">
-                        <div class="topbar">
-                            <div class="title">
-                                <img src="${img}">
-                                <p>${title}</p>
-                            </div>
-                            <div class="controls">
-                                <button class="min"><img src="assets/icons/minus.svg"></button>
-                                <button class="max"><img src="assets/icons/square-rounded.svg"></button>
-                                <button class="close"><img src="assets/icons/x-circle.svg"></button>
-                            </div>
-                        </div>  
-                        <div class="content-pane">
-                            ${content}
-                        </div>
-                    </div>
-                </div>
-            </div>`
-}
-
-
-let windowY = 1000;
+let windowY = 10000;
 
 let dragged;
 let resized;
@@ -364,10 +354,13 @@ let resizedSide;
 let mouseX = 0;
 let mouseY = 0;
 
-var colorscheme = "dark"
+let windowMinWidth = 450;
+let windowMinHeight = 200;
+
+let windows = [];
 
 class Window {
-    constructor(content) {
+    constructor(content, predefinedTaskBarIcon) {
         var root = this;
 
         let width = 0.6 * (window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth);
@@ -377,101 +370,134 @@ class Window {
         this.windowHeight = height;
         this.windowPosX = window.innerWidth / 2 - width / 2;
         this.windowPosY = window.innerHeight / 2 - height / 2;
-        this.windowContent = content;
         this.isMaxximized = false
         this.isMinimized = false
 
-        document.querySelector("body").insertAdjacentHTML('beforeend', this.windowContent);
-        this.wd = last(document.querySelector("body").getElementsByClassName("window-container"));
-        this.windowElement = this.wd.getElementsByClassName("window")[0];
-        this.windowContent = this.windowElement.getElementsByClassName("content")[0];
-        this.topbar = this.windowContent.getElementsByClassName("topbar")[0];
-        this.closebtn = this.topbar.getElementsByClassName("controls")[0].getElementsByClassName("close")[0];
-        this.maxbtn = this.topbar.getElementsByClassName("controls")[0].getElementsByClassName("max")[0];
-        this.minbtn = this.topbar.getElementsByClassName("controls")[0].getElementsByClassName("min")[0];
+        this.windowContent = content;
+        document.querySelector("#desktop").insertAdjacentHTML('beforeend', this.windowContent);
 
-        this.wd.style.left = this.windowPosX + "px";
-        this.wd.style.top = this.windowPosY + "px";
-        this.wd.style.setProperty('--w', width + "px");
-        this.wd.style.setProperty('--h', height + "px");
-        this.wd.style.setProperty('--window-border-radius', "20px")
-        this.wd.style.setProperty('--sidebar', "280px")
-        this.windowElement.style.cursor = "nwse-resize"
+        this.parentWindowContainerElement = last(document.querySelector("body").getElementsByClassName("window-container"));
+        this.windowBorderElement = this.parentWindowContainerElement.querySelector(".window-border");
+        this.windowPaneElement = this.parentWindowContainerElement.querySelector(".window-pane");
+        this.windowContentPaneElement = this.windowPaneElement.querySelector(".content-pane");
+
+        this.windowTopbarElement = this.windowPaneElement.querySelector(".topbar");
+        this.windowTopbarCloseButtonElement = this.windowTopbarElement.querySelector(".close");
+        this.windowTopbarMaximizeButtonElement = this.windowTopbarElement.querySelector(".max");
+        this.windowTopbarMinimizeButtonElement = this.windowTopbarElement.querySelector(".min");
+
+        this.parentWindowContainerElement.style.setProperty('--w', this.windowWidth + "px");
+        this.parentWindowContainerElement.style.setProperty('--h', this.windowHeight + "px");
+        this.parentWindowContainerElement.style.setProperty('--x', this.windowPosX + "px");
+        this.parentWindowContainerElement.style.setProperty('--y', this.windowPosY + "px");
+        this.parentWindowContainerElement.style.setProperty('--window-border-radius', "10px")
+        this.parentWindowContainerElement.style.cursor = "nwse-resize"
 
         this.layer = windowY
-        this.wd.style.zIndex = windowY;
+        this.parentWindowContainerElement.style.zIndex = windowY;
         windowY++;
 
         this.mouseHoversOnContent = false;
 
+        let taskbar_wrapper = document.getElementById("taskbar-apps");
+        let taskbar_amount = Number(getComputedStyle(taskbar_wrapper).getPropertyValue("--app-amount"));
+        if (predefinedTaskBarIcon == null) {
+            let logo = this.windowTopbarElement.querySelector(".logo").src;
+            let cont = `<button class="open active" style="--index: ${taskbar_amount}; --offset: 0"><span></span><img src="${logo}"></button>`
+            taskbar_wrapper.insertAdjacentHTML('beforeend', cont);
+            taskbar_wrapper.style.setProperty("--app-amount", taskbar_amount + 1);
+            this.taskBarIcon = last(taskbar_wrapper.children);
+        } else {
+            this.taskBarIcon = predefinedTaskBarIcon;
+            this.taskBarIcon.classList.add("open");
+            this.taskBarIcon.classList.add("active");
+        }
+
+        this.taskBarIcon.addEventListener('pointerdown', (event) => {
+            taskBarAppHandleDragStart(event);
+        });
+
+        this.prevTaskBarIconIndex = taskbar_amount;
+
+        this.setTaskbarActive();
+
         //Resize Window
-        this.windowContent.onmouseenter = function () {
+        this.windowPaneElement.onmouseenter = function () {
             root.mouseHoversOnContent = true;
         };
-        this.windowContent.onmouseleave = function () {
+        this.windowPaneElement.onmouseleave = function () {
             root.mouseHoversOnContent = false;
         }
-        this.windowElement.addEventListener("mousemove", (event) => {
+        this.parentWindowContainerElement.addEventListener("mousemove", (event) => {
             if (resized != undefined) return;
             if (this.mouseHoversOnContent) return;
 
-            let r = this.windowElement.getBoundingClientRect();
+            let r = this.parentWindowContainerElement.getBoundingClientRect();
 
             let n = Math.abs(r.top - mouseY) <= 20
             let s = Math.abs(r.bottom - mouseY) <= 20
             let w = Math.abs(r.left - mouseX) <= 20
             let e = Math.abs(r.right - mouseX) <= 20
 
-            if (n && e) { resizedSide = "ne"; this.windowElement.style.cursor = "nesw-resize" }
-            else if (n && w) { resizedSide = "nw"; this.windowElement.style.cursor = "nwse-resize" }
-            else if (n) { resizedSide = "n"; this.windowElement.style.cursor = "ns-resize" }
-            else if (s && e) { resizedSide = "se"; this.windowElement.style.cursor = "nwse-resize" }
-            else if (s && w) { resizedSide = "sw"; this.windowElement.style.cursor = "nesw-resize" }
-            else if (s) { resizedSide = "s"; this.windowElement.style.cursor = "ns-resize" }
-            else if (w) { resizedSide = "w"; this.windowElement.style.cursor = "ew-resize" }
-            else if (e) { resizedSide = "e"; this.windowElement.style.cursor = "ew-resize" }
+            if (n && e) { resizedSide = "ne"; this.parentWindowContainerElement.style.cursor = "nesw-resize" }
+            else if (n && w) { resizedSide = "nw"; this.parentWindowContainerElement.style.cursor = "nwse-resize" }
+            else if (n) { resizedSide = "n"; this.parentWindowContainerElement.style.cursor = "ns-resize" }
+            else if (s && e) { resizedSide = "se"; this.parentWindowContainerElement.style.cursor = "nwse-resize" }
+            else if (s && w) { resizedSide = "sw"; this.parentWindowContainerElement.style.cursor = "nesw-resize" }
+            else if (s) { resizedSide = "s"; this.parentWindowContainerElement.style.cursor = "ns-resize" }
+            else if (w) { resizedSide = "w"; this.parentWindowContainerElement.style.cursor = "ew-resize" }
+            else if (e) { resizedSide = "e"; this.parentWindowContainerElement.style.cursor = "ew-resize" }
             else { resizedSide = "NONE"; }
         });
-        this.windowElement.addEventListener("mousedown", (event) => {
+
+        this.parentWindowContainerElement.addEventListener("mousedown", (event) => {
             if (this.mouseHoversOnContent) return;
             resized = root;
         });
 
         //Maximize window
-        this.topbar.ondblclick = () => {
+        this.windowTopbarElement.ondblclick = () => {
             this.setMaxximized(!this.isMaxximized);
         };
 
-        this.maxbtn.onclick = () => {
+        this.windowTopbarMaximizeButtonElement.onclick = () => {
             this.setMaxximized(!this.isMaxximized);
         };
 
         //Close window
-        this.closebtn.onclick = () => {
-            this.wd.style.opacity = '0%';
-            const temp = this.wd;
-            setTimeout(function () { temp.remove(); }, 500);
+        this.windowTopbarCloseButtonElement.onclick = () => {
+            this.remove();
         };
-        this.minbtn.onclick = () => {
-            this.wd.style.opacity = '0%';
-            const temp = this.wd;
-            setTimeout(function () { temp.remove(); }, 500);
+        this.windowTopbarMinimizeButtonElement.onclick = () => {
+            this.setMinimized(true)
         };
 
         //Focus Window
-        this.wd.addEventListener("mousedown", (event) => {
-            if (this.wd.style.zIndex == windowY - 1) return;
-            this.wd.style.zIndex = windowY;
+        this.parentWindowContainerElement.addEventListener("mousedown", (event) => {
+            this.setWindowActive();
+            this.setTaskbarActive();
+        });
 
-            /*this.wd.classList.remove('windowAppear');
-            void this.wd.offsetWidth;
-            this.wd.classList.add('windowAppear'); */
+        //Focus taskbar
+        this.taskBarIcon.addEventListener("mouseup", (event) => {
+            if (this.prevTaskBarIconIndex !== Number(getComputedStyle(this.taskBarIcon).getPropertyValue("--index"))) {
+                this.prevTaskBarIconIndex = Number(getComputedStyle(this.taskBarIcon).getPropertyValue("--index"));
+                return;
+            }
 
-            windowY++;
+            if (this.taskBarIcon.classList.contains("active")) {
+                this.setMinimized(true);
+            }
+            else if (this.isMinimized) {
+                this.setMinimized(false);
+            } else {
+                this.setWindowActive();
+                this.setTaskbarActive();
+            }
         });
 
         //Move window
-        this.topbar.addEventListener("mousedown", (event) => {
+        this.windowTopbarElement.addEventListener("mousedown", (event) => {
             if (resized != undefined) return;
             dragged = this;
             //wd.classList.remove('windowAppear');
@@ -480,37 +506,88 @@ class Window {
 
     setMaxximized(m) {
         if (!m) {
-            this.wd.style.left = this.windowPosX + "px";
-            this.wd.style.top = this.windowPosY + "px";
-            this.wd.style.setProperty('--w', this.windowWidth + "px");
-            this.wd.style.setProperty('--h', this.windowHeight + "px");
-            this.wd.style.setProperty('--window-border-radius', "20px")
+            this.parentWindowContainerElement.style.setProperty('--x', this.windowPosX + "px");
+            this.parentWindowContainerElement.style.setProperty('--y', this.windowPosY + "px");
+            this.parentWindowContainerElement.style.setProperty('--w', this.windowWidth + "px");
+            this.parentWindowContainerElement.style.setProperty('--h', this.windowHeight + "px");
+            this.parentWindowContainerElement.style.setProperty('--window-border-radius', "20px")
         } else {
-            this.wd.style.left = "0px";
-            this.wd.style.top = "0px";
-            this.wd.style.setProperty('--w', window.innerWidth + "px");
-            this.wd.style.setProperty('--h', window.innerHeight + "px");
-            this.wd.style.setProperty('--window-border-radius', "0px")
+            this.parentWindowContainerElement.style.setProperty('--x', 0 + "px");
+            this.parentWindowContainerElement.style.setProperty('--y', 0 + "px");
+            this.parentWindowContainerElement.style.setProperty('--w', window.innerWidth + "px");
+            this.parentWindowContainerElement.style.setProperty('--h', window.innerHeight + "px");
+            this.parentWindowContainerElement.style.setProperty('--window-border-radius', "0px")
         }
         this.isMaxximized = m;
     }
 
+    setMinimized(m) {
+        if (m) {
+            this.parentWindowContainerElement.classList.add("hidden");
+            this.taskBarIcon.classList.remove("active");
+        } else {
+            this.parentWindowContainerElement.classList.remove("hidden");
+            this.setWindowActive();
+            this.setTaskbarActive();
+        }
+        this.isMinimized = m;
+    }
+
     setPos(x, y) {
-        this.windowPosX = x;
-        this.windowPosY = y;
-        this.wd.style.left = this.windowPosX + "px";
-        this.wd.style.top = this.windowPosY + "px";
+        if (resized != this || this.windowWidth > windowMinWidth) {
+            this.windowPosX = x;
+            this.parentWindowContainerElement.style.setProperty('--x', this.windowPosX + "px");
+        }
+        if (resized != this || this.windowHeight > windowMinHeight) {
+            this.windowPosY = y;
+            this.parentWindowContainerElement.style.setProperty('--y', this.windowPosY + "px");
+        }
     }
 
     setDimensions(w, h) {
         this.windowWidth = w;
         this.windowHeight = h;
-        this.wd.style.setProperty('--w', w + "px");
-        this.wd.style.setProperty('--h', h + "px");
+        this.parentWindowContainerElement.style.setProperty('--w', Math.max(windowMinWidth, w) + "px");
+        this.parentWindowContainerElement.style.setProperty('--h', Math.max(windowMinHeight, h) + "px");
+    }
+
+    remove() {
+        this.parentWindowContainerElement.style.opacity = '0%';
+        if (!this.taskBarIcon.classList.contains("persistent")) {
+            let t = document.getElementById("taskbar-apps");
+            this.taskBarIcon.remove();
+            rebuildTaskBar();
+            t.style.setProperty('--app-amount', Number(getComputedStyle(t).getPropertyValue("--app-amount")) - 1);
+        } else {
+            this.taskBarIcon.classList.remove("open");
+            this.taskBarIcon.classList.remove("active");
+        }
+
+        const temp = this.parentWindowContainerElement;
+        temp.classList.add("hidden");
+        setTimeout(() => { temp.remove(); }, 500);
+    }
+
+    setTaskbarActive() {
+        document.getElementById("taskbar-apps").querySelectorAll(".open").forEach((e) => {
+            e.classList.remove("active");
+        });
+        this.taskBarIcon.classList.add("active");
+    }
+
+    setWindowActive() {
+        if (this.parentWindowContainerElement.style.zIndex == windowY - 1) return;
+        this.parentWindowContainerElement.style.zIndex = windowY;
+        windowY++;
     }
 }
 
 document.addEventListener("mouseup", (event) => {
+    if (resized != undefined) {
+        if (resized.windowWidth < windowMinWidth) resized.setDimensions(windowMinWidth, resized.windowHeight);
+        if (resized.windowHeight < windowMinHeight) resized.setDimensions(resized.windowWidth, windowMinHeight);
+    }
+
     dragged = undefined;
     resized = undefined;
 });
@@ -569,86 +646,6 @@ document.addEventListener("mousemove", (event) => {
     }
 });
 
-function spawnWindow(content) {
-    new Window(content);
-}
+//spawnWindow(windowBuilder("assets/icons/github.png", "GitHub", windowGithub))
 
-function toggleColorScheme() {
-    if (colorscheme === "dark") {
-        document.documentElement.style.setProperty('--bg-img', 'var(--asset-bg-img-light)');
-        document.documentElement.style.setProperty('--bg-img-blur', 'var(--asset-bg-img-blur-light)');
-
-        document.documentElement.style.setProperty('--navbar-btn-hover-color', 'rgba(0 0 0 / 20%)');
-        document.documentElement.style.setProperty('--navbar-bg-color', ' rgba(255 255 255 / 60%)');
-
-        document.documentElement.style.setProperty('--window-bg-filter', 'brightness(1.25)');
-        document.documentElement.style.setProperty('--window-bg-filter-reverse', 'brightness(0.75)');
-        document.documentElement.style.setProperty('--color-contrast', '#000');
-        document.documentElement.style.setProperty('--scrollbar-color', '#888');
-        document.documentElement.style.setProperty('--window-border-color', 'linear-gradient(60deg, #db842d, #db654e, #db4872, #885691, #3e598f, #0c7788, #089986, #5b9669)');
-
-        colorscheme = "light"
-
-        document.getElementById("toggleColorScheme").innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M20.742 13.045a8.088 8.088 0 0 1-2.077.271c-2.135 0-4.14-.83-5.646-2.336a8.025 8.025 0 0 1-2.064-7.723A1 1 0 0 0 9.73 2.034a10.014 10.014 0 0 0-4.489 2.582c-3.898 3.898-3.898 10.243 0 14.143a9.937 9.937 0 0 0 7.072 2.93 9.93 9.93 0 0 0 7.07-2.929 10.007 10.007 0 0 0 2.583-4.491 1.001 1.001 0 0 0-1.224-1.224zm-2.772 4.301a7.947 7.947 0 0 1-5.656 2.343 7.953 7.953 0 0 1-5.658-2.344c-3.118-3.119-3.118-8.195 0-11.314a7.923 7.923 0 0 1 2.06-1.483 10.027 10.027 0 0 0 2.89 7.848 9.972 9.972 0 0 0 7.848 2.891 8.036 8.036 0 0 1-1.484 2.059z"></path></svg>`
-
-    } else {
-        document.documentElement.style.setProperty('--bg-img', 'var(--asset-bg-img-dark)');
-        document.documentElement.style.setProperty('--bg-img-blur', 'var(--asset-bg-img-blur-dark)');
-
-        document.documentElement.style.setProperty('--navbar-btn-hover-color', 'rgba(255 255 255 / 20%)');
-        document.documentElement.style.setProperty('--navbar-bg-color', ' rgba(0 0 0 / 60%)');
-
-        document.documentElement.style.setProperty('--window-bg-filter', 'brightness(0.75)');
-        document.documentElement.style.setProperty('--window-bg-filter-reverse', 'brightness(1.25)');
-        document.documentElement.style.setProperty('--color-contrast', '#fff');
-        document.documentElement.style.setProperty('--scrollbar-color', '#555');
-        document.documentElement.style.setProperty('--window-border-color', 'linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82)');
-
-        colorscheme = "dark"
-
-        document.getElementById("toggleColorScheme").innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 11.807A9.002 9.002 0 0 1 10.049 2a9.942 9.942 0 0 0-5.12 2.735c-3.905 3.905-3.905 10.237 0 14.142 3.906 3.906 10.237 3.905 14.143 0a9.946 9.946 0 0 0 2.735-5.119A9.003 9.003 0 0 1 12 11.807z"></path></svg>`
-
-    }
-}
-
-function closePopup() {
-    const temp = document.getElementById("popup");
-    temp.style.opacity = '0%';
-    setTimeout(function () { temp.remove(); }, 500);
-}
-
-
-var audioWeAre = new Audio('https://ncs.io/track/download/b10cc907-b9d8-4285-a413-8615a2d84efd');
-audioWeAre.volume = 0.25
-
-var musicPaused = true;
-function pauseAudio() {
-    musicPaused = !musicPaused
-    if (musicPaused) {
-        document.getElementById("musiccontrol").innerHTML = "<img src='assets/icons/play.svg'>"
-        audioWeAre.pause()
-
-    } else {
-        document.getElementById("musiccontrol").innerHTML = "<img src='assets/icons/pause.svg'>"
-        audioWeAre.play()
-    }
-}
-
-
-window.addEventListener('resize', function (event) {
-    var win = window,
-        doc = document,
-        docElem = doc.documentElement,
-        body = doc.getElementsByTagName('body')[0],
-        x = win.innerWidth || docElem.clientWidth || body.clientWidth,
-        y = win.innerHeight || docElem.clientHeight || body.clientHeight;
-    if ((x / y) < 1) {
-        document.getElementById("pageBlocker").style.display = "flex"
-    } else {
-        document.getElementById("pageBlocker").style.display = "none"
-    }
-});
-
-
-spawnWindow(windowBuilder('assets/icons/github.png', 'GitHub', windowGithub));
-
+openWindow(WINDOWTYPE.GITHUB, null);
