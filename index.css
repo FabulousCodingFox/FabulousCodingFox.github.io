@@ -1,33 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans&display=swap');
 
-:root {
-    --navbar-height: 50px;
-    --navbar-margin: 12px;
-    --navbar-border-radius: 3px;
-    --navbar-button-padding: 10px;
-    --navbar-active-height: 2px;
-
-    --gap: 10px;
-    --padding: 16px;
-
-    --window-width: 1200px;
-    --window-height: 800px;
-    --window-border: 4px;
-    --window-bg-filter: brightness(0.75);
-    --window-bg-filter-reverse: brightness(1.25);
-    --window-animation-speed: 0.4s;
-
-    --window-topbar-height: 80px;
-    --window-controls-height: calc(var(--window-topbar-height) / 2);
-    --window-controls-padding: calc(calc(var(--window-topbar-height) - var(--window-controls-height)) / 2);
-    --window-controls-btn-image-height: calc(var(--window-controls-height) / 2);
-
-    --window-title-height: calc(var(--window-topbar-height) / 2);
-    --window-title-padding: calc(calc(var(--window-topbar-height) - var(--window-controls-height)) / 2);
-
-    --startmenu-height: 700px;
-    --startmenu-width: 880px;
-}
+:root {}
 
 * {
     box-sizing: border-box;
