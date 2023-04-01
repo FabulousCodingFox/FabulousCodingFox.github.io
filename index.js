@@ -534,10 +534,14 @@ class Window {
     }
 
     setPos(x, y) {
-        this.windowPosX = x;
-        this.windowPosY = y;
-        this.parentWindowContainerElement.style.setProperty('--x', this.windowPosX + "px");
-        this.parentWindowContainerElement.style.setProperty('--y', this.windowPosY + "px");
+        if (resized != this || this.windowWidth > windowMinWidth) {
+            this.windowPosX = x;
+            this.parentWindowContainerElement.style.setProperty('--x', this.windowPosX + "px");
+        }
+        if (resized != this || this.windowHeight > windowMinHeight) {
+            this.windowPosY = y;
+            this.parentWindowContainerElement.style.setProperty('--y', this.windowPosY + "px");
+        }
     }
 
     setDimensions(w, h) {
