@@ -245,6 +245,7 @@ body {
 }
 
 .window-container {
+    display: block;
     position: absolute;
     top: 0;
     left: 0;
@@ -253,8 +254,13 @@ body {
     /*border-radius: var(--window-border-radius);*/
     user-select: all;
     backdrop-filter: blur(15px) saturate(150%) brightness(var(--theme-contrast-filter-a));
-    animation: window-popup 0.8s;
+    animation: window-popup 0.4s;
     transform: translate(var(--x), var(--y));
+}
+
+.window-container.hidden {
+    animation: window-popout 0.4s;
+    transform: translate(var(--x), 100vh);
 }
 
 @keyframes window-popup {
@@ -266,6 +272,18 @@ body {
     100% {
         transform: translate(var(--x), var(--y));
         opacity: 1;
+    }
+}
+
+@keyframes window-popout {
+    0% {
+        transform: translate(var(--x), var(--y));
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(var(--x), 100vh);
+        opacity: 0;
     }
 }
 
@@ -401,7 +419,7 @@ body {
     user-select: text;
 }
 
-.window-container .content-pane img{
+.window-container .content-pane img {
     max-width: 100%;
 }
 
