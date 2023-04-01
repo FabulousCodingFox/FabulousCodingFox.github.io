@@ -143,6 +143,11 @@ body {
     transition: background-color var(--theme-morph-animation-length), border-radius var(--theme-morph-animation-length);
 }
 
+#taskbar .taskbar-startmenu button:hover,
+#taskbar-settings button:hover {
+    background-color: rgba(255 255 255 / 10%);
+}
+
 #taskbar-apps {
     width: calc(var(--navbar-height) * var(--app-amount));
     position: relative;
@@ -682,7 +687,7 @@ body {
     color: var(--theme-window-title-color);
     font-size: 1em;
 
-    transition: color var(--theme-morph-animation-length);  
+    transition: color var(--theme-morph-animation-length);
 }
 
 #startmenu .content-pane>.info>.account>img {
