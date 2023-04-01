@@ -630,4 +630,4 @@ document.addEventListener("mousemove", (event) => {
 
 //spawnWindow(windowBuilder("assets/icons/github.png", "GitHub", windowGithub))
 
-openWindow(WINDOWTYPE.BACKROOMS);
+openWindow(WINDOWTYPE.GITHUB);
