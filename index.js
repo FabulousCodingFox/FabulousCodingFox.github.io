@@ -96,11 +96,11 @@ function updateTime() {
     const d = new Date();
 
     const e = document.querySelector("#taskbar-info .time");
-    if(e == null) return;
+    if (e == null) return;
     e.innerHTML = d.getHours() + (d.getMinutes().toString().length == 1 ? ":0" : ":") + d.getMinutes();
 
     const e2 = document.querySelector("#taskbar-info .date");
-    if(e2 == null) return;
+    if (e2 == null) return;
     let dt = d.getDate().toString().charAt(d.getDate().toString().length - 1)
     e2.innerHTML = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"][d.getMonth()] + " " + d.getDate() + (dt == '1' ? "st" : (dt == '2' ? "nd" : (dt == '3' ? "rd" : "th")))
 }
@@ -174,7 +174,7 @@ const WINDOWTYPE = {
 
     ABOUTME: 'ABOUTME',
     CONTACT: 'CONTACT',
-    RESUME: 'RESUME' 
+    RESUME: 'RESUME'
 };
 
 let DATA = {
@@ -274,10 +274,10 @@ let DATA = {
     [WINDOWTYPE.ABOUTME]: {}
 }
 
-function openWindow(type) {
+function openWindow(type, icon) {
     if (!document.getElementById("startmenu").classList.contains("hidden")) startmenu_toggle();
     let window = windowBuilder(type);
-    windows.push(new Window(window));
+    windows.push(new Window(window, icon));
 }
 
 function windowBuilder(type) {
@@ -319,10 +319,10 @@ function windowBuilder(type) {
 }
 
 let startmenuSearchListElement = document.getElementById("startmenu-search-list");
-for(const type in WINDOWTYPE) {
+for (const type in WINDOWTYPE) {
     let d = DATA[type];
-    if(d == undefined) continue;
-    startmenuSearchListElement.insertAdjacentHTML("beforeend", /*html*/`<button onclick="openWindow(WINDOWTYPE.${type})"><img src="${d["img"]}"> <span>${d["title"]}</span></button>`);
+    if (d == undefined) continue;
+    startmenuSearchListElement.insertAdjacentHTML("beforeend", /*html*/`<button onclick="openWindow(WINDOWTYPE.${type}, null)"><img src="${d["img"]}"> <span>${d["title"]}</span></button>`);
 }
 
 
@@ -360,7 +360,7 @@ let windowMinHeight = 200;
 let windows = [];
 
 class Window {
-    constructor(content) {
+    constructor(content, predefinedTaskBarIcon) {
         var root = this;
 
         let width = 0.6 * (window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth);
@@ -401,14 +401,22 @@ class Window {
 
         let taskbar_wrapper = document.getElementById("taskbar-apps");
         let taskbar_amount = Number(getComputedStyle(taskbar_wrapper).getPropertyValue("--app-amount"));
-        let logo = this.windowTopbarElement.querySelector(".logo").src;
-        let cont = `<button class="open active" style="--index: ${taskbar_amount}; --offset: 0"><span></span><img src="${logo}"></button>`
-        taskbar_wrapper.insertAdjacentHTML('beforeend', cont);
-        taskbar_wrapper.style.setProperty("--app-amount", taskbar_amount + 1);
-        this.taskBarIcon = last(taskbar_wrapper.children);
+        if (predefinedTaskBarIcon == null) {
+            let logo = this.windowTopbarElement.querySelector(".logo").src;
+            let cont = `<button class="open active" style="--index: ${taskbar_amount}; --offset: 0"><span></span><img src="${logo}"></button>`
+            taskbar_wrapper.insertAdjacentHTML('beforeend', cont);
+            taskbar_wrapper.style.setProperty("--app-amount", taskbar_amount + 1);
+            this.taskBarIcon = last(taskbar_wrapper.children);
+        } else {
+            this.taskBarIcon = predefinedTaskBarIcon;
+            this.taskBarIcon.classList.add("open");
+            this.taskBarIcon.classList.add("active");
+        }
+
         this.taskBarIcon.addEventListener('pointerdown', (event) => {
             taskBarAppHandleDragStart(event);
         });
+
         this.prevTaskBarIconIndex = taskbar_amount;
 
         this.setTaskbarActive();
@@ -515,10 +523,10 @@ class Window {
 
     setMinimized(m) {
         if (m) {
-            this.parentWindowContainerElement.style.display = "none";
+            this.parentWindowContainerElement.classList.add("hidden");
             this.taskBarIcon.classList.remove("active");
         } else {
-            this.parentWindowContainerElement.style.display = "block";
+            this.parentWindowContainerElement.classList.remove("hidden");
             this.setWindowActive();
             this.setTaskbarActive();
         }
@@ -541,10 +549,15 @@ class Window {
 
     remove() {
         this.parentWindowContainerElement.style.opacity = '0%';
-        let t = document.getElementById("taskbar-apps");
-        this.taskBarIcon.remove();
-        rebuildTaskBar();
-        t.style.setProperty('--app-amount', Number(getComputedStyle(t).getPropertyValue("--app-amount")) - 1);
+        if (!this.taskBarIcon.classList.contains("persistent")) {
+            let t = document.getElementById("taskbar-apps");
+            this.taskBarIcon.remove();
+            rebuildTaskBar();
+            t.style.setProperty('--app-amount', Number(getComputedStyle(t).getPropertyValue("--app-amount")) - 1);
+        } else {
+            this.taskBarIcon.classList.remove("open");
+            this.taskBarIcon.classList.remove("active");
+        }
 
         const temp = this.parentWindowContainerElement;
         setTimeout(() => { temp.remove(); }, 500);
@@ -630,4 +643,4 @@ document.addEventListener("mousemove", (event) => {
 
 //spawnWindow(windowBuilder("assets/icons/github.png", "GitHub", windowGithub))
 
-openWindow(WINDOWTYPE.GITHUB);
+openWindow(WINDOWTYPE.GITHUB, null);
