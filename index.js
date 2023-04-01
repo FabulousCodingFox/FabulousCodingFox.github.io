@@ -171,6 +171,8 @@ const WINDOWTYPE = {
     WINKED: 'WINKED',
     BACKROOMS: 'BACKROOMS',
     MINECRAFT: 'MINECRAFT',
+    VIXELS: 'VIXELS',
+    VOXELTRACING: 'VOXELTRACING',
 
     ABOUTME: 'ABOUTME',
     CONTACT: 'CONTACT',
@@ -271,7 +273,40 @@ let DATA = {
         `
     },
 
-    [WINDOWTYPE.ABOUTME]: {}
+    [WINDOWTYPE.MINECRAFT]: {},
+
+    [WINDOWTYPE.VIXELS]: {
+        'img': 'assets/projects/vixels/logosmall.png',
+        'title': 'VIXELS',
+        'content': /*html*/`
+        <h1 align="center">Vixels</h1>
+        <h3 align="center">A voxel game/engine</h3>
+        <p align="center"><a target="_blank" href="https://github.com/FabulousCodingFox/Vixels">https://github.com/FabulousCodingFox/Vixels</a></p>
+        <h3 align="center">
+            <a href="https://github.com/FabulousCodingFox/Vixels/blob/master/LICENSE" target="_blank"><img src="https://img.shields.io/github/license/FabulousCodingFox/Vixels.svg"></a>
+            <a href="https://GitHub.com/FabulousCodingFox/Vixels/releases/" target="_blank"><img src="https://img.shields.io/github/release/FabulousCodingFox/Vixels.svg"></a>
+            <a href="https://GitHub.com/FabulousCodingFox/Vixels/stargazers/" target="_blank"><img src="https://img.shields.io/github/stars/FabulousCodingFox/Vixels.svg"></a>
+        </h3>
+
+        <hr>
+
+        <h3> 📜 <b>What is Vixels?</b></h3>
+        <p>Vixels is a voxel game/engine i made in 2 weeks. It uses procdeural generation to generate a world, and it uses a custom voxel engine to render the world.</p>
+        <p>It was made using OpenGL 3.3 and Java using LWJGL. It is a very simple game, but it was a fun project to work on. Its main purpose was to learn modern OpenGL and GLSL</p>
+
+        <h3> 📸 <b>Gallery</b></h3>
+        <img src="assets/projects/vixels/screenshot2.png" alt="Vixels"/>
+        <img src="assets/projects/vixels/screenshot1.png" alt="Vixels"/>
+        `
+    },
+
+    [WINDOWTYPE.VOXELTRACING]: {},
+
+    [WINDOWTYPE.ABOUTME]: {},
+
+    [WINDOWTYPE.CONTACT]: {},
+
+    [WINDOWTYPE.RESUME]: {},
 }
 
 function openWindow(type, icon) {
