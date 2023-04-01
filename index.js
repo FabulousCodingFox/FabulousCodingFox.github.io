@@ -162,10 +162,11 @@ function startmenu_toggle() {
 
 const THEME = {
     DARK: 'DARK',
-    LIGHT: 'LIGHT'
+    LIGHT: 'LIGHT',
+    WINDOWS10: 'WINDOWS10',
 };
 
-let currentTheme = THEME.DARK;
+let currentTheme = THEME.WINDOWS10;
 
 let DATA_THEME = {
     [THEME.DARK]: {
@@ -197,7 +198,30 @@ let DATA_THEME = {
         "--theme-lighten-b": "rgba(255 255 255 / 12.5%)",
         "--theme-lighten-c": "rgba(255 255 255 / 6.25%)",
         "--theme-lighten-d": "rgba(255 255 255 / 3.125%)",
-        "--theme-lighten-e": "rgba(255 255 255 / 1.5625%)"
+        "--theme-lighten-e": "rgba(255 255 255 / 1.5625%)",
+
+        "--navbar-height": "50px",
+        "--navbar-margin": "12px",
+        "--navbar-border-radius": "3px",
+        "--navbar-button-padding": "10px",
+        "--navbar-active-height": "2px",
+
+        "--gap": "10px",
+        "--padding": "16px",
+
+        "--window-border": "4px",
+        "--window-animation-speed": "0.4s",
+
+        "--window-topbar-height": "80px",
+        "--window-controls-height": "calc(var(--window-topbar-height) / 2)",
+        "--window-controls-padding": "calc(calc(var(--window-topbar-height) - var(--window-controls-height)) / 2)",
+        "--window-controls-btn-image-height": "calc(var(--window-controls-height) / 2)",
+
+        "--window-title-height": "calc(var(--window-topbar-height) / 2)",
+        "--window-title-padding": "calc(calc(var(--window-topbar-height) - var(--window-controls-height)) / 2)",
+
+        "--startmenu-height": "700px",
+        "--startmenu-width": "880px"
     },
 
     [THEME.LIGHT]: {
@@ -229,8 +253,86 @@ let DATA_THEME = {
         "--theme-darken-b": "rgba(255 255 255 / 12.5%)",
         "--theme-darken-c": "rgba(255 255 255 / 6.25%)",
         "--theme-darken-d": "rgba(255 255 255 / 3.125%)",
-        "--theme-darken-e": "rgba(255 255 255 / 1.5625%)"
-    }
+        "--theme-darken-e": "rgba(255 255 255 / 1.5625%)",
+
+        "--navbar-height": "50px",
+        "--navbar-margin": "12px",
+        "--navbar-border-radius": "3px",
+        "--navbar-button-padding": "10px",
+        "--navbar-active-height": "2px",
+
+        "--gap": "10px",
+        "--padding": "16px",
+
+        "--window-border": "4px",
+        "--window-animation-speed": "0.4s",
+
+        "--window-topbar-height": "80px",
+        "--window-controls-height": "calc(var(--window-topbar-height) / 2)",
+        "--window-controls-padding": "calc(calc(var(--window-topbar-height) - var(--window-controls-height)) / 2)",
+        "--window-controls-btn-image-height": "calc(var(--window-controls-height) / 2)",
+
+        "--window-title-height": "calc(var(--window-topbar-height) / 2)",
+        "--window-title-padding": "calc(calc(var(--window-topbar-height) - var(--window-controls-height)) / 2)",
+
+        "--startmenu-height": "700px",
+        "--startmenu-width": "880px"
+    },
+
+    [THEME.WINDOWS10]: {
+        "--theme-desktop-wallpaper": "url(assets/background/windows10.png)",
+        "--theme-navbar-bg-color": "#101010",
+        "--theme-navbar-active": "#ff99a1",
+        "--theme-button-color": "#fff",
+        "--theme-button-hover-color": "rgba(255 255 255 / 20%)",
+        "--theme-navbar-text-color": "#fff",
+        "--theme-window-title-color": "#fff",
+
+        "--theme-scrollbar-thumb-color": "#3f3f3f",
+        "--theme-scrollbar-thumb-color-hover": "#5e5e5e",
+
+        "--theme-content-text-color": "#fff",
+
+        "--theme-startmenu-text": "#fff",
+        "--theme-startmenu-apps-bg": "rgba(255 255 255 / 20%)",
+        "--theme-startmenu-list-input-bg": "#000",
+        "--theme-startmenu-list-item-hover": "rgba(255 255 255 / 20%)",
+
+        "--theme-darken-a": "rgba(0 0 0 / 25%)",
+        "--theme-darken-b": "rgba(0 0 0 / 12.5%)",
+        "--theme-darken-c": "rgba(0 0 0 / 6.25%)",
+        "--theme-darken-d": "rgba(0 0 0 / 3.125%)",
+        "--theme-darken-e": "rgba(0 0 0 / 1.5625%)",
+
+        "--theme-lighten-a": "rgba(255 255 255 / 25%)",
+        "--theme-lighten-b": "rgba(255 255 255 / 12.5%)",
+        "--theme-lighten-c": "rgba(255 255 255 / 6.25%)",
+        "--theme-lighten-d": "rgba(255 255 255 / 3.125%)",
+        "--theme-lighten-e": "rgba(255 255 255 / 1.5625%)",
+
+        "--navbar-height": "50px",
+        "--navbar-margin": "0px",
+        "--navbar-border-radius": "0px",
+        "--navbar-button-padding": "10px",
+        "--navbar-active-height": "2px",
+
+        "--gap": "10px",
+        "--padding": "16px",
+
+        "--window-border": "5px",
+        "--window-animation-speed": "0s",
+
+        "--window-topbar-height": "50px",
+        "--window-controls-height": "calc(var(--window-topbar-height) / 1.2)",
+        "--window-controls-padding": "calc(calc(var(--window-topbar-height) - var(--window-controls-height)) / 2)",
+        "--window-controls-btn-image-height": "calc(var(--window-controls-height) / 2)",
+
+        "--window-title-height": "calc(var(--window-topbar-height) / 2)",
+        "--window-title-padding": "calc(calc(var(--window-topbar-height) - var(--window-controls-height)) / 2)",
+
+        "--startmenu-height": "700px",
+        "--startmenu-width": "880px"
+    },
 }
 
 function applyTheme(theme) {
