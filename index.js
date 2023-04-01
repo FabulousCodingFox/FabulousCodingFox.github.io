@@ -173,6 +173,7 @@ const WINDOWTYPE = {
     MINECRAFT: 'MINECRAFT',
     VIXELS: 'VIXELS',
     VOXELTRACING: 'VOXELTRACING',
+    WEBSITE: 'WEBSITE',
 
     ABOUTME: 'ABOUTME',
     CONTACT: 'CONTACT',
@@ -301,6 +302,26 @@ let DATA = {
     },
 
     [WINDOWTYPE.VOXELTRACING]: {},
+
+    [WINDOWTYPE.WEBSITE]: {
+        'img': 'assets/icons/avatar.gif',
+        'title': 'Website',
+        'content': /*html*/`
+        <h1 align="center">Website</h1>	
+        <h3 align="center">This website</h3>
+        <p align="center"><a target="_blank" href="https://github.com/FabulousCodingFox/FabulousCodingFox.github.io">https://github.com/FabulousCodingFox/FabulousCodingFox.github.io</a></p>
+        <h3 align="center">
+            <a href="https://github.com/FabulousCodingFox/FabulousCodingFox.github.io/blob/master/LICENSE" target="_blank"><img src="https://img.shields.io/github/license/FabulousCodingFox/FabulousCodingFox.github.io.svg"></a>
+            <a href="https://GitHub.com/FabulousCodingFox/FabulousCodingFox.github.io/releases/" target="_blank"><img src="https://img.shields.io/github/release/FabulousCodingFox/FabulousCodingFox.github.io.svg"></a>
+            <a href="https://GitHub.com/FabulousCodingFox/FabulousCodingFox.github.io/stargazers/" target="_blank"><img src="https://img.shields.io/github/stars/FabulousCodingFox/FabulousCodingFox.github.io.svg"></a>
+        </h3>
+    
+        <hr>
+
+        <h3> 📜 <b>What is this website?</b></h3>
+        <p>This website is a website i made to showcase my projects. It is made using HTML, CSS and JavaScript. It uses no external libraries, and it is fully responsive.</p>
+        `
+    },
 
     [WINDOWTYPE.ABOUTME]: {},
 
