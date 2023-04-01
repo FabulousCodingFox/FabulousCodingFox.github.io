@@ -702,3 +702,72 @@ body {
     height: 100%;
     padding: var(--padding);
 }
+
+#theme-switcher {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    top: 0px;
+    left: 0px;
+    z-index: 999999999999999999999;
+    backdrop-filter: blur(50px);
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    animation: theme-switcher-fade-in 1s;
+}
+
+#theme-switcher.hidden{
+    transform: translateY(-100vh);
+    animation: theme-switcher-fade-out 1s;
+}
+
+@keyframes theme-switcher-fade-in {
+    0% {
+        opacity: 0;
+        backdrop-filter: blur(0px);
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        backdrop-filter: blur(50px);
+    }
+}
+
+@keyframes theme-switcher-fade-out{
+    0% {
+        backdrop-filter: blur(50px);
+        transform: translateY(0px);
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        backdrop-filter: blur(0px);
+        transform: translateY(0px);
+    }
+}
+
+#theme-switcher>button {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    padding: 0px;
+    margin: 0px;
+    width: 300px;
+}
+
+#theme-switcher>button>img {
+    width: 100%;
+    filter: brightness(0.25);
+}
+
+#theme-switcher>button:hover>img {
+    filter: brightness(1);
+}

@@ -152,6 +152,17 @@ function startmenu_toggle() {
 
 
 
+function toggleThemeSwitcher(){
+    let element = document.getElementById("theme-switcher");
+    if(element.classList.contains("hidden")){
+        element.style.display = "block";
+        element.classList.remove("hidden");
+    }else{
+        element.classList.add("hidden");
+    }
+}
+
+
 
 
 

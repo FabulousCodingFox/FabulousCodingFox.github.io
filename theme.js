@@ -206,4 +206,5 @@ function applyTheme(theme) {
     }
     currentTheme = theme;
 }
+
 applyTheme(currentTheme);
