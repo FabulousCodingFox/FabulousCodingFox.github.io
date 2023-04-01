@@ -166,7 +166,7 @@ const THEME = {
     WINDOWS10: 'WINDOWS10',
 };
 
-let currentTheme = THEME.WINDOWS10;
+let currentTheme = THEME.DARK;
 
 let DATA_THEME = {
     [THEME.DARK]: {
