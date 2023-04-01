@@ -16,22 +16,17 @@
     --theme-startmenu-list-input-bg: #000;
     --theme-startmenu-list-item-hover: rgba(255 255 255 / 20%);
 
-    --theme-contrast-filter-a: 50%;
-    /* +50% */
-    --theme-contrast-filter-b: 75%;
-    /* +25% */
-    --theme-contrast-filter-c: 87.5%;
-    /* +12.5% */
-    --theme-contrast-filter-d: 93.75%;
-    /* +6.25% */
-    --theme-contrast-filter-e: 96.875%;
-    /* +3.125% */
+    --theme-darken-a: rgba(0 0 0 / 50%);
+    --theme-darken-b: rgba(0 0 0 / 25%);
+    --theme-darken-c: rgba(0 0 0 / 12.5%);
+    --theme-darken-d: rgba(0 0 0 / 6.25%);
+    --theme-darken-e: rgba(0 0 0 / 3.125%);
 
-    --theme-contrast-filter-revert-a: 150%;
-    --theme-contrast-filter-revert-b: 133.33%;
-    --theme-contrast-filter-revert-c: 120%;
-    --theme-contrast-filter-revert-d: 106.67%;
-    --theme-contrast-filter-revert-e: 93.33%;
+    --theme-lighten-a: rgba(255 255 255 / 50%);
+    --theme-lighten-b: rgba(255 255 255 / 25%);
+    --theme-lighten-c: rgba(255 255 255 / 12.5%);
+    --theme-lighten-d: rgba(255 255 255 / 6.25%);
+    --theme-lighten-e: rgba(255 255 255 / 3.125%);
 
     --navbar-height: 50px;
     --navbar-margin: 12px;
@@ -251,9 +246,10 @@ body {
     left: 0;
     width: var(--w);
     height: var(--h);
-    /*border-radius: var(--window-border-radius);*/
+    border-radius: var(--window-border-radius);
     user-select: all;
-    backdrop-filter: blur(15px) saturate(150%) brightness(var(--theme-contrast-filter-a));
+    background-color: var(--theme-darken-a);
+    backdrop-filter: blur(15px);
     animation: window-popup 0.4s;
     transform: translate(var(--x), var(--y));
 }
@@ -485,7 +481,7 @@ body {
     height: 100%;
     width: 60%;
     border-radius: 3px;
-    backdrop-filter: brightness(var(--theme-contrast-filter-b));
+    background-color: var(--theme-darken-b);
     padding: var(--padding);
 
     overflow: hidden;
@@ -513,7 +509,7 @@ body {
     width: calc(100% / var(--items-per-row));
 
     border-radius: 3px;
-    backdrop-filter: brightness(var(--theme-contrast-filter-c));
+    background-color: var(--theme-darken-c);
 
     padding: var(--gap) var(--padding);
 
@@ -529,7 +525,6 @@ body {
 }
 
 #startmenu .content-pane>.apps>.pinned>.items>.item:hover {
-    backdrop-filter: brightness(var(--theme-contrast-filter-revert-c));
     background-color: var(--theme-startmenu-apps-bg);
 }
 
