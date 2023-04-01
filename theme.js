@@ -213,7 +213,7 @@ let DATA_THEME = {
         "--theme-navbar-bg-color": "#000",
         "--theme-navbar-active": "#fff",
         "--theme-button-color": "#fff",
-        "--theme-button-hover-color": "#000",
+        "--theme-button-hover-color": "#ccc",
         "--theme-navbar-text-color": "#fff",
         "--theme-window-title-color": "#000",
         "--theme-window-border-gradient": "linear-gradient(60deg, #000, #000)",
