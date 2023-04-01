@@ -342,7 +342,7 @@ function windowBuilder(type) {
                             <button class="close"><img src="assets/icons/x-circle.svg"></button>
                         </div>
                     </div>
-                    <div class="content-pane">
+                    <div class="content-pane styled">
                         ${d["content"]}
                     </div>
                 </div>

@@ -411,12 +411,15 @@ body {
     padding: var(--padding);
 }
 
-.window-container .content-pane * {
+.window-container .content-pane.styled * {
     user-select: text;
 }
 
-.window-container .content-pane img {
+.window-container .content-pane.styled>img {
     max-width: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #startmenu {
