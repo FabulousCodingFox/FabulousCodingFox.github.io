@@ -776,6 +776,7 @@ body {
 }
 
 #theme-switcher button {
+    position: relative;
     background-color: transparent;
     border: none;
     outline: none;
@@ -786,9 +787,29 @@ body {
 
 #theme-switcher button>img {
     width: 100%;
-    filter: brightness(0.25);
+    filter: brightness(0.15);
 }
 
 #theme-switcher button:hover>img {
     filter: brightness(1);
+}
+
+#theme-switcher button>span{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    border: 2px solid transparent;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5em;
+}
+
+#theme-switcher button:hover>span {
+    display: none;
 }
