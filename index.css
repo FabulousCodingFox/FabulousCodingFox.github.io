@@ -396,6 +396,8 @@ body {
     width: var(--window-controls-btn-image-height);
     height: var(--window-controls-btn-image-height);
     object-fit: contain;
+    color: var(--theme-window-controls-color);
+    fill: var(--theme-window-controls-color);
 
     transition: width var(--theme-morph-animation-length), height var(--theme-morph-animation-length);
 }

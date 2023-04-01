@@ -2,6 +2,7 @@ const THEME = {
     DARK: 'DARK',
     LIGHT: 'LIGHT',
     WINDOWS10: 'WINDOWS10',
+    PAPER: 'PAPER'
 };
 
 let currentTheme = localStorage.getItem("THEME");
@@ -24,6 +25,7 @@ let DATA_THEME = {
         "--theme-window-border-color": "#000",
         "--theme-navbar-container-bg": "transparent",
         "--theme-window-border-radius-multiplier": "1",
+        "--theme-window-controls-color": "#fff",
 
         "--theme-scrollbar-thumb-color": "#3f3f3f",
         "--theme-scrollbar-thumb-color-hover": "#5e5e5e",
@@ -88,6 +90,7 @@ let DATA_THEME = {
         "--theme-window-topbar-shadow-color": "#fff",
         "--theme-navbar-container-bg": "transparent",
         "--theme-window-border-radius-multiplier": "1",
+        "--theme-window-controls-color": "#000",
 
         "--theme-scrollbar-thumb-color": "#d0d0d0",
         "--theme-scrollbar-thumb-color-hover": "#b0b0b0",
@@ -152,6 +155,7 @@ let DATA_THEME = {
         "--theme-window-topbar-shadow-color": "transparent",
         "--theme-navbar-container-bg": "#101010",
         "--theme-window-border-radius-multiplier": "0",
+        "--theme-window-controls-color": "#fff",
 
         "--theme-scrollbar-thumb-color": "#3f3f3f",
         "--theme-scrollbar-thumb-color-hover": "#5e5e5e",
@@ -202,6 +206,71 @@ let DATA_THEME = {
         "--startmenu-left": "0px",
         "--startmenu-translate-x": "0px",
         "--startmenu-box-shadow": "10px -10px 15px 4px #101010",
+    },
+
+    [THEME.PAPER]: {
+        "--theme-desktop-wallpaper": "url(assets/background/white.png)",
+        "--theme-navbar-bg-color": "#000",
+        "--theme-navbar-active": "#fff",
+        "--theme-button-color": "#fff",
+        "--theme-button-hover-color": "#000",
+        "--theme-navbar-text-color": "#fff",
+        "--theme-window-title-color": "#000",
+        "--theme-window-border-gradient": "linear-gradient(60deg, #000, #000)",
+        "--theme-window-topbar-shadow-color": "#000",
+        "--theme-navbar-container-bg": "#000",
+        "--theme-window-border-radius-multiplier": "0",
+        "--theme-window-controls-color": "#000",
+
+        "--theme-scrollbar-thumb-color": "#000",
+        "--theme-scrollbar-thumb-color-hover": "#000",
+
+        "--theme-content-text-color": "#000",
+
+        "--theme-startmenu-text": "#000",
+        "--theme-startmenu-apps-bg": "rgba(0 0 0 / 20%)",
+        "--theme-startmenu-list-input-bg": "#fff",
+        "--theme-startmenu-list-item-hover": "rgba(0 0 0 / 20%)",
+
+        "--theme-lighten-a": "#000000",
+        "--theme-lighten-b": "#414141",
+        "--theme-lighten-c": "#7C7C7C",
+        "--theme-lighten-d": "#C0C0C0",
+        "--theme-lighten-e": "#ffffff",
+
+        "--theme-darken-a": "#ffffff",
+        "--theme-darken-b": "#C0C0C0",
+        "--theme-darken-c": "#7C7C7C",
+        "--theme-darken-d": "#414141",
+        "--theme-darken-e": "#000000",
+
+        "--navbar-height": "50px",
+        "--navbar-margin": "12px",
+        "--navbar-border-radius": "3px",
+        "--navbar-button-padding": "10px",
+        "--navbar-active-height": "2px",
+        "--navbar-width": "unset",
+
+        "--gap": "10px",
+        "--padding": "16px",
+
+        "--window-border": "4px",
+        "--window-animation-speed": "0.4s",
+
+        "--window-topbar-height": "80px",
+        "--window-controls-height": "calc(var(--window-topbar-height) / 2)",
+        "--window-controls-padding": "calc(calc(var(--window-topbar-height) - var(--window-controls-height)) / 2)",
+        "--window-controls-btn-image-height": "calc(var(--window-controls-height) / 2)",
+
+        "--window-title-height": "calc(var(--window-topbar-height) / 2)",
+        "--window-title-padding": "calc(calc(var(--window-topbar-height) - var(--window-controls-height)) / 2)",
+
+        "--startmenu-height": "700px",
+        "--startmenu-width": "880px",
+        "--startmenu-border-radius": "10px",
+        "--startmenu-left": "50%",
+        "--startmenu-translate-x": "-50%",
+        "--startmenu-box-shadow": "unset"
     },
 }
 
