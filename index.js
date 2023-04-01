@@ -160,11 +160,86 @@ function startmenu_toggle() {
 
 
 
-
-
 const THEME = {
-    DARK: 'DARK'
+    DARK: 'DARK',
+    LIGHT: 'LIGHT'
 };
+
+let currentTheme = THEME.DARK;
+
+let DATA_THEME = {
+    [THEME.DARK]: {
+        "--theme-desktop-wallpaper": "url(assets/background/dark.png)",
+        "--theme-navbar-bg-color": "rgba(0 0 0 / 60%)",
+        "--theme-navbar-active": "#ff99a1",
+        "--theme-button-color": "#fff",
+        "--theme-button-hover-color": "rgba(255 255 255 / 20%)",
+        "--theme-navbar-text-color": "#fff",
+        "--theme-window-title-color": "#fff",
+
+        "--theme-scrollbar-thumb-color": "#3f3f3f",
+        "--theme-scrollbar-thumb-color-hover": "#5e5e5e",
+
+        "--theme-content-text-color": "#fff",
+
+        "--theme-startmenu-text": "#fff",
+        "--theme-startmenu-apps-bg": "rgba(255 255 255 / 20%)",
+        "--theme-startmenu-list-input-bg": "#000",
+        "--theme-startmenu-list-item-hover": "rgba(255 255 255 / 20%)",
+
+        "--theme-darken-a": "rgba(0 0 0 / 25%)",
+        "--theme-darken-b": "rgba(0 0 0 / 12.5%)",
+        "--theme-darken-c": "rgba(0 0 0 / 6.25%)",
+        "--theme-darken-d": "rgba(0 0 0 / 3.125%)",
+        "--theme-darken-e": "rgba(0 0 0 / 1.5625%)",
+
+        "--theme-lighten-a": "rgba(255 255 255 / 25%)",
+        "--theme-lighten-b": "rgba(255 255 255 / 12.5%)",
+        "--theme-lighten-c": "rgba(255 255 255 / 6.25%)",
+        "--theme-lighten-d": "rgba(255 255 255 / 3.125%)",
+        "--theme-lighten-e": "rgba(255 255 255 / 1.5625%)"
+    },
+
+    [THEME.LIGHT]: {
+        "--theme-desktop-wallpaper": "url(assets/background/light.png)",
+        "--theme-navbar-bg-color": "rgba(255 255 255 / 60%)",
+        "--theme-navbar-active": "#ff99a1",
+        "--theme-button-color": "#000",
+        "--theme-button-hover-color": "rgba(0 0 0 / 20%)",
+        "--theme-navbar-text-color": "#000",
+        "--theme-window-title-color": "#000",
+
+        "--theme-scrollbar-thumb-color": "#d0d0d0",
+        "--theme-scrollbar-thumb-color-hover": "#b0b0b0",
+
+        "--theme-content-text-color": "#000",
+
+        "--theme-startmenu-text": "#000",
+        "--theme-startmenu-apps-bg": "rgba(0 0 0 / 20%)",
+        "--theme-startmenu-list-input-bg": "#fff",
+        "--theme-startmenu-list-item-hover": "rgba(0 0 0 / 20%)",
+
+        "--theme-lighten-a": "rgba(0 0 0 / 25%)",
+        "--theme-lighten-b": "rgba(0 0 0 / 12.5%)",
+        "--theme-lighten-c": "rgba(0 0 0 / 6.25%)",
+        "--theme-lighten-d": "rgba(0 0 0 / 3.125%)",
+        "--theme-lighten-e": "rgba(0 0 0 / 1.5625%)",
+
+        "--theme-darken-a": "rgba(255 255 255 / 25%)",
+        "--theme-darken-b": "rgba(255 255 255 / 12.5%)",
+        "--theme-darken-c": "rgba(255 255 255 / 6.25%)",
+        "--theme-darken-d": "rgba(255 255 255 / 3.125%)",
+        "--theme-darken-e": "rgba(255 255 255 / 1.5625%)"
+    }
+}
+
+function applyTheme(theme) {
+    for (let key in DATA_THEME[theme]) {
+        document.documentElement.style.setProperty(key, DATA_THEME[theme][key]);
+    }
+    currentTheme = theme;
+}
+applyTheme(currentTheme);
 
 const WINDOWTYPE = {
     GITHUB: 'GITHUB',
