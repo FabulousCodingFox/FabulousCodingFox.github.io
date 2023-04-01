@@ -248,14 +248,14 @@ body {
     left: 0;
     width: var(--w);
     height: var(--h);
-    border-radius: var(--window-border-radius);
+    border-radius: calc(var(--window-border-radius) * var(--theme-window-border-radius-multiplier));
     user-select: all;
     background-color: var(--theme-darken-a);
     backdrop-filter: blur(15px);
     animation: window-popup var(--window-animation-speed);
     transform: translate(var(--x), var(--y));
 
-    transition: width border-radius 0.4s, background-color var(--theme-morph-animation-length);
+    transition: background-color var(--theme-morph-animation-length);
 }
 
 .window-container.hidden {
@@ -298,7 +298,7 @@ body {
     /*Create a rounded border gradient*/
 
     border: var(--window-border) solid transparent;
-    border-radius: var(--window-border-radius);
+    border-radius: calc(var(--window-border-radius) * var(--theme-window-border-radius-multiplier));
 
     background: var(--theme-window-border-gradient) border-box;
     animation: animatedgradient 3s ease alternate infinite;
@@ -338,7 +338,7 @@ body {
     left: var(--window-border);
     width: calc(100% - calc(var(--window-border) * 2));
     height: calc(100% - calc(var(--window-border) * 2));
-    border-radius: calc(var(--window-border-radius));
+    border-radius: calc(var(--window-border-radius) * var(--theme-window-border-radius-multiplier));
     background-color: transparent;
     cursor: auto;
 
@@ -349,11 +349,11 @@ body {
     position: relative;
     width: 100%;
     height: var(--window-topbar-height);
-    border-top-left-radius: var(--window-border-radius);
-    border-top-right-radius: var(--window-border-radius);
+    border-top-left-radius: calc(var(--window-border-radius) * var(--theme-window-border-radius-multiplier));
+    border-top-right-radius: calc(var(--window-border-radius) * var(--theme-window-border-radius-multiplier));
     box-shadow: 0px 1px 4px var(--theme-window-topbar-shadow-color);
 
-    transition: border-radius var(--theme-morph-animation-length), box-shadow var(--theme-morph-animation-length), height var(--theme-morph-animation-length);
+    transition: box-shadow var(--theme-morph-animation-length), height var(--theme-morph-animation-length);
 }
 
 .window-container>div>.window-pane>div>.topbar>.controls {
@@ -415,14 +415,14 @@ body {
 .window-container .content-pane {
     width: 100%;
     height: calc(100% - var(--window-topbar-height));
-    border-bottom-left-radius: var(--window-border-radius);
-    border-bottom-right-radius: var(--window-border-radius);
+    border-bottom-left-radius: calc(var(--window-border-radius) * var(--theme-window-border-radius-multiplier));
+    border-bottom-right-radius: calc(var(--window-border-radius) * var(--theme-window-border-radius-multiplier));
     overflow-x: hidden;
     overflow-y: auto;
     color: var(--theme-content-text-color);
     padding: var(--padding);
 
-    transition: border-radius var(--theme-morph-animation-length), color var(--theme-morph-animation-length);
+    transition: color var(--theme-morph-animation-length);
 }
 
 .window-container .content-pane.styled * {
@@ -443,6 +443,7 @@ body {
     transform: translateX(var(--startmenu-translate-x));
     animation: startmenu-popup 0.4s;
     z-index: 99999999999999999;
+    box-shadow: var(--startmenu-box-shadow);
 }
 
 #startmenu.hidden {
