@@ -104,12 +104,27 @@ body {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
+    align-items: flex-start;
+    justify-content: space-between;
     z-index: 999999999999999;
 
     gap: var(--gap);
+
+    background-color: var(--theme-navbar-container-bg);
+    width: var(--navbar-width);
 }
 
-#taskbar>div {
+#taskbar>div{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    height: 100%;
+    gap: var(--gap);
+}
+
+#taskbar>div>div {
     position: relative;
     height: 100%;
     background-color: var(--theme-navbar-bg-color);
@@ -123,6 +138,8 @@ body {
 
 #taskbar-apps {
     width: calc(var(--navbar-height) * var(--app-amount));
+    position: relative;
+    justify-self: flex-start;
 }
 
 #taskbar button {
@@ -264,7 +281,7 @@ body {
     border: var(--window-border) solid transparent;
     border-radius: var(--window-border-radius);
 
-    background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82) border-box;
+    background: var(--theme-window-border-gradient) border-box;
     animation: animatedgradient 3s ease alternate infinite;
     background-size: 300% 300%;
 
@@ -311,7 +328,7 @@ body {
     height: var(--window-topbar-height);
     border-top-left-radius: var(--window-border-radius);
     border-top-right-radius: var(--window-border-radius);
-    box-shadow: 0px 1px 4px black;
+    box-shadow: 0px 1px 4px var(--theme-window-topbar-shadow-color);
 }
 
 .window-container>div>.window-pane>div>.topbar>.controls {

@@ -177,6 +177,9 @@ let DATA_THEME = {
         "--theme-button-hover-color": "rgba(255 255 255 / 20%)",
         "--theme-navbar-text-color": "#fff",
         "--theme-window-title-color": "#fff",
+        "--theme-window-border-gradient": "linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82)",
+        "--theme-window-border-color": "#000",
+        "--theme-navbar-container-bg": "transparent",
 
         "--theme-scrollbar-thumb-color": "#3f3f3f",
         "--theme-scrollbar-thumb-color-hover": "#5e5e5e",
@@ -205,6 +208,7 @@ let DATA_THEME = {
         "--navbar-border-radius": "3px",
         "--navbar-button-padding": "10px",
         "--navbar-active-height": "2px",
+        "--navbar-width": "unset",
 
         "--gap": "10px",
         "--padding": "16px",
@@ -232,6 +236,9 @@ let DATA_THEME = {
         "--theme-button-hover-color": "rgba(0 0 0 / 20%)",
         "--theme-navbar-text-color": "#000",
         "--theme-window-title-color": "#000",
+        "--theme-window-border-gradient": "linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82)",
+        "--theme-window-topbar-shadow-color": "#fff",
+        "--theme-navbar-container-bg": "transparent",
 
         "--theme-scrollbar-thumb-color": "#d0d0d0",
         "--theme-scrollbar-thumb-color-hover": "#b0b0b0",
@@ -260,6 +267,7 @@ let DATA_THEME = {
         "--navbar-border-radius": "3px",
         "--navbar-button-padding": "10px",
         "--navbar-active-height": "2px",
+        "--navbar-width": "unset",
 
         "--gap": "10px",
         "--padding": "16px",
@@ -287,6 +295,9 @@ let DATA_THEME = {
         "--theme-button-hover-color": "rgba(255 255 255 / 20%)",
         "--theme-navbar-text-color": "#fff",
         "--theme-window-title-color": "#fff",
+        "--theme-window-border-gradient": "linear-gradient(60deg, #00000000 #00000000)",
+        "--theme-window-topbar-shadow-color": "transparent",
+        "--theme-navbar-container-bg": "#101010",
 
         "--theme-scrollbar-thumb-color": "#3f3f3f",
         "--theme-scrollbar-thumb-color-hover": "#5e5e5e",
@@ -315,6 +326,7 @@ let DATA_THEME = {
         "--navbar-border-radius": "0px",
         "--navbar-button-padding": "10px",
         "--navbar-active-height": "2px",
+        "--navbar-width": "100%",
 
         "--gap": "10px",
         "--padding": "16px",
