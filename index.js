@@ -393,9 +393,9 @@ function windowBuilder(type) {
                             <p>${d["title"]}</p>
                         </div>
                         <div class="controls">
-                            <button class="min"><img src="assets/icons/minus.svg"></button>
-                            <button class="max"><img src="assets/icons/square-rounded.svg"></button>
-                            <button class="close"><img src="assets/icons/x-circle.svg"></button>
+                            <button class="min"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="transform: ;msFilter:;"><path d="M5 11h14v2H5z"></path></svg></button>
+                            <button class="max"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="transform: ;msFilter:;"><path d="M17 2H7C4.243 2 2 4.243 2 7v10c0 2.757 2.243 5 5 5h10c2.757 0 5-2.243 5-5V7c0-2.757-2.243-5-5-5zm3 15c0 1.654-1.346 3-3 3H7c-1.654 0-3-1.346-3-3V7c0-1.654 1.346-3 3-3h10c1.654 0 3 1.346 3 3v10z"></path></svg></button>
+                            <button class="close"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="transform: ;msFilter:;"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm4.207 12.793-1.414 1.414L12 13.414l-2.793 2.793-1.414-1.414L10.586 12 7.793 9.207l1.414-1.414L12 10.586l2.793-2.793 1.414 1.414L13.414 12l2.793 2.793z"></path></svg></button>
                         </div>
                     </div>
                     <div class="content-pane styled">

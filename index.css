@@ -392,7 +392,7 @@ body {
 }
 
 
-.window-container>div>.window-pane>div>.topbar>.controls button img {
+.window-container>div>.window-pane>div>.topbar>.controls button svg {
     width: var(--window-controls-btn-image-height);
     height: var(--window-controls-btn-image-height);
     object-fit: contain;
