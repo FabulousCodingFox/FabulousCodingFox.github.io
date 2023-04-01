@@ -9,6 +9,9 @@
     --theme-navbar-text-color: #fff;
     --theme-window-title-color: #fff;
 
+    --theme-scrollbar-thumb-color: #3f3f3f;
+    --theme-scrollbar-thumb-color-hover: #5e5e5e;
+
     --theme-content-text-color: #fff;
 
     --theme-startmenu-text: #fff;
@@ -68,6 +71,27 @@
 
     color: var(--color-contrast);
     transition: color var(--color-change-transition-duration);
+
+    scrollbar-color: var(--theme-scrollbar-thumb-color) transparent;
+    scrollbar-width: thin;
+    scrollbar-arrow-color: transparent;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--theme-scrollbar-thumb-color);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--theme-scrollbar-thumb-color-hover);
 }
 
 html,
