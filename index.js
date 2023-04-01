@@ -560,6 +560,7 @@ class Window {
         }
 
         const temp = this.parentWindowContainerElement;
+        temp.classList.add("hidden");
         setTimeout(() => { temp.remove(); }, 500);
     }
 
