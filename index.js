@@ -274,8 +274,6 @@ let DATA = {
         `
     },
 
-    [WINDOWTYPE.MINECRAFT]: {},
-
     [WINDOWTYPE.VIXELS]: {
         'img': 'assets/projects/vixels/logosmall.png',
         'title': 'VIXELS',
@@ -301,8 +299,6 @@ let DATA = {
         `
     },
 
-    [WINDOWTYPE.VOXELTRACING]: {},
-
     [WINDOWTYPE.WEBSITE]: {
         'img': 'assets/icons/avatar.gif',
         'title': 'Website',
@@ -323,11 +319,44 @@ let DATA = {
         `
     },
 
-    [WINDOWTYPE.ABOUTME]: {},
+    [WINDOWTYPE.ABOUTME]: {
+        'img': 'assets/icons/avatar.gif',
+        'title': 'About me',
+        'content': /*html*/`
+        <h1 align="center">About me</h1>
+        <h3 align="center">A little bit about me</h3>
+        
+        <hr>
 
-    [WINDOWTYPE.CONTACT]: {},
+        <h3> 📜 <b>Who am i?</b></h3>
+        <p>I am a 16 year old developer from Germany. I am currently making my final year of school, and i am planning to study computer science in the future.</p>
+        <p>I am a self-taught developer, and i have been programming for about 8 years now. I started with Scratch in April of 2014 and later began learning python. I started doing Java 2 years ago and stuck with it.</p>
 
-    [WINDOWTYPE.RESUME]: {},
+        <h3> 📜 <b>What do i do?</b></h3>
+        <p>I am a developer, and i am currently working on a few projects. I am also a part of a few teams, and i am working on a few projects with them.</p>
+
+        <h3> 📜 <b>What are my hobbies?</b></h3>
+        <p>- <b>Programming</b>: I like to program, and i am currently working on a few projects.</p>
+        <p>- <b>Video games</b>: I like to play video games, mostly strategy, simulation and sandbox games. My favourite games are <a target="_blank" href="https://store.steampowered.com/app/870780/Control_Ultimate_Edition/">Control</a>, <a target="_blank" href="https://www.satisfactorygame.com/">Satisfactory</a>, <a target="_blank" href="https://www.minecraft.net/">Minecraft</a>, <a target="_blank" href="https://www.nomanssky.com/">No Mans Sky</a> and <a target="_blank" href="https://store.steampowered.com/app/823500/BONEWORKS/">Boneworks.</a></p>
+
+        <h3> 📜 <b>My favourite...</b></h3>
+        <p>...programming language: Java</p>
+        <p>...game: <a target="_blank" href="https://store.steampowered.com/app/870780/Control_Ultimate_Edition/">Control</a></p>
+        <p>...drink: Water</p>
+        <p>...sport: Badminton</p>
+        <p>...series: Dark</p>
+        <p>...song: High Hopes - Pink Floyd</p>
+        `
+    },
+
+
+    /*[WINDOWTYPE.CONTACT]: {},*/
+
+    /*[WINDOWTYPE.RESUME]: {},*/
+
+    /*[WINDOWTYPE.MINECRAFT]: {},*/
+
+    /*[WINDOWTYPE.VOXELTRACING]: {},*/
 }
 
 function openWindow(type, icon) {
