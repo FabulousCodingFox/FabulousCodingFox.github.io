@@ -4,7 +4,12 @@ const THEME = {
     WINDOWS10: 'WINDOWS10',
 };
 
-let currentTheme = THEME.DARK;
+let currentTheme = localStorage.getItem("THEME");
+if (currentTheme == null) {
+    currentTheme = THEME.DARK;
+    localStorage.setItem("THEME", currentTheme);
+}
+
 
 let DATA_THEME = {
     [THEME.DARK]: {
@@ -205,6 +210,7 @@ function applyTheme(theme) {
         document.documentElement.style.setProperty(key, DATA_THEME[theme][key]);
     }
     currentTheme = theme;
+    localStorage.setItem("THEME", currentTheme);
 }
 
 applyTheme(currentTheme);
