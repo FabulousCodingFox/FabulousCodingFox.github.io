@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans&display=swap');
 
-:root {}
+:root {
+    --theme-morph-animation-length: 2s;
+}
 
 * {
     box-sizing: border-box;
@@ -12,9 +14,6 @@
     user-select: none;
 
     font-family: 'Work Sans', sans-serif;
-
-    color: var(--color-contrast);
-    transition: color var(--color-change-transition-duration);
 
     scrollbar-color: var(--theme-scrollbar-thumb-color) transparent;
     scrollbar-width: thin;
@@ -114,7 +113,7 @@ body {
     width: var(--navbar-width);
 }
 
-#taskbar>div{
+#taskbar>div {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -410,8 +409,8 @@ body {
 #startmenu {
     top: unset;
     bottom: calc(var(--navbar-margin) * 2 + var(--navbar-height));
-    left: 50%;
-    transform: translateX(-50%);
+    left: var(--startmenu-left);
+    transform: translateX(var(--startmenu-translate-x));
     animation: startmenu-popup 0.4s;
     z-index: 99999999999999999;
 }
@@ -449,7 +448,7 @@ body {
 #startmenu .content-pane {
     width: 100%;
     height: 100%;
-    border-radius: var(--window-border-radius);
+    border-radius: var(--startmenu-border-radius);
     overflow: hidden;
     padding: var(--gap);
 }

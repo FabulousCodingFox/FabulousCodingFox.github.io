@@ -225,7 +225,10 @@ let DATA_THEME = {
         "--window-title-padding": "calc(calc(var(--window-topbar-height) - var(--window-controls-height)) / 2)",
 
         "--startmenu-height": "700px",
-        "--startmenu-width": "880px"
+        "--startmenu-width": "880px",
+        "--startmenu-border-radius": "10px",
+        "--startmenu-left": "50%",
+        "--startmenu-translate-x": "-50%",
     },
 
     [THEME.LIGHT]: {
@@ -284,7 +287,10 @@ let DATA_THEME = {
         "--window-title-padding": "calc(calc(var(--window-topbar-height) - var(--window-controls-height)) / 2)",
 
         "--startmenu-height": "700px",
-        "--startmenu-width": "880px"
+        "--startmenu-width": "880px",
+        "--startmenu-border-radius": "10px",
+        "--startmenu-left": "50%",
+        "--startmenu-translate-x": "-50%",
     },
 
     [THEME.WINDOWS10]: {
@@ -343,7 +349,10 @@ let DATA_THEME = {
         "--window-title-padding": "calc(calc(var(--window-topbar-height) - var(--window-controls-height)) / 2)",
 
         "--startmenu-height": "700px",
-        "--startmenu-width": "880px"
+        "--startmenu-width": "880px",
+        "--startmenu-border-radius": "0px",
+        "--startmenu-left": "0px",
+        "--startmenu-translate-x": "0px",
     },
 }
 
