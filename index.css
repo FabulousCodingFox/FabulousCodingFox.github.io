@@ -16,17 +16,17 @@
     --theme-startmenu-list-input-bg: #000;
     --theme-startmenu-list-item-hover: rgba(255 255 255 / 20%);
 
-    --theme-darken-a: rgba(0 0 0 / 50%);
-    --theme-darken-b: rgba(0 0 0 / 25%);
-    --theme-darken-c: rgba(0 0 0 / 12.5%);
-    --theme-darken-d: rgba(0 0 0 / 6.25%);
-    --theme-darken-e: rgba(0 0 0 / 3.125%);
+    --theme-darken-a: rgba(0 0 0 / 25%);
+    --theme-darken-b: rgba(0 0 0 / 12.5%);
+    --theme-darken-c: rgba(0 0 0 / 6.25%);
+    --theme-darken-d: rgba(0 0 0 / 3.125%);
+    --theme-darken-e: rgba(0 0 0 / 1.5625%);
 
-    --theme-lighten-a: rgba(255 255 255 / 50%);
-    --theme-lighten-b: rgba(255 255 255 / 25%);
-    --theme-lighten-c: rgba(255 255 255 / 12.5%);
-    --theme-lighten-d: rgba(255 255 255 / 6.25%);
-    --theme-lighten-e: rgba(255 255 255 / 3.125%);
+    --theme-lighten-a: rgba(255 255 255 / 25%);
+    --theme-lighten-b: rgba(255 255 255 / 12.5%);
+    --theme-lighten-c: rgba(255 255 255 / 6.25%);
+    --theme-lighten-d: rgba(255 255 255 / 3.125%);
+    --theme-lighten-e: rgba(255 255 255 / 1.5625%);
 
     --navbar-height: 50px;
     --navbar-margin: 12px;
