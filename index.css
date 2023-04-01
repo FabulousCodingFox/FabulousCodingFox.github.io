@@ -714,14 +714,21 @@ body {
     backdrop-filter: blur(50px);
 
     display: flex;
-    flex-direction: row;
     align-items: center;
     justify-content: center;
 
     animation: theme-switcher-fade-in 1s;
 }
 
-#theme-switcher.hidden{
+#theme-switcher>div {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+#theme-switcher.hidden {
     transform: translateY(-100vh);
     animation: theme-switcher-fade-out 1s;
 }
@@ -731,22 +738,26 @@ body {
         opacity: 0;
         backdrop-filter: blur(0px);
     }
+
     50% {
         opacity: 1;
     }
+
     100% {
         backdrop-filter: blur(50px);
     }
 }
 
-@keyframes theme-switcher-fade-out{
+@keyframes theme-switcher-fade-out {
     0% {
         backdrop-filter: blur(50px);
         transform: translateY(0px);
     }
+
     50% {
         opacity: 1;
     }
+
     100% {
         opacity: 0;
         backdrop-filter: blur(0px);
@@ -754,7 +765,7 @@ body {
     }
 }
 
-#theme-switcher>button {
+#theme-switcher button {
     background-color: transparent;
     border: none;
     outline: none;
@@ -763,11 +774,11 @@ body {
     width: 300px;
 }
 
-#theme-switcher>button>img {
+#theme-switcher button>img {
     width: 100%;
     filter: brightness(0.25);
 }
 
-#theme-switcher>button:hover>img {
+#theme-switcher button:hover>img {
     filter: brightness(1);
 }

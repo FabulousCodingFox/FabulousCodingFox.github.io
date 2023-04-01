@@ -152,12 +152,12 @@ function startmenu_toggle() {
 
 
 
-function toggleThemeSwitcher(){
+function toggleThemeSwitcher() {
     let element = document.getElementById("theme-switcher");
-    if(element.classList.contains("hidden")){
-        element.style.display = "block";
+    if (element.classList.contains("hidden")) {
+        element.style.display = "flex";
         element.classList.remove("hidden");
-    }else{
+    } else {
         element.classList.add("hidden");
     }
 }
