@@ -1,5 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans&display=swap');
 
+/*
+< 90000 -> Elemente
+  90000 - 900000 -> Fenster
+  900000 -  950000 ->  startmenu
+  950000 - 1000000 ->  taskbar
+  1000000 -1500000 ->  theme switcher
+*/
+
 :root {
     --theme-morph-animation-length: 1s;
 }
@@ -107,7 +115,7 @@ body {
     flex-wrap: nowrap;
     align-items: flex-start;
     justify-content: space-between;
-    z-index: 999999999999999;
+    z-index: 950000;
 
     gap: var(--gap);
 
@@ -177,7 +185,7 @@ body {
 
 #taskbar-apps>button.dragged {
     transition: left 0s ease-in-out;
-    z-index: 9999999999999999;
+    z-index: 990000;
 }
 
 #taskbar button>img,
@@ -447,7 +455,7 @@ body {
     left: var(--startmenu-left);
     transform: translateX(var(--startmenu-translate-x));
     animation: startmenu-popup 0.4s;
-    z-index: 99999999999999999;
+    z-index: 900000;
     box-shadow: var(--startmenu-box-shadow);
 }
 
@@ -710,7 +718,7 @@ body {
     overflow: hidden;
     top: 0px;
     left: 0px;
-    z-index: 999999999999999999999;
+    z-index: 1000000;
     backdrop-filter: blur(50px);
 
     display: flex;

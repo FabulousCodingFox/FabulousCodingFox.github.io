@@ -437,7 +437,7 @@ function last(array) {
     return array[array.length - 1];
 }
 
-let windowY = 10000;
+let windowY = 90000;
 
 let dragged;
 let resized;
