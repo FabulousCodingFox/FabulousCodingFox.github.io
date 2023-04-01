@@ -375,10 +375,11 @@ function windowBuilder(type) {
 }
 
 let startmenuSearchListElement = document.getElementById("startmenu-search-list");
-for (const type in WINDOWTYPE) {
-    let d = DATA[type];
+let e = Object.keys(WINDOWTYPE).sort();
+for (const type in e) {
+    const d = DATA[e[type]];
     if (d == undefined) continue;
-    startmenuSearchListElement.insertAdjacentHTML("beforeend", /*html*/`<button onclick="openWindow(WINDOWTYPE.${type}, null)"><img src="${d["img"]}"> <span>${d["title"]}</span></button>`);
+    startmenuSearchListElement.insertAdjacentHTML("beforeend", /*html*/`<button onclick="openWindow(WINDOWTYPE.${e[type]}, null)"><img src="${d["img"]}"> <span>${d["title"]}</span></button>`);
 }
 
 
