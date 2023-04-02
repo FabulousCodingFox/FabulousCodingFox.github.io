@@ -813,3 +813,53 @@ body {
 #theme-switcher button:hover>span {
     display: none;
 }
+
+.desktop-apps-wrapper{
+    position: absolute;
+    top: 0px;
+    left: 0px;  
+    width: 100%;
+    height: 100%;
+}
+
+#desktop-apps>button {
+    --btnwidth: calc(100% / var(--w));
+    --btnheight: calc(100% / var(--h));
+
+    position: absolute;
+    width: var(--btnwidth);
+    height: var(--btnheight);
+    top: calc(var(--btnheight) * var(--y));
+    left: calc(var(--btnwidth) * var(--x));
+    border: none;
+    outline: none;
+    background-color: transparent;
+    padding: 0px;
+    margin: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;
+    overflow: hidden;
+    gap: 5px;
+    border-radius: 3px;
+}
+
+#desktop-apps>button:hover{
+    background-color: rgba(100 100 100 / 0.2);
+    outline: 2px solid blue;
+}
+
+#desktop-apps>button>img{
+    height: 50%;
+}
+
+#desktop-apps>button>span{
+    color: var(--theme-window-title-color);
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
