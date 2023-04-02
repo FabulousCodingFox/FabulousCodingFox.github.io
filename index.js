@@ -841,6 +841,4 @@ document.addEventListener("mousemove", (event) => {
     }
 });
 
-//spawnWindow(windowBuilder("assets/icons/github.png", "GitHub", windowGithub))
-
-//openWindow(WINDOWTYPE.GITHUB, null);
+openWindow(WINDOWTYPE.GITHUB, null);

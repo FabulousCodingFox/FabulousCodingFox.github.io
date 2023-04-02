@@ -206,6 +206,11 @@ let DATA_THEME = {
         "--startmenu-left": "0px",
         "--startmenu-translate-x": "0px",
         "--startmenu-box-shadow": "10px -10px 15px 4px #101010",
+
+        "--desktop-app-border-radius": "0px",
+        "--desktop-app-border-color": "rgba(255 255 255 / 15%)",
+        "--desktop-app-border-width": "2px",
+        "--desktop-app-hover-bg": "rgba(255 255 255 / 5%)"
     },
 
     [THEME.PAPER]: {

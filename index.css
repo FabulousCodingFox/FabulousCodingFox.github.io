@@ -891,11 +891,12 @@ body {
     flex-wrap: nowrap;
     overflow: hidden;
     gap: 5px;
+    border-radius: var(--desktop-app-border-radius);
 }
 
 #desktop-apps>button:hover {
-    background-color: rgba(255 255 255 / 5%);
-    outline: 2px solid rgba(255 255 255 / 15%);
+    background-color: var(--desktop-app-hover-bg);
+    outline: var(--desktop-app-border-width) solid var(--desktop-app-border-color);
 }
 
 #desktop-apps>button>img {
