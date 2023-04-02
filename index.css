@@ -91,6 +91,9 @@ body {
     overflow: hidden;
 }
 
+#desktop>* {
+    pointer-events: all;
+}
 
 
 
@@ -814,17 +817,29 @@ body {
     display: none;
 }
 
+
+
+
+
+
+
+
+
+
+
 .desktop-apps-wrapper{
     position: absolute;
     top: 0px;
     left: 0px;  
     width: 100%;
     height: 100%;
+    padding: var(--padding);
 }
 
 #desktop-apps>button {
-    --btnwidth: calc(100% / var(--w));
-    --btnheight: calc(100% / var(--h));
+    --onehundredpercent: calc(100% - var(--padding) * 2);
+    --btnwidth: calc(var(--onehundredpercent) / var(--w));
+    --btnheight: calc(var(--onehundredpercent) / var(--h));
 
     position: absolute;
     width: var(--btnwidth);
@@ -843,15 +858,15 @@ body {
     flex-wrap: nowrap;
     overflow: hidden;
     gap: 5px;
-    border-radius: 3px;
 }
 
 #desktop-apps>button:hover{
-    background-color: rgba(100 100 100 / 0.2);
-    outline: 2px solid blue;
+    background-color: rgba(255 255 255 / 5%);
+    outline: 2px solid rgba(255 255 255 / 15%);
 }
 
 #desktop-apps>button>img{
+    pointer-events: none;
     height: 50%;
 }
 
