@@ -797,7 +797,7 @@ body {
     filter: brightness(1);
 }
 
-#theme-switcher button>span{
+#theme-switcher button>span {
     position: absolute;
     top: 0px;
     left: 0px;
@@ -827,10 +827,43 @@ body {
 
 
 
-.desktop-apps-wrapper{
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.desktop-apps-wrapper {
     position: absolute;
     top: 0px;
-    left: 0px;  
+    left: 0px;
     width: 100%;
     height: 100%;
     padding: var(--padding);
@@ -860,17 +893,17 @@ body {
     gap: 5px;
 }
 
-#desktop-apps>button:hover{
+#desktop-apps>button:hover {
     background-color: rgba(255 255 255 / 5%);
     outline: 2px solid rgba(255 255 255 / 15%);
 }
 
-#desktop-apps>button>img{
+#desktop-apps>button>img {
     pointer-events: none;
     height: 50%;
 }
 
-#desktop-apps>button>span{
+#desktop-apps>button>span {
     color: var(--theme-window-title-color);
     text-align: center;
     text-overflow: ellipsis;
