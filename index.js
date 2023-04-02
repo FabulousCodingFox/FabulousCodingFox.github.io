@@ -92,6 +92,49 @@ for (let taskBarIcon of taskBar.children) {
 
 
 
+
+
+
+
+
+
+
+
+
+
+let draggedDesktopIcon = null;
+let draggedDesktopIconX = null;
+let draggedDesktopIconY = null;
+let draggedDesktopIconOriginX = null;
+let draggedDesktopIconOriginY = null;
+let desktop_apps = document.querySelector('#desktop-apps');
+
+function desktopAppHandleDragStart(event) {
+}
+
+for (let desktopIcon of desktop_apps.children) {
+    desktopIcon.addEventListener('pointerdown', (event) => {
+        desktopAppHandleDragStart(event);
+    });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function updateTime() {
     const d = new Date();
 
@@ -106,6 +149,14 @@ function updateTime() {
 }
 updateTime();
 setInterval(updateTime, 2000);
+
+
+
+
+
+
+
+
 
 
 
@@ -145,13 +196,6 @@ function startmenu_toggle() {
     }
 }
 
-
-
-
-
-
-
-
 function toggleThemeSwitcher() {
     let element = document.getElementById("theme-switcher");
     if (element.classList.contains("hidden")) {
@@ -161,6 +205,15 @@ function toggleThemeSwitcher() {
         element.classList.add("hidden");
     }
 }
+
+
+
+
+
+
+
+
+
 
 
 
@@ -416,6 +469,9 @@ for (const type in e) {
     if (d == undefined) continue;
     startmenuSearchListElement.insertAdjacentHTML("beforeend", /*html*/`<button onclick="openWindow(WINDOWTYPE.${e[type]}, null)"><img src="${d["img"]}"> <span>${d["title"]}</span></button>`);
 }
+
+
+
 
 
 
