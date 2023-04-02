@@ -75,7 +75,12 @@ let DATA_THEME = {
         "--startmenu-border-radius": "10px",
         "--startmenu-left": "50%",
         "--startmenu-translate-x": "-50%",
-        "--startmenu-box-shadow": "unset"
+        "--startmenu-box-shadow": "unset",
+
+        "--desktop-app-border-radius": "3px",
+        "--desktop-app-border-color": "rgba(255 255 255 / 15%)",
+        "--desktop-app-border-width": "2px",
+        "--desktop-app-hover-bg": "rgba(255 255 255 / 5%)"
     },
 
     [THEME.LIGHT]: {
@@ -140,7 +145,12 @@ let DATA_THEME = {
         "--startmenu-border-radius": "10px",
         "--startmenu-left": "50%",
         "--startmenu-translate-x": "-50%",
-        "--startmenu-box-shadow": "unset"
+        "--startmenu-box-shadow": "unset",
+
+        "--desktop-app-border-radius": "3px",
+        "--desktop-app-border-color": "rgba(0 0 0 / 15%)",
+        "--desktop-app-border-width": "2px",
+        "--desktop-app-hover-bg": "rgba(0 0 0 / 5%)"
     },
 
     [THEME.WINDOWS10]: {
@@ -206,6 +216,11 @@ let DATA_THEME = {
         "--startmenu-left": "0px",
         "--startmenu-translate-x": "0px",
         "--startmenu-box-shadow": "10px -10px 15px 4px #101010",
+
+        "--desktop-app-border-radius": "0px",
+        "--desktop-app-border-color": "rgba(255 255 255 / 15%)",
+        "--desktop-app-border-width": "2px",
+        "--desktop-app-hover-bg": "rgba(255 255 255 / 5%)"
     },
 
     [THEME.PAPER]: {
@@ -270,7 +285,12 @@ let DATA_THEME = {
         "--startmenu-border-radius": "10px",
         "--startmenu-left": "50%",
         "--startmenu-translate-x": "-50%",
-        "--startmenu-box-shadow": "unset"
+        "--startmenu-box-shadow": "unset",
+
+        "--desktop-app-border-radius": "0px",
+        "--desktop-app-border-color": "#ccc",
+        "--desktop-app-border-width": "2px",
+        "--desktop-app-hover-bg": "#ffffff00"
     },
 }
 

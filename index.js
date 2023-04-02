@@ -92,6 +92,96 @@ for (let taskBarIcon of taskBar.children) {
 
 
 
+
+
+
+
+
+
+
+
+
+
+let draggedDesktopIcon = null;
+let draggedDesktopIconX = null;
+let draggedDesktopIconY = null;
+let draggedDesktopIconOriginX = null;
+let draggedDesktopIconOriginY = null;
+let desktop_apps = document.querySelector('#desktop-apps');
+
+function desktopAppHandleDragStart(event) {
+    const el = event.currentTarget;
+
+    draggedDesktopIconX = Number(getComputedStyle(el).getPropertyValue('--x'));
+    draggedDesktopIconY = Number(getComputedStyle(el).getPropertyValue('--y'));
+    draggedDesktopIconOriginX = draggedDesktopIconX;
+    draggedDesktopIconOriginY = draggedDesktopIconY;
+
+    const move = (event) => {
+        let newDraggedDesktopIconX = Math.floor((event.clientX - desktop_apps.getBoundingClientRect().left) / el.clientWidth);
+        let newDraggedDesktopIconY = Math.floor((event.clientY - desktop_apps.getBoundingClientRect().top) / el.clientHeight);
+
+        let newDraggedDesktopIconOffsetX = ((-((desktop_apps.getBoundingClientRect().left + (newDraggedDesktopIconX * el.clientWidth)) - event.clientX) / el.clientWidth) - 0.5) * el.clientWidth;
+        let newDraggedDesktopIconOffsetY = ((-((desktop_apps.getBoundingClientRect().top + (newDraggedDesktopIconY * el.clientHeight)) - event.clientY) / el.clientHeight) - 0.5) * el.clientHeight;
+        el.style.transform = `translate(${newDraggedDesktopIconOffsetX}px, ${newDraggedDesktopIconOffsetY}px)`;
+
+        if (newDraggedDesktopIconX != draggedDesktopIconX || newDraggedDesktopIconY != draggedDesktopIconY) {
+            el.style.setProperty('--x', newDraggedDesktopIconX);
+            el.style.setProperty('--y', newDraggedDesktopIconY);
+
+            draggedDesktopIconX = newDraggedDesktopIconX;
+            draggedDesktopIconY = newDraggedDesktopIconY;
+        }
+
+        return;
+    };
+
+    const up = () => {
+        for (let desktopIcon of desktop_apps.children) {
+            if (desktopIcon == el) continue;
+
+            let x = Number(getComputedStyle(desktopIcon).getPropertyValue('--x'));
+            let y = Number(getComputedStyle(desktopIcon).getPropertyValue('--y'));
+
+            if (x == draggedDesktopIconX && y == draggedDesktopIconY) {
+                el.style.setProperty('--x', draggedDesktopIconOriginX);
+                el.style.setProperty('--y', draggedDesktopIconOriginY);
+                break;
+            }
+        }
+
+        removeEventListener("pointermove", move);
+        removeEventListener("pointerup", up);
+        el.style.transform = "none";
+    };
+
+    addEventListener("pointermove", move);
+    addEventListener("pointerup", up);
+}
+
+for (let desktopIcon of desktop_apps.children) {
+    desktopIcon.addEventListener('pointerdown', (event) => {
+        desktopAppHandleDragStart(event);
+    });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function updateTime() {
     const d = new Date();
 
@@ -106,6 +196,14 @@ function updateTime() {
 }
 updateTime();
 setInterval(updateTime, 2000);
+
+
+
+
+
+
+
+
 
 
 
@@ -145,13 +243,6 @@ function startmenu_toggle() {
     }
 }
 
-
-
-
-
-
-
-
 function toggleThemeSwitcher() {
     let element = document.getElementById("theme-switcher");
     if (element.classList.contains("hidden")) {
@@ -161,6 +252,15 @@ function toggleThemeSwitcher() {
         element.classList.add("hidden");
     }
 }
+
+
+
+
+
+
+
+
+
 
 
 
@@ -416,6 +516,9 @@ for (const type in e) {
     if (d == undefined) continue;
     startmenuSearchListElement.insertAdjacentHTML("beforeend", /*html*/`<button onclick="openWindow(WINDOWTYPE.${e[type]}, null)"><img src="${d["img"]}"> <span>${d["title"]}</span></button>`);
 }
+
+
+
 
 
 
@@ -737,7 +840,5 @@ document.addEventListener("mousemove", (event) => {
         }
     }
 });
-
-//spawnWindow(windowBuilder("assets/icons/github.png", "GitHub", windowGithub))
 
 openWindow(WINDOWTYPE.GITHUB, null);

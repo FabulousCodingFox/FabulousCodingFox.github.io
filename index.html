@@ -15,14 +15,27 @@
     <div id="screen">
         <div id="wallpaper"></div>
 
-        <div class="wrapper">
-            <div id="desktop">
+        <div class="desktop-apps-wrapper" style="--w: 16; --h: 10">
+            <div class="fwrapper" id="desktop-apps">
+                <button style="--x: 0; --y:0" ondblclick="openWindow(WINDOWTYPE.GITHUB, null)">
+                    <img src="assets/icons/github.png">
+                    <span>Github</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="wrapper" style="pointer-events: none;">
+            <div id="desktop" style="pointer-events: none;">
                 <div id="theme-switcher" class="hidden" style="display: none;">
                     <div>
-                        <button onclick="applyTheme(THEME.DARK); toggleThemeSwitcher();"><img src="assets/themes/dark.png"><span>Dark</span></button>
-                        <button onclick="applyTheme(THEME.LIGHT); toggleThemeSwitcher();"><img src="assets/themes/light.png"><span>Light</span></button>
-                        <button onclick="applyTheme(THEME.WINDOWS10); toggleThemeSwitcher();"><img src="assets/themes/windows10.png"><span>Windows 10</span></button>
-                        <button onclick="applyTheme(THEME.PAPER); toggleThemeSwitcher();"><img src="assets/themes/paper.png"><span>E-Book</span></button>
+                        <button onclick="applyTheme(THEME.DARK); toggleThemeSwitcher();"><img
+                                src="assets/themes/dark.png"><span>Dark</span></button>
+                        <button onclick="applyTheme(THEME.LIGHT); toggleThemeSwitcher();"><img
+                                src="assets/themes/light.png"><span>Light</span></button>
+                        <button onclick="applyTheme(THEME.WINDOWS10); toggleThemeSwitcher();"><img
+                                src="assets/themes/windows10.png"><span>Windows 10</span></button>
+                        <button onclick="applyTheme(THEME.PAPER); toggleThemeSwitcher();"><img
+                                src="assets/themes/paper.png"><span>E-Book</span></button>
                     </div>
                 </div>
 
