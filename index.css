@@ -5,7 +5,8 @@
   90000 - 900000 -> Fenster
   900000 -  950000 ->  startmenu
   950000 - 1000000 ->  taskbar
-  1000000 -1500000 ->  theme switcher
+  1000005 -> Filter overlay
+  1000010 -1500000 ->  theme switcher
 */
 
 :root {
@@ -723,7 +724,7 @@ body {
     overflow: hidden;
     top: 0px;
     left: 0px;
-    z-index: 1000000;
+    z-index: 1000010;
     backdrop-filter: blur(50px);
 
     display: flex;
@@ -834,7 +835,16 @@ body {
 
 
 
-
+#filter-overlay {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 1000005;
+    backdrop-filter: var(--theme-display-filter);
+    pointer-events: none;
+}
 
 
 
@@ -911,4 +921,3 @@ body {
     white-space: nowrap;
     overflow: hidden;
 }
-
