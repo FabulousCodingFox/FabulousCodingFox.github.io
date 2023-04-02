@@ -137,13 +137,13 @@ function desktopAppHandleDragStart(event) {
     };
 
     const up = () => {
-        for(let desktopIcon of desktop_apps.children) {
-            if (desktopIcon == el) continue; 
+        for (let desktopIcon of desktop_apps.children) {
+            if (desktopIcon == el) continue;
 
             let x = Number(getComputedStyle(desktopIcon).getPropertyValue('--x'));
             let y = Number(getComputedStyle(desktopIcon).getPropertyValue('--y'));
-            
-            if(x == draggedDesktopIconX && y == draggedDesktopIconY) {
+
+            if (x == draggedDesktopIconX && y == draggedDesktopIconY) {
                 el.style.setProperty('--x', draggedDesktopIconOriginX);
                 el.style.setProperty('--y', draggedDesktopIconOriginY);
                 break;
