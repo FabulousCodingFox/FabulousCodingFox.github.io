@@ -26,6 +26,7 @@ let DATA_THEME = {
         "--theme-navbar-container-bg": "transparent",
         "--theme-window-border-radius-multiplier": "1",
         "--theme-window-controls-color": "#fff",
+        "--theme-display-filter": "unset",
 
         "--theme-scrollbar-thumb-color": "#3f3f3f",
         "--theme-scrollbar-thumb-color-hover": "#5e5e5e",
@@ -96,6 +97,7 @@ let DATA_THEME = {
         "--theme-navbar-container-bg": "transparent",
         "--theme-window-border-radius-multiplier": "1",
         "--theme-window-controls-color": "#000",
+        "--theme-display-filter": "unset",
 
         "--theme-scrollbar-thumb-color": "#d0d0d0",
         "--theme-scrollbar-thumb-color-hover": "#b0b0b0",
@@ -166,6 +168,7 @@ let DATA_THEME = {
         "--theme-navbar-container-bg": "#101010",
         "--theme-window-border-radius-multiplier": "0",
         "--theme-window-controls-color": "#fff",
+        "--theme-display-filter": "unset",
 
         "--theme-scrollbar-thumb-color": "#3f3f3f",
         "--theme-scrollbar-thumb-color-hover": "#5e5e5e",
@@ -236,6 +239,7 @@ let DATA_THEME = {
         "--theme-navbar-container-bg": "#000",
         "--theme-window-border-radius-multiplier": "0",
         "--theme-window-controls-color": "#000",
+        "--theme-display-filter": "grayscale(100%)",
 
         "--theme-scrollbar-thumb-color": "#000",
         "--theme-scrollbar-thumb-color-hover": "#000",
