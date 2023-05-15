@@ -9,7 +9,9 @@ const WINDOWTYPE = {
 
     ABOUTME: 'ABOUTME',
     CONTACT: 'CONTACT',
-    RESUME: 'RESUME'
+    RESUME: 'RESUME',
+
+    EXPLORER: 'EXPLORER'
 };
 
 let DATA = {
@@ -313,13 +315,19 @@ for (let taskBarIcon of taskBar.children) {
 
 
 
-
+/*
 let draggedDesktopIcon = null;
 let draggedDesktopIconX = null;
 let draggedDesktopIconY = null;
+let draggedDesktopIconOffsetX = 0;
+let draggedDesktopIconOffsetY = 0;
 let draggedDesktopIconOriginX = null;
 let draggedDesktopIconOriginY = null;
 let desktop_apps = document.querySelector('#desktop-apps');
+
+function clampDivideTwo(number){
+    return (number - (number / 2)) / 2 + (number / 2);
+}
 
 function desktopAppHandleDragStart(event) {
     const el = event.currentTarget;
@@ -328,19 +336,25 @@ function desktopAppHandleDragStart(event) {
     draggedDesktopIconY = Number(getComputedStyle(el).getPropertyValue('--y'));
     draggedDesktopIconOriginX = draggedDesktopIconX;
     draggedDesktopIconOriginY = draggedDesktopIconY;
+    draggedDesktopIconOffsetX = event.clientX - el.getBoundingClientRect().left
+    draggedDesktopIconOffsetY = event.clientY - el.getBoundingClientRect().top
 
     const move = (event) => {
-        let newDraggedDesktopIconX = Math.floor((event.clientX - desktop_apps.getBoundingClientRect().left) / el.clientWidth);
-        let newDraggedDesktopIconY = Math.floor((event.clientY - desktop_apps.getBoundingClientRect().top) / el.clientHeight);
+        let newDraggedDesktopIconMiddleX = event.clientX - draggedDesktopIconOffsetX + (el.clientWidth / 2);
+        let newDraggedDesktopIconMiddleY = event.clientY - draggedDesktopIconOffsetY + (el.clientHeight / 2);
+        let newDraggedDesktopIconX = Math.floor(newDraggedDesktopIconMiddleX / el.clientWidth);
+        let newDraggedDesktopIconY = Math.floor(newDraggedDesktopIconMiddleY / el.clientHeight);
+        let newDraggedDesktopIconOffsetX = (-1 * (clampDivideTwo(draggedDesktopIconOffsetX) - newDraggedDesktopIconMiddleX % el.clientWidth) - 0.5)
+        let newDraggedDesktopIconOffsetY = (-1 * (clampDivideTwo(draggedDesktopIconOffsetY) - newDraggedDesktopIconMiddleY % el.clientHeight) - 0.5)
+        
 
-        let newDraggedDesktopIconOffsetX = ((-((desktop_apps.getBoundingClientRect().left + (newDraggedDesktopIconX * el.clientWidth)) - event.clientX) / el.clientWidth) - 0.5) * el.clientWidth;
-        let newDraggedDesktopIconOffsetY = ((-((desktop_apps.getBoundingClientRect().top + (newDraggedDesktopIconY * el.clientHeight)) - event.clientY) / el.clientHeight) - 0.5) * el.clientHeight;
+        //let newDraggedDesktopIconOffsetX = ((-((desktop_apps.getBoundingClientRect().left + (newDraggedDesktopIconX * el.clientWidth)) - (event.clientX - draggedDesktopIconOffsetX)) / el.clientWidth) - 0.5) * el.clientWidth;
+        //let newDraggedDesktopIconOffsetY = ((-((desktop_apps.getBoundingClientRect().top + (newDraggedDesktopIconY * el.clientHeight)) - (event.clientY - draggedDesktopIconOffsetY)) / el.clientHeight) - 0.5) * el.clientHeight;
         el.style.transform = `translate(${newDraggedDesktopIconOffsetX}px, ${newDraggedDesktopIconOffsetY}px)`;
 
         if (newDraggedDesktopIconX != draggedDesktopIconX || newDraggedDesktopIconY != draggedDesktopIconY) {
             el.style.setProperty('--x', newDraggedDesktopIconX);
             el.style.setProperty('--y', newDraggedDesktopIconY);
-
             draggedDesktopIconX = newDraggedDesktopIconX;
             draggedDesktopIconY = newDraggedDesktopIconY;
         }
@@ -376,16 +390,16 @@ let e = Object.keys(WINDOWTYPE).sort();
 let eCount = 0;
 for (const type in e) {
     const d = DATA[e[type]];
-    if (d == undefined) continue;
-    desktopApps.insertAdjacentHTML("beforeend", /*html*/`<button style="--x: ${eCount}; --y:0" ondblclick="openWindow(WINDOWTYPE.${e[type]}, null)"><img src="${d["img"]}"><span>${d["title"]}</span></button>`);
-    eCount++;
+    if (d == undefined) continue;*/
+    //desktopApps.insertAdjacentHTML("beforeend", /*html*/`<button style="--x: ${eCount}; --y:0" ondblclick="openWindow(WINDOWTYPE.${e[type]}, null)"><img src="${d["img"]}"><span>${d["title"]}</span></button>`);
+    /*eCount++;
 }
 
 for (let desktopIcon of desktop_apps.children) {
     desktopIcon.addEventListener('pointerdown', (event) => {
         desktopAppHandleDragStart(event);
     });
-}
+}*/
 
 
 
@@ -502,16 +516,56 @@ function openWindow(type, icon) {
 }
 
 function windowBuilder(type) {
-    let d = DATA[type];
-
     let width = 0.6 * (window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth);
     let height = 0.8 * (window.innerHeight || document.documentElement.clientHeight || document.getElementsByTagName('body')[0].clientHeight);
 
     let windowPosX = window.innerWidth / 2 - width / 2;
     let windowPosY = window.innerHeight / 2 - height / 2;
 
-    return /*html*/`
+    if(type === WINDOWTYPE.EXPLORER) {
+        return /*html*/`
+        <div class="window-container" style="--w: ${width}px; --h: ${height}px; --window-border-radius: 20px; --x: ${windowPosX}px; --y: ${windowPosY}px;">
+            <div class="fwrapper window-inner-wrapper">
+                <div class="window-border"></div>
+                <div class="window-pane">
+                    <div class="fwrapper">
+                        <div class="topbar">
+                            <div class="title">
+                            <img class="logo" src="assets/icons/explorer.png">
+                                <p>Explorer</p>
+                            </div>
+                            <div class="controls">
+                                <button class="min"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="transform: ;msFilter:;"><path d="M5 11h14v2H5z"></path></svg></button>
+                                <button class="max"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="transform: ;msFilter:;"><path d="M17 2H7C4.243 2 2 4.243 2 7v10c0 2.757 2.243 5 5 5h10c2.757 0 5-2.243 5-5V7c0-2.757-2.243-5-5-5zm3 15c0 1.654-1.346 3-3 3H7c-1.654 0-3-1.346-3-3V7c0-1.654 1.346-3 3-3h10c1.654 0 3 1.346 3 3v10z"></path></svg></button>
+                                <button class="close"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="transform: ;msFilter:;"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm4.207 12.793-1.414 1.414L12 13.414l-2.793 2.793-1.414-1.414L10.586 12 7.793 9.207l1.414-1.414L12 10.586l2.793-2.793 1.414 1.414L13.414 12l2.793 2.793z"></path></svg></button>
+                            </div>
+                        </div>
+                        <div class="content-pane explorer">
+                            <div class="operation-bar">
+                                <button></button>
+                                <button></button>
+                                <button></button>
+                            </div>
+                            <div class="path-bar">
+                                <button>←</button>
+                                <button>→</button>
+                                <button>↑</button>
+                                <input type="text"></input>
+                            </div>
+                            <div class="content">
+                                <div class="sidebar"></div>
+                                <div class="files"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>`
+    }
 
+    let d = DATA[type];
+
+    return /*html*/`
     <div class="window-container" style="--w: ${width}px; --h: ${height}px; --window-border-radius: 20px; --x: ${windowPosX}px; --y: ${windowPosY}px;">
         <div class="fwrapper window-inner-wrapper">
             <div class="window-border"></div>
@@ -534,9 +588,7 @@ function windowBuilder(type) {
                 </div>
             </div>
         </div>
-    </div>
-    
-    `;
+    </div>`;
 }
 
 let startmenuSearchListElement = document.getElementById("startmenu-search-list");
@@ -871,4 +923,6 @@ document.addEventListener("mousemove", (event) => {
     }
 });
 
-openWindow(WINDOWTYPE.GITHUB, null);
+openWindow(WINDOWTYPE.EXPLORER, null);
+//openWindow(WINDOWTYPE.GITHUB, null);
+//openWindow(WINDOWTYPE.GITHUB, null);

@@ -440,7 +440,6 @@ body {
     overflow-y: auto;
     color: var(--theme-content-text-color);
     padding: var(--padding);
-
     transition: color var(--theme-morph-animation-length);
 }
 
@@ -920,4 +919,81 @@ body {
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+}
+
+
+
+
+
+
+
+
+
+
+
+.window-container .content-pane.explorer{
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+}
+
+.window-container .content-pane.explorer>.operation-bar{
+    width: 100%;
+    height: 60px;
+}
+
+.window-container .content-pane.explorer>.path-bar{
+    width: 100%;
+    height: 55px;
+    padding: 4px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    gap: 4px;
+    border-bottom: 1px solid gray;
+}
+
+.window-container .content-pane.explorer>.path-bar>button{
+    height: 100%;
+    aspect-ratio: 1/1;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: gray;
+    font-size: 28px;
+}
+
+.window-container .content-pane.explorer>.path-bar>input{
+    height: 100%;
+    width: 100%;
+    border-radius: 2px;
+    background-color: transparent;
+    border: 1px solid gray;
+    color: white;
+}
+
+.window-container .content-pane.explorer>.content{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+}
+
+.window-container .content-pane.explorer>.content>.sidebar{
+    height: 100%;
+    width: 250px;
+    border-right: 1px solid gray;
+}
+
+.window-container .content-pane.explorer>.content>.files{
+    height: 100%;
+    width: 100%
 }

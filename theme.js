@@ -5,7 +5,7 @@ const THEME = {
     PAPER: 'PAPER'
 };
 
-let currentTheme = localStorage.getItem("THEME");
+var currentTheme = localStorage.getItem("THEME");
 if (currentTheme == null) {
     currentTheme = THEME.DARK;
     localStorage.setItem("THEME", currentTheme);
