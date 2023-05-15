@@ -328,13 +328,24 @@ function desktopAppHandleDragStart(event) {
     draggedDesktopIconY = Number(getComputedStyle(el).getPropertyValue('--y'));
     draggedDesktopIconOriginX = draggedDesktopIconX;
     draggedDesktopIconOriginY = draggedDesktopIconY;
+    draggedDesktopIconOffsetX = event.clientX - el.getBoundingClientRect().left
+    draggedDesktopIconOffsetY = event.clientY - el.getBoundingClientRect().top
 
     const move = (event) => {
         let newDraggedDesktopIconX = Math.floor((event.clientX - desktop_apps.getBoundingClientRect().left) / el.clientWidth);
         let newDraggedDesktopIconY = Math.floor((event.clientY - desktop_apps.getBoundingClientRect().top) / el.clientHeight);
+        let newDraggedDesktopIconMiddleX = event.clientX - draggedDesktopIconOffsetX + (el.clientWidth / 2);
+        let newDraggedDesktopIconMiddleY = event.clientY - draggedDesktopIconOffsetY + (el.clientHeight / 2);
+        let newDraggedDesktopIconX = Math.floor(newDraggedDesktopIconMiddleX / el.clientWidth);
+        let newDraggedDesktopIconY = Math.floor(newDraggedDesktopIconMiddleY / el.clientHeight);
+        let newDraggedDesktopIconOffsetX = (-1 * (clampDivideTwo(draggedDesktopIconOffsetX) - newDraggedDesktopIconMiddleX % el.clientWidth) - 0.5)
+        let newDraggedDesktopIconOffsetY = (-1 * (clampDivideTwo(draggedDesktopIconOffsetY) - newDraggedDesktopIconMiddleY % el.clientHeight) - 0.5)
+        
 
         let newDraggedDesktopIconOffsetX = ((-((desktop_apps.getBoundingClientRect().left + (newDraggedDesktopIconX * el.clientWidth)) - event.clientX) / el.clientWidth) - 0.5) * el.clientWidth;
         let newDraggedDesktopIconOffsetY = ((-((desktop_apps.getBoundingClientRect().top + (newDraggedDesktopIconY * el.clientHeight)) - event.clientY) / el.clientHeight) - 0.5) * el.clientHeight;
+        //let newDraggedDesktopIconOffsetX = ((-((desktop_apps.getBoundingClientRect().left + (newDraggedDesktopIconX * el.clientWidth)) - (event.clientX - draggedDesktopIconOffsetX)) / el.clientWidth) - 0.5) * el.clientWidth;
+        //let newDraggedDesktopIconOffsetY = ((-((desktop_apps.getBoundingClientRect().top + (newDraggedDesktopIconY * el.clientHeight)) - (event.clientY - draggedDesktopIconOffsetY)) / el.clientHeight) - 0.5) * el.clientHeight;
         el.style.transform = `translate(${newDraggedDesktopIconOffsetX}px, ${newDraggedDesktopIconOffsetY}px)`;
 
         if (newDraggedDesktopIconX != draggedDesktopIconX || newDraggedDesktopIconY != draggedDesktopIconY) {
