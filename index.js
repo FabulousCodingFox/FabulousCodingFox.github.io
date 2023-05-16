@@ -208,14 +208,12 @@ let DATA = {
 
 
 
-
-
-let draggedTaskBarIcon = null;
-let draggedTaskBarIconIndex = null;
-let taskBar = document.querySelector('#taskbar-apps');
+var dragged_taskbar_icon_index = null
+var dragged_taskbar_icon_offset = null
+var taskbar = document.querySelector('#taskbar-apps')
 
 function rebuildTaskBar() {
-    let icons = [...taskBar.children];
+    let icons = [...taskbar.children];
     icons.sort((a, b) => {
         let aIndex = Number(getComputedStyle(a).getPropertyValue('--index'));
         let bIndex = Number(getComputedStyle(b).getPropertyValue('--index'));
@@ -236,24 +234,27 @@ function taskBarAppHandleDragStart(event) {
     const el = event.currentTarget;
 
     el.classList.add('dragged');
-    taskBar.classList.remove('static');
+    taskbar.classList.remove('static');
 
-    draggedTaskBarIconIndex = Number(getComputedStyle(el).getPropertyValue('--index'));
+    dragged_taskbar_icon_index = Number(getComputedStyle(el).getPropertyValue('--index'));
+    dragged_taskbar_icon_offset = Math.abs(event.clientX - el.getBoundingClientRect().left);
 
     const move = (event) => {
-        let btnSize = 50;
-        let maxAmount = Number(getComputedStyle(taskBar).getPropertyValue('--app-amount'));
+        let btnSize = el.getBoundingClientRect().width;
+        let maxAmount = Number(getComputedStyle(taskbar).getPropertyValue('--app-amount'));
 
-        let newDraggedTaskBarIconIndex = Math.floor((event.clientX - taskBar.getBoundingClientRect().left) / btnSize);
-        let draggedTaskBarIconOffset = (-((taskBar.getBoundingClientRect().left + (newDraggedTaskBarIconIndex * btnSize)) - event.clientX) / btnSize) - 0.5;
-        if (newDraggedTaskBarIconIndex < 0 || (newDraggedTaskBarIconIndex == 0 && draggedTaskBarIconOffset < 0)) draggedTaskBarIconOffset = 0;
-        if (newDraggedTaskBarIconIndex > maxAmount - 1 || (newDraggedTaskBarIconIndex == maxAmount - 1 && draggedTaskBarIconOffset > 0)) draggedTaskBarIconOffset = 0;
-        el.style.setProperty('--offset', draggedTaskBarIconOffset);
+        let new_dragged_taskbar_icon_center_x = (event.clientX - taskbar.getBoundingClientRect().left) - dragged_taskbar_icon_offset + (btnSize / 2);
+        let new_dragged_taskbar_icon_index = Math.round((new_dragged_taskbar_icon_center_x - btnSize * 0.5) / btnSize)
+        let new_dragged_taskbar_icon_offset_x = (new_dragged_taskbar_icon_center_x - new_dragged_taskbar_icon_index * btnSize - 0.5 * btnSize) / btnSize;
 
-        if (newDraggedTaskBarIconIndex != draggedTaskBarIconIndex) {
-            el.style.setProperty('--index', Math.min(maxAmount - 1, Math.max(0, newDraggedTaskBarIconIndex)));
+        if (new_dragged_taskbar_icon_index < 0 || (new_dragged_taskbar_icon_offset_x == 0 && new_dragged_taskbar_icon_offset_x < 0)) new_dragged_taskbar_icon_offset_x = 0;
+        if (new_dragged_taskbar_icon_index > maxAmount - 1 || (new_dragged_taskbar_icon_index == maxAmount - 1 && new_dragged_taskbar_icon_offset_x > 0)) new_dragged_taskbar_icon_offset_x = 0;
+        el.style.setProperty('--offset', new_dragged_taskbar_icon_offset_x);
+
+        if (new_dragged_taskbar_icon_index != dragged_taskbar_icon_index) {
+            el.style.setProperty('--index', Math.min(maxAmount - 1, Math.max(0, new_dragged_taskbar_icon_index)));
             //Rebuild all indexes
-            let icons = [...taskBar.children];
+            let icons = [...taskbar.children];
             //Remove the dragged item from the list
             for (let i = 0; i < icons.length; i++) {
                 if (icons[i] === el) {
@@ -266,14 +267,14 @@ function taskBarAppHandleDragStart(event) {
                 return aIndex - bIndex;
             });
             let i = -1;
-            icons.splice(Math.min(maxAmount - 1, Math.max(0, newDraggedTaskBarIconIndex)), 0, el)
+            icons.splice(Math.min(maxAmount - 1, Math.max(0, new_dragged_taskbar_icon_index)), 0, el)
             for (let icon of icons) {
                 i++;
                 if (icon === el) continue;
                 icon.style.setProperty('--index', i);
             }
 
-            draggedTaskBarIconIndex = newDraggedTaskBarIconIndex;
+            dragged_taskbar_icon_index = new_dragged_taskbar_icon_index;
         }
     };
 
@@ -282,14 +283,14 @@ function taskBarAppHandleDragStart(event) {
         removeEventListener("pointerup", up);
         el.style.setProperty('--offset', "0");
         el.classList.remove('dragged');
-        taskBar.classList.add('static');
+        taskbar.classList.add('static');
     };
 
     addEventListener("pointermove", move);
     addEventListener("pointerup", up);
 }
 
-for (let taskBarIcon of taskBar.children) {
+for (let taskBarIcon of taskbar.children) {
     taskBarIcon.addEventListener('pointerdown', (event) => {
         taskBarAppHandleDragStart(event);
     });
@@ -308,14 +309,13 @@ for (let taskBarIcon of taskBar.children) {
 
 
 
-let dragged_dektop_icon_element = null;
-let dragged_dektop_icon_x = null;
-let dragged_dektop_icon_y = null;
-let dragged_dektop_icon_offset_x = 0;
-let dragged_dektop_icon_offset_y = 0;
-let dragged_dektop_icon_origin_x = null;
-let dragged_dektop_icon_origin_y = null;
-let desktop_apps = document.querySelector('#desktop-apps');
+var dragged_dektop_icon_x = null;
+var dragged_dektop_icon_y = null;
+var dragged_dektop_icon_offset_x = 0;
+var dragged_dektop_icon_offset_y = 0;
+var dragged_dektop_icon_origin_x = null;
+var dragged_dektop_icon_origin_y = null;
+var desktop_apps = document.querySelector('#desktop-apps');
 
 function desktopAppHandleDragStart(event) {
     const el = event.currentTarget;
