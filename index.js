@@ -208,14 +208,12 @@ let DATA = {
 
 
 
-
-
-let draggedTaskBarIcon = null;
-let draggedTaskBarIconIndex = null;
-let taskBar = document.querySelector('#taskbar-apps');
+var dragged_taskbar_icon_index = null
+var dragged_taskbar_icon_offset = null
+var taskbar = document.querySelector('#taskbar-apps')
 
 function rebuildTaskBar() {
-    let icons = [...taskBar.children];
+    let icons = [...taskbar.children];
     icons.sort((a, b) => {
         let aIndex = Number(getComputedStyle(a).getPropertyValue('--index'));
         let bIndex = Number(getComputedStyle(b).getPropertyValue('--index'));
@@ -236,24 +234,27 @@ function taskBarAppHandleDragStart(event) {
     const el = event.currentTarget;
 
     el.classList.add('dragged');
-    taskBar.classList.remove('static');
+    taskbar.classList.remove('static');
 
-    draggedTaskBarIconIndex = Number(getComputedStyle(el).getPropertyValue('--index'));
+    dragged_taskbar_icon_index = Number(getComputedStyle(el).getPropertyValue('--index'));
+    dragged_taskbar_icon_offset = Math.abs(event.clientX - el.getBoundingClientRect().left);
 
     const move = (event) => {
-        let btnSize = 50;
-        let maxAmount = Number(getComputedStyle(taskBar).getPropertyValue('--app-amount'));
+        let btnSize = el.getBoundingClientRect().width;
+        let maxAmount = Number(getComputedStyle(taskbar).getPropertyValue('--app-amount'));
 
-        let newDraggedTaskBarIconIndex = Math.floor((event.clientX - taskBar.getBoundingClientRect().left) / btnSize);
-        let draggedTaskBarIconOffset = (-((taskBar.getBoundingClientRect().left + (newDraggedTaskBarIconIndex * btnSize)) - event.clientX) / btnSize) - 0.5;
-        if (newDraggedTaskBarIconIndex < 0 || (newDraggedTaskBarIconIndex == 0 && draggedTaskBarIconOffset < 0)) draggedTaskBarIconOffset = 0;
-        if (newDraggedTaskBarIconIndex > maxAmount - 1 || (newDraggedTaskBarIconIndex == maxAmount - 1 && draggedTaskBarIconOffset > 0)) draggedTaskBarIconOffset = 0;
-        el.style.setProperty('--offset', draggedTaskBarIconOffset);
+        let new_dragged_taskbar_icon_center_x = (event.clientX - taskbar.getBoundingClientRect().left) - dragged_taskbar_icon_offset + (btnSize / 2);
+        let new_dragged_taskbar_icon_index = Math.round((new_dragged_taskbar_icon_center_x - btnSize * 0.5) / btnSize)
+        let new_dragged_taskbar_icon_offset_x = (new_dragged_taskbar_icon_center_x - new_dragged_taskbar_icon_index * btnSize - 0.5 * btnSize) / btnSize;
 
-        if (newDraggedTaskBarIconIndex != draggedTaskBarIconIndex) {
-            el.style.setProperty('--index', Math.min(maxAmount - 1, Math.max(0, newDraggedTaskBarIconIndex)));
+        if (new_dragged_taskbar_icon_index < 0 || (new_dragged_taskbar_icon_offset_x == 0 && new_dragged_taskbar_icon_offset_x < 0)) new_dragged_taskbar_icon_offset_x = 0;
+        if (new_dragged_taskbar_icon_index > maxAmount - 1 || (new_dragged_taskbar_icon_index == maxAmount - 1 && new_dragged_taskbar_icon_offset_x > 0)) new_dragged_taskbar_icon_offset_x = 0;
+        el.style.setProperty('--offset', new_dragged_taskbar_icon_offset_x);
+
+        if (new_dragged_taskbar_icon_index != dragged_taskbar_icon_index) {
+            el.style.setProperty('--index', Math.min(maxAmount - 1, Math.max(0, new_dragged_taskbar_icon_index)));
             //Rebuild all indexes
-            let icons = [...taskBar.children];
+            let icons = [...taskbar.children];
             //Remove the dragged item from the list
             for (let i = 0; i < icons.length; i++) {
                 if (icons[i] === el) {
@@ -266,14 +267,14 @@ function taskBarAppHandleDragStart(event) {
                 return aIndex - bIndex;
             });
             let i = -1;
-            icons.splice(Math.min(maxAmount - 1, Math.max(0, newDraggedTaskBarIconIndex)), 0, el)
+            icons.splice(Math.min(maxAmount - 1, Math.max(0, new_dragged_taskbar_icon_index)), 0, el)
             for (let icon of icons) {
                 i++;
                 if (icon === el) continue;
                 icon.style.setProperty('--index', i);
             }
 
-            draggedTaskBarIconIndex = newDraggedTaskBarIconIndex;
+            dragged_taskbar_icon_index = new_dragged_taskbar_icon_index;
         }
     };
 
@@ -282,14 +283,14 @@ function taskBarAppHandleDragStart(event) {
         removeEventListener("pointerup", up);
         el.style.setProperty('--offset', "0");
         el.classList.remove('dragged');
-        taskBar.classList.add('static');
+        taskbar.classList.add('static');
     };
 
     addEventListener("pointermove", move);
     addEventListener("pointerup", up);
 }
 
-for (let taskBarIcon of taskBar.children) {
+for (let taskBarIcon of taskbar.children) {
     taskBarIcon.addEventListener('pointerdown', (event) => {
         taskBarAppHandleDragStart(event);
     });
@@ -308,45 +309,43 @@ for (let taskBarIcon of taskBar.children) {
 
 
 
-
-
-
-
-
-
-let draggedDesktopIcon = null;
-let draggedDesktopIconX = null;
-let draggedDesktopIconY = null;
-let draggedDesktopIconOriginX = null;
-let draggedDesktopIconOriginY = null;
-let desktop_apps = document.querySelector('#desktop-apps');
+var dragged_dektop_icon_x = null;
+var dragged_dektop_icon_y = null;
+var dragged_dektop_icon_offset_x = 0;
+var dragged_dektop_icon_offset_y = 0;
+var dragged_dektop_icon_origin_x = null;
+var dragged_dektop_icon_origin_y = null;
+var desktop_apps = document.querySelector('#desktop-apps');
 
 function desktopAppHandleDragStart(event) {
     const el = event.currentTarget;
 
-    draggedDesktopIconX = Number(getComputedStyle(el).getPropertyValue('--x'));
-    draggedDesktopIconY = Number(getComputedStyle(el).getPropertyValue('--y'));
-    draggedDesktopIconOriginX = draggedDesktopIconX;
-    draggedDesktopIconOriginY = draggedDesktopIconY;
+    dragged_dektop_icon_x = Number(getComputedStyle(el).getPropertyValue('--x'));
+    dragged_dektop_icon_y = Number(getComputedStyle(el).getPropertyValue('--y'));
+    dragged_dektop_icon_origin_x = dragged_dektop_icon_x;
+    dragged_dektop_icon_origin_y = dragged_dektop_icon_y;
+    dragged_dektop_icon_offset_x = Math.abs(el.getBoundingClientRect().left - event.clientX);
+    dragged_dektop_icon_offset_y = Math.abs(el.getBoundingClientRect().top - event.clientY);
 
     const move = (event) => {
-        let newDraggedDesktopIconX = Math.floor((event.clientX - desktop_apps.getBoundingClientRect().left) / el.clientWidth);
-        let newDraggedDesktopIconY = Math.floor((event.clientY - desktop_apps.getBoundingClientRect().top) / el.clientHeight);
+        let new_dragged_dektop_icon_center_x = event.clientX - dragged_dektop_icon_offset_x + (el.getBoundingClientRect().width / 2);
+        let new_dragged_dektop_icon_center_y = event.clientY - dragged_dektop_icon_offset_y + (el.getBoundingClientRect().height / 2);
+        let new_dragged_dektop_icon_x = Math.round((new_dragged_dektop_icon_center_x - el.clientWidth * 0.5) / el.clientWidth)
+        let new_dragged_dektop_icon_y = Math.round((new_dragged_dektop_icon_center_y - el.clientHeight * 0.5) / el.clientHeight)
+        let new_dragged_dektop_icon_offset_x = new_dragged_dektop_icon_center_x - new_dragged_dektop_icon_x * el.clientWidth - 0.5 * el.clientWidth;
+        let new_dragged_dektop_icon_offset_y = new_dragged_dektop_icon_center_y - new_dragged_dektop_icon_y * el.clientHeight - 0.5 * el.clientHeight;
+        el.style.transform = `translate(${new_dragged_dektop_icon_offset_x}px, ${new_dragged_dektop_icon_offset_y}px)`;
 
-        let newDraggedDesktopIconOffsetX = ((-((desktop_apps.getBoundingClientRect().left + (newDraggedDesktopIconX * el.clientWidth)) - event.clientX) / el.clientWidth) - 0.5) * el.clientWidth;
-        let newDraggedDesktopIconOffsetY = ((-((desktop_apps.getBoundingClientRect().top + (newDraggedDesktopIconY * el.clientHeight)) - event.clientY) / el.clientHeight) - 0.5) * el.clientHeight;
-        el.style.transform = `translate(${newDraggedDesktopIconOffsetX}px, ${newDraggedDesktopIconOffsetY}px)`;
-
-        if (newDraggedDesktopIconX != draggedDesktopIconX || newDraggedDesktopIconY != draggedDesktopIconY) {
-            el.style.setProperty('--x', newDraggedDesktopIconX);
-            el.style.setProperty('--y', newDraggedDesktopIconY);
-
-            draggedDesktopIconX = newDraggedDesktopIconX;
-            draggedDesktopIconY = newDraggedDesktopIconY;
+        if (new_dragged_dektop_icon_x != dragged_dektop_icon_x || new_dragged_dektop_icon_y != dragged_dektop_icon_y) {
+            el.style.setProperty('--x', new_dragged_dektop_icon_x);
+            el.style.setProperty('--y', new_dragged_dektop_icon_y);
+            dragged_dektop_icon_x = new_dragged_dektop_icon_x;
+            dragged_dektop_icon_y = new_dragged_dektop_icon_y;
         }
 
         return;
-    };
+
+    }
 
     const up = () => {
         for (let desktopIcon of desktop_apps.children) {
@@ -355,9 +354,9 @@ function desktopAppHandleDragStart(event) {
             let x = Number(getComputedStyle(desktopIcon).getPropertyValue('--x'));
             let y = Number(getComputedStyle(desktopIcon).getPropertyValue('--y'));
 
-            if (x == draggedDesktopIconX && y == draggedDesktopIconY) {
-                el.style.setProperty('--x', draggedDesktopIconOriginX);
-                el.style.setProperty('--y', draggedDesktopIconOriginY);
+            if (x == dragged_dektop_icon_x && y == dragged_dektop_icon_y) {
+                el.style.setProperty('--x', dragged_dektop_icon_origin_x);
+                el.style.setProperty('--y', dragged_dektop_icon_origin_y);
                 break;
             }
         }
