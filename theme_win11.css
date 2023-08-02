@@ -1,0 +1,37 @@
+:root{
+    --taskbar-height: 47px;
+    --taskbar-button-gap: 4px;
+    --taskbar-button-pad: 8px;
+    --taskbar-blur: 30px;
+}
+
+#desktop-pane-taskbar{
+    border-top: 1px solid #434343;
+}
+
+#desktop-pane-taskbar-content{
+    padding-left: 9px;
+}
+
+#desktop-pane-taskbar-bg{
+    backdrop-filter: blur(var(--taskbar-blur));
+}
+
+#desktop-pane-taskbar-content{
+    /*background-color: rgba(30 30 30 / 20%);*/
+
+    background-image: linear-gradient(
+        to right, 
+        rgba(30 30 30 / 80%), 
+        rgba(30 30 30 / 30%), 
+        rgba(30 30 30 / 80%)
+    );
+}
+
+#desktop-pane-taskbar-content > .section > button{
+    border-radius: 3px;
+}
+
+#desktop-pane-taskbar-content > .section > button:hover{
+    background-color: rgba(204 204 204 / 15%);
+}

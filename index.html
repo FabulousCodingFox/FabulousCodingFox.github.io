@@ -1,124 +1,42 @@
 <!DOCTYPE html>
-<html>
+<html class="full nopad" lang="en">
 
 <head>
     <title>FabulousFox</title>
 
     <link rel="stylesheet" type="text/css" href="index.css">
+    <link rel="stylesheet" type="text/css" href="theme_win11.css">
     <script src="theme.js"></script>
     <script src="index.js" defer></script>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 
-<body>
+<body class="full rel nopad">
+    <div class="root-desktop-pane full absTopLeft nointeract">
+        <div class="full rel">
+            <div id="desktop-pane-bg" class="full absTopLeft noOverflow">
+                <video src="assets/background/synthwave.mp4" autoplay muted loop disablePictureInPicture class="mediaFullFit"></video>
+            </div>
 
-    <div id="screen">
-        <div id="wallpaper"></div>
-
-        <div class="desktop-apps-wrapper" style="--w: 16; --h: 10">
-            <div class="fwrapper" id="desktop-apps"></div>
-        </div>
-
-        <div class="wrapper" style="pointer-events: none;">
-            <div id="desktop" style="pointer-events: none;">
-                <div id="theme-switcher" class="hidden" style="display: none;">
-                    <div>
-                        <button onclick="applyTheme(THEME.DARK); toggleThemeSwitcher();"><img
-                                src="assets/themes/dark.png"><span>Dark</span></button>
-                        <button onclick="applyTheme(THEME.LIGHT); toggleThemeSwitcher();"><img
-                                src="assets/themes/light.png"><span>Light</span></button>
-                        <button onclick="applyTheme(THEME.WINDOWS10); toggleThemeSwitcher();"><img
-                                src="assets/themes/windows10.png"><span>Windows 10</span></button>
-                        <button onclick="applyTheme(THEME.PAPER); toggleThemeSwitcher();"><img
-                                src="assets/themes/paper.png"><span>E-Book</span></button>
-                    </div>
-                </div>
-
-                <div id="taskbar">
-                    <div>
-                        <div class="taskbar-startmenu">
-                            <button class="" onclick="startmenu_toggle()"><span></span><img
-                                    src="assets/icons/windows.png"></button>
+            <div id="desktop-pane-taskbar" class="noOverflow">
+                <div class="full rel">
+                    <div id="desktop-pane-taskbar-bg" class="full noOverflow"></div>
+                    <div id="desktop-pane-taskbar-content" class="full noOverflow">
+                        <div class="section l noOverflow rel">
+                            <button class="rel"><img class="nointeract" src="assets/icons/windows.png"></button>
                         </div>
-
-                        <div id="taskbar-apps" class="static" style="--app-amount: 0;">
+                        <div class="section m noOverflow rel">
+                            <button class="rel"><img class="nointeract" src="assets/icons/github.png"></button>
+                            <button class="rel"><img class="nointeract" src="assets/icons/spotify.png"></button>
+                            <button class="rel"><img class="nointeract" src="assets/icons/java.png"></button>
                         </div>
-                    </div>
-
-                    <div>
-                        <div id="taskbar-settings">
-                            <button><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"
-                                    viewBox="0 0 24 24">
-                                    <path
-                                        d="M16 21c3.527-1.547 5.999-4.909 5.999-9S19.527 4.547 16 3v2c2.387 1.386 3.999 4.047 3.999 7S18.387 17.614 16 19v2z">
-                                    </path>
-                                    <path
-                                        d="M16 7v10c1.225-1.1 2-3.229 2-5s-.775-3.9-2-5zM4 17h2.697l5.748 3.832a1.004 1.004 0 0 0 1.027.05A1 1 0 0 0 14 20V4a1 1 0 0 0-1.554-.832L6.697 7H4c-1.103 0-2 .897-2 2v6c0 1.103.897 2 2 2zm0-8h3c.033 0 .061-.016.093-.019a1.027 1.027 0 0 0 .38-.116c.026-.015.057-.017.082-.033L12 5.868v12.264l-4.445-2.964c-.025-.017-.056-.02-.082-.033a.986.986 0 0 0-.382-.116C7.059 15.016 7.032 15 7 15H4V9z">
-                                    </path>
-                                </svg></button>
-
-                            <button onclick="toggleThemeSwitcher()"><svg xmlns="http://www.w3.org/2000/svg" width="100%"
-                                    height="100%" viewBox="0 0 24 24">
-                                    <path
-                                        d="M20.742 13.045a8.088 8.088 0 0 1-2.077.271c-2.135 0-4.14-.83-5.646-2.336a8.025 8.025 0 0 1-2.064-7.723A1 1 0 0 0 9.73 2.034a10.014 10.014 0 0 0-4.489 2.582c-3.898 3.898-3.898 10.243 0 14.143a9.937 9.937 0 0 0 7.072 2.93 9.93 9.93 0 0 0 7.07-2.929 10.007 10.007 0 0 0 2.583-4.491 1.001 1.001 0 0 0-1.224-1.224zm-2.772 4.301a7.947 7.947 0 0 1-5.656 2.343 7.953 7.953 0 0 1-5.658-2.344c-3.118-3.119-3.118-8.195 0-11.314a7.923 7.923 0 0 1 2.06-1.483 10.027 10.027 0 0 0 2.89 7.848 9.972 9.972 0 0 0 7.848 2.891 8.036 8.036 0 0 1-1.484 2.059z">
-                                    </path>
-                                </svg></button>
-                        </div>
-
-                        <div id="taskbar-info">
-                            <p class="date"></p>
-                            <p class="time"></p>
-                            <img src="assets/icons/avatar.gif">
-                        </div>
-                    </div>
-                </div>
-
-                <div id="startmenu" class="window-container hidden"
-                    style="--w: var(--startmenu-width); --h: var(--startmenu-height); display: none; --x: 0px; --y: 0px; --window-border-radius: var(--startmenu-border-radius);">
-                    <div class="fwrapper window-inner-wrapper">
-                        <div class="window-border"></div>
-                        <div class="window-pane">
-                            <div class="fwrapper">
-                                <div class="content-pane">
-                                    <div class="info">
-                                        <div class="account">
-                                            <img src="assets/icons/avatar.gif">
-                                            <div class="name">FabulousCodingFox</div>
-                                            <div class="email">TODO: Email</div>
-                                        </div>
-                                        <div class="time"></div>
-                                    </div>
-
-                                    <div class="apps">
-                                        <div class="search">
-                                            <input type="text" placeholder="Type here to search"
-                                                onkeyup="startmenu_search_ontype()" id="startmenu-search-input">
-                                            <div class="list" id="startmenu-search-list"></div>
-                                        </div>
-
-                                        <div class="pinned">
-                                            <div class="topbar">
-                                                <div>Pinned</div>
-                                            </div>
-                                            <div class="items" style="--items-per-row: 6">
-                                                <button class="item" onclick="openWindow(WINDOWTYPE.GITHUB)">
-                                                    <img src="assets/icons/github.png">
-                                                    <div>Github</div>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <div class="section r noOverflow rel"></div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-    <div id="filter-overlay"></div>
-
+    <!--div class="root-window-pane full absTopLeft"></div-->
 </body>
 
 </html>
