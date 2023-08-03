@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="full nopad" lang="en">
+<html class="full rel nopad" lang="en">
 
 <head>
     <title>FabulousFox</title>
@@ -21,14 +21,11 @@
             <div id="desktop-pane-taskbar" class="noOverflow">
                 <div class="full rel">
                     <div id="desktop-pane-taskbar-bg" class="full noOverflow"></div>
-                    <div id="desktop-pane-taskbar-content" class="full noOverflow">
-                        <div class="section l noOverflow rel">
-                            <button class="rel"><img class="nointeract" src="assets/icons/windows.png"></button>
+                    <div id="desktop-pane-taskbar-content" class="interact full noOverflow">
+                        <div class="section l noOverflow rel interact">
+                            <button class="rel interact nopad"><img class="nointeract" src="assets/icons/windows.png"></button>
                         </div>
-                        <div class="section m noOverflow rel">
-                            <button class="rel"><img class="nointeract" src="assets/icons/github.png"></button>
-                            <button class="rel"><img class="nointeract" src="assets/icons/spotify.png"></button>
-                            <button class="rel"><img class="nointeract" src="assets/icons/java.png"></button>
+                        <div class="section m noOverflow rel interact" id="taskbar-apps" style="--app-amount: 3">
                         </div>
                         <div class="section r noOverflow rel"></div>
                     </div>
@@ -37,6 +34,10 @@
         </div>
     </div>
     <!--div class="root-window-pane full absTopLeft"></div-->
+    <div class="root-window-pane absTopLeft">
+        <div class="full rel" id="windowInsertContainer">
+        </div>
+    </div>
 </body>
 
 </html>
