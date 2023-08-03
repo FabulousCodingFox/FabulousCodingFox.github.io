@@ -1,0 +1,63 @@
+#desktop-pane-taskbar
+    z-index: 950000
+    position: absolute
+    bottom: 0
+    left: 0
+    height: var(--taskbar-height)
+    width: 100%
+
+#desktop-pane-taskbar-content
+    transform: translateY(-100%)
+    height: var(--taskbar-height)
+    display: flex
+    flex-direction: row
+    flex-wrap: nowrap
+    justify-content: flex-start
+    align-items: center
+
+    >.section
+        height: 100%
+        display: flex
+        flex-direction: row
+        flex-wrap: nowrap
+        justify-content: flex-start
+        align-items: center
+        padding: var(--taskbar-button-gap)
+        padding-right: 0
+        gap: var(--taskbar-button-gap)
+
+        >button
+            --btn-width: calc(var(--taskbar-height) - var(--taskbar-button-gap) - var(--taskbar-button-gap))
+            height: var(--btn-width)
+            width: var(--btn-width)
+            background-color: unset
+            border: none
+            border-radius: 0
+
+            &.dragged
+                transition: left 0s ease-in-out
+                z-index: 1000000
+
+            img
+                object-fit: contain
+                height: calc(100% - var(--taskbar-button-pad) - var(--taskbar-button-pad))
+                width: calc(100% - var(--taskbar-button-pad) - var(--taskbar-button-pad))
+            
+            span 
+                position: absolute
+                bottom: 0
+                left: 50%
+                transform: translateX(-50%)
+                height: var(--taskbar-icon-open-height)
+                width: 0
+                background-color: var(--taskbar-icon-open-color)
+        
+        button.open span
+            width: var(--taskbar-icon-open-width)
+        
+        button.active span
+            width: var(--taskbar-icon-active-width)
+            background-color: var(--taskbar-icon-active-color)
+    
+#taskbar-apps
+    width: calc(var(--taskbar-height) * var(--app-amount))

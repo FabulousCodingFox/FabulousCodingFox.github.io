@@ -1,0 +1,43 @@
+.window-container
+    position: absolute
+    top: var(--y)
+    left: var(--x)
+    width: var(--w)
+    height: var(--h)
+
+    .layerBgFilter{
+        backdrop-filter: blur(30px)
+
+    .layerTopBar-topbar{
+        position: absolute
+        top: var(--window-visual-border-size)
+        left: var(--window-visual-border-size)
+        width: calc(100% - var(--window-visual-border-size) - var(--window-visual-border-size))
+        height: var(--window-topbar-height)
+        border-bottom: 1px solid #ccc
+        display: flex
+        flex-direction: row
+        flex-wrap: nowrap
+        justify-content: space-between
+        align-items: center
+        
+        &>img, &>span
+            height: var(--window-topbar-logo-size)
+            margin: 0px calc(calc(var(--window-topbar-height) - var(--window-topbar-logo-size)) / 2)
+
+
+        button
+            width: var(--window-topbar-button-width)
+            height: 100%
+            background-color: unset
+            border: none
+            border-radius: 0
+
+            svg
+                height: var(--window-topbar-icon-size)
+                object-fit: cover
+                color: var(--text-color)
+
+                path
+                    fill: var(--text-color)
+                    color: var(--text-color)

@@ -179,7 +179,7 @@ function windowBuilder(type) {
                 <div class="window-container-border full"></div>
             </div>
             <div class="full rel" style="transform: translateY(-200%);">
-                <div class="window-container-body">
+                <div class="window-container-body reinteract">
                     ${d["content"]}
                 </div>
             </div>
@@ -411,7 +411,7 @@ class Window {
             this.parentWindowContainerElement.style.setProperty('--y', this.windowPosY + "px");
             this.parentWindowContainerElement.style.setProperty('--w', this.windowWidth + "px");
             this.parentWindowContainerElement.style.setProperty('--h', this.windowHeight + "px");
-            this.parentWindowContainerElement.style.setProperty('--window-border-radius', "20px")
+            this.parentWindowContainerElement.style.setProperty('--window-border-radius', "5px")
         } else {
             this.parentWindowContainerElement.style.setProperty('--x', 0 + "px");
             this.parentWindowContainerElement.style.setProperty('--y', 0 + "px");
@@ -547,4 +547,4 @@ document.addEventListener("mousemove", (event) => {
     }
 });
 
-openWindow("github", "assets/icons/github.png")
+openWindow("github", null)
