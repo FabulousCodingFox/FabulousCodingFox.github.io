@@ -1,0 +1,100 @@
+$TRANSITION: 0.1s ease-in-out
+$HOVERCOL: rgba(204 204 204 / 20%)
+    
+:root
+    --taskbar-height: 47px
+    --taskbar-button-gap: 4px
+    --taskbar-button-pad: 8px
+    --taskbar-blur: 30px
+
+    --taskbar-icon-open-height: 3px
+    --taskbar-icon-open-width: 15%
+    --taskbar-icon-open-color: #a99ba5
+    --taskbar-icon-active-width: 50%
+    --taskbar-icon-active-color: #0078d4
+
+    --window-border-radius: 5px
+    --window-border-visible: 0
+
+    --window-topbar-height: 40px
+    --window-topbar-icon-size: 15px
+    --window-topbar-button-width: 60px
+    --window-topbar-logo-size: 20px
+
+    --text-color: white
+
+::-webkit-scrollbar 
+    width: 10px
+
+::-webkit-scrollbar-track 
+    border-radius: 5px
+
+::-webkit-scrollbar-thumb 
+    background: var(--theme-scrollbar-thumb-color)
+    border-radius: 5px
+
+::-webkit-scrollbar-thumb:hover 
+    background: var(--theme-scrollbar-thumb-color-hover)
+
+#desktop-pane-taskbar 
+    border-top: 1px solid #434343
+
+
+#desktop-pane-taskbar-content 
+    padding-left: 9px
+    background-image: linear-gradient(to right,rgba(30 30 30 / 80%),rgba(30 30 30 / 30%),rgba(30 30 30 / 80%))
+
+    >.section
+        >button 
+            border-radius: 3px
+            transition: background-color $TRANSITION
+
+            span
+                border-radius: 3px
+                transition: width $TRANSITION, background-color $TRANSITION
+
+
+#desktop-pane-taskbar-bg 
+    backdrop-filter: blur(var(--taskbar-blur))
+
+
+#desktop-pane-taskbar-content>.section:not(.nonstatic)>button:hover 
+    background-color: $HOVERCOL
+
+.root-window-pane 
+    height: calc(100% - var(--taskbar-height))
+
+.window-container .layerTopBarButtons-topbar button
+    transition: background-color $TRANSITION
+    &:hover
+        background-color: $HOVERCOL
+    &.close:hover
+        background-color: rgba(245 0 0 / 60%)
+
+.window-container .layerBackground
+    background-color: rgba(30 30 30 / 100%)
+
+@keyframes windowMinimizeAnimation
+    0%
+        transform: scale(100%) translateY(0vh)
+        opacity: 100%
+    100%
+        transform: translateY(100vh)
+        opacity: 50%
+
+@keyframes windowCloseAnimation
+    0%
+        opacity: 100%
+    100%
+        opacity: 0%
+
+.window-container .layerContent
+    color: var(--text-color)
+
+#desktop-pane-desktop
+    height: calc(100% - var(--taskbar-height))
+
+#desktopInsertContainer
+    >div.selection
+        border: 1px solid #0078d7
+        background-color: rgba(0 120 215 / 20%)

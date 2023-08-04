@@ -1,12 +1,16 @@
 .window-container
+    display: block
     position: absolute
     top: var(--y)
     left: var(--x)
     width: var(--w)
     height: var(--h)
 
-    .layerBgFilter
-        backdrop-filter: blur(30px)
+    --wbr: var(--window-border-radius)
+    border-radius: var(--wbr)
+
+    >*, >*>*
+        border-radius: var(--wbr)
 
     .layerTopBar-topbar
         position: absolute
@@ -20,10 +24,25 @@
         flex-wrap: nowrap
         justify-content: space-between
         align-items: center
+        color: var(--text-color)
 
-        &>img, &>span
+        >div
+            color: var(--text-color)
+            pointer-events: none
+            user-select: none
+
+        >img, >span
             height: var(--window-topbar-logo-size)
             margin: 0px calc(calc(var(--window-topbar-height) - var(--window-topbar-logo-size)) / 2)
+            pointer-events: none
+            user-select: none
+
+    .layerTopBarButtons-topbar
+        position: absolute
+        top: var(--window-visual-border-size)
+        right: var(--window-visual-border-size)
+        height: calc(var(--window-topbar-height) - 1px)
+        border-top-right-radius: var(--wbr)
 
         button
             width: var(--window-topbar-button-width)
@@ -31,12 +50,37 @@
             background-color: unset
             border: none
             border-radius: 0
+            user-select: none
+
+            &.close
+                border-top-right-radius: var(--wbr)
 
             svg
                 height: var(--window-topbar-icon-size)
                 object-fit: cover
-                color: var(--text-color)
 
                 path
                     fill: var(--text-color)
-                    color: var(--text-color)
+    
+    .layerContent-content
+        position: absolute
+        top: calc(var(--window-visual-border-size) + var(--window-topbar-height))
+        left: var(--window-visual-border-size)
+        width: calc(100% - var(--window-visual-border-size) - var(--window-visual-border-size))
+        height: calc(100% - var(--window-visual-border-size) - var(--window-visual-border-size) - var(--window-topbar-height))
+        overflow: auto
+    
+    .layerBorder
+        --inv: calc(100% - var(--window-border-size))
+        clip-path: polygon(0% 0%, 0% 100%, var(--window-border-size) 100%, var(--window-border-size) var(--window-border-size), var(--inv) var(--window-border-size), var(--inv) var(--inv), var(--window-border-size) var(--inv), var(--window-border-size) 100%, 100% 100%, 100% 0%)
+    
+    .layerBorder-border
+        border-radius: var(--wbr)
+        border: var(--window-border-size) solid transparent
+        background: transparent border-box
+        -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0)
+        mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0)
+        -webkit-mask-composite: xor
+        mask-composite: exclude
+
+

@@ -95,7 +95,22 @@ for (let taskBarIcon of taskbar.children) {
 
 
 
+var desktopSelectionSquareStartX = 0;
+var desktopSelectionSquareStartY = 0;
+var isDesktopSelectionSquareActive = false;
+var desktopPaneElement = document.getElementById("desktopInsertContainer");
+var desktopSelectionSquareElement = document.getElementById("desktopSelectionSquare");
 
+desktopPaneElement.addEventListener("mousedown", (event) => {
+    desktopSelectionSquareStartX = event.clientX;
+    desktopSelectionSquareStartY = event.clientY;
+    desktopSelectionSquareElement.style.left = desktopSelectionSquareStartX + "px";
+    desktopSelectionSquareElement.style.top = desktopSelectionSquareStartY + "px";
+    desktopSelectionSquareElement.style.width = "0px";
+    desktopSelectionSquareElement.style.height = "0px";
+    isDesktopSelectionSquareActive = true;
+    desktopSelectionSquareElement.style.display = "block";
+});
 
 
 
@@ -168,36 +183,38 @@ function windowBuilder(type) {
     let windowPosX = window.innerWidth / 2 - width / 2;
     let windowPosY = window.innerHeight / 2 - height / 2;
 
-    return /*html*/`
-
-    <div class="window-container" style="--x: ${windowPosX}px; --y: ${windowPosY}px; --w: ${width}px; --h: ${height}px --window-border-radius: 5px;">
-        <div class="full rel noOverflow arraydown">
-            <div class="full rel">
-                <div class="window-container-bg full"></div>
+    return /*html*/`<div class="window-container" style="--x: ${windowPosX}px; --y: ${windowPosY}px; --w: ${width}px; --h: ${height}px; --window-border-radius-mul: 1;">
+        <div class="full rel arraydown">
+            <div class="layerBgFilter full rel noInteract">
             </div>
-            <div class="full rel" style="transform: translateY(-100%);">
-                <div class="window-container-border full"></div>
+            <div style="transform: translateY(-100%);" class="layerBackground full rel noInteract">
             </div>
-            <div class="full rel" style="transform: translateY(-200%);">
-                <div class="window-container-body reinteract">
+            <div style="transform: translateY(-200%);" class="layerContent full rel noInteract">
+                <div class="layerContent-content interact">
                     ${d["content"]}
                 </div>
             </div>
-            <div class="full rel" style="transform: translateY(-300%);">
-                <div class="window-container-topbar">
-                    <div class="full rel flexarrayright">
-                        <img class="logo" src="${d["img"]}">
-                        <div class="windowtitle nointeract">${d["title"]}</div>
+            <div style="transform: translateY(-300%);" class="layerTopBar full rel noInteract">
+                <div class="layerTopBar-topbar interact">
+                    <img class="logo" src="${d["img"]}">
+                    <div>${d["title"]}</div>
+                    <span></span>
+                </div>
+            </div>
+            <div style="transform: translateY(-400%);" class="layerTopBarButtons full rel noInteract">
+                <div class="layerTopBarButtons-topbar interactNoSelect">
+                    <div style="height: 100%">
                         <button class="rel nopad min"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 11h14v2H5z"></path></svg></button></button>
                         <button class="rel nopad max"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 2H7C4.243 2 2 4.243 2 7v10c0 2.757 2.243 5 5 5h10c2.757 0 5-2.243 5-5V7c0-2.757-2.243-5-5-5zm3 15c0 1.654-1.346 3-3 3H7c-1.654 0-3-1.346-3-3V7c0-1.654 1.346-3 3-3h10c1.654 0 3 1.346 3 3v10z"></path></svg></button></button>
                         <button class="rel nopad close"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm4.207 12.793-1.414 1.414L12 13.414l-2.793 2.793-1.414-1.414L10.586 12 7.793 9.207l1.414-1.414L12 10.586l2.793-2.793 1.414 1.414L13.414 12l2.793 2.793z"></path></svg></button>
                     </div>
                 </div>
             </div>
+            <div style="transform: translateY(-500%);" class="layerBorder full rel noInteract">
+                <div class="layerBorder-border full interactNoSelect"></div>
+            </div>
         </div>
-    </div>
-    
-    `;
+    </div>`;
 }
 
 
@@ -279,23 +296,23 @@ class Window {
         this.windowContent = content;
         document.querySelector("#windowInsertContainer").insertAdjacentHTML('beforeend', this.windowContent);
 
-        this.parentWindowContainerElement = last(document.querySelector("body").getElementsByClassName("window-container"));
-        this.windowBorderElement = this.parentWindowContainerElement.querySelector(".window-container-border");
-        this.windowPaneElement = this.parentWindowContainerElement.querySelector(".window-container-body");
-        this.windowTopbarElement = this.parentWindowContainerElement.querySelector(".window-container-topbar");
-        this.windowTopbarCloseButtonElement = this.windowTopbarElement.querySelector(".close");
-        this.windowTopbarMaximizeButtonElement = this.windowTopbarElement.querySelector(".max");
-        this.windowTopbarMinimizeButtonElement = this.windowTopbarElement.querySelector(".min");
+        this.windowContainerElement = last(document.querySelector("body").getElementsByClassName("window-container"));
+        this.windowTopbarElement = this.windowContainerElement.querySelector(".layerTopBar-topbar");
+        this.windowTopbarButtonsElement = this.windowContainerElement.querySelector(".layerTopBarButtons-topbar");
+        this.windowTopbarCloseButtonElement = this.windowTopbarButtonsElement.querySelector(".close");
+        this.windowTopbarMaximizeButtonElement = this.windowTopbarButtonsElement.querySelector(".max");
+        this.windowTopbarMinimizeButtonElement = this.windowTopbarButtonsElement.querySelector(".min");
+        this.windowBorderElement = this.windowContainerElement.querySelector(".layerBorder-border");
 
-        this.parentWindowContainerElement.style.setProperty('--w', this.windowWidth + "px");
-        this.parentWindowContainerElement.style.setProperty('--h', this.windowHeight + "px");
-        this.parentWindowContainerElement.style.setProperty('--x', this.windowPosX + "px");
-        this.parentWindowContainerElement.style.setProperty('--y', this.windowPosY + "px");
-        this.parentWindowContainerElement.style.setProperty('--window-border-radius', "5px")
-        this.parentWindowContainerElement.style.cursor = "nwse-resize"
+        this.windowContainerElement.style.setProperty('--w', this.windowWidth + "px");
+        this.windowContainerElement.style.setProperty('--h', this.windowHeight + "px");
+        this.windowContainerElement.style.setProperty('--x', this.windowPosX + "px");
+        this.windowContainerElement.style.setProperty('--y', this.windowPosY + "px");
+        this.windowContainerElement.style.setProperty('--window-border-radius-mul', "1")
+        this.windowBorderElement.style.cursor = "nwse-resize"
 
         this.layer = windowY
-        this.parentWindowContainerElement.style.zIndex = windowY;
+        this.windowContainerElement.style.zIndex = windowY;
         windowY++;
 
         this.mouseHoversOnContent = false;
@@ -304,7 +321,7 @@ class Window {
         let taskbar_amount = Number(getComputedStyle(taskbar_wrapper).getPropertyValue("--app-amount"));
         if (predefinedTaskBarIcon == null) {
             let logo = this.windowTopbarElement.querySelector(".logo").src;
-            let cont = `<button class="rel interact nopad open active" style="--index: ${taskbar_amount}; --offset: 0"><div class="full rel flexcenter"><span></span><img class="nointeract" src="${logo}"></div></button>`
+            let cont = `<button class="rel interactNoSelect nopad open active" style="--index: ${taskbar_amount}; --offset: 0"><div class="full rel flexcenter"><span></span><img class="nointeract" src="${logo}"></div></button>`
             taskbar_wrapper.insertAdjacentHTML('beforeend', cont);
             taskbar_wrapper.style.setProperty("--app-amount", taskbar_amount + 1);
             this.taskBarIcon = last(taskbar_wrapper.children);
@@ -323,35 +340,36 @@ class Window {
         this.setTaskbarActive();
 
         //Resize Window
-        this.windowPaneElement.onmouseenter = function () {
-            root.mouseHoversOnContent = true;
-        };
-        this.windowPaneElement.onmouseleave = function () {
-            root.mouseHoversOnContent = false;
-        }
-        this.parentWindowContainerElement.addEventListener("mousemove", (event) => {
+        //this.windowPaneElement.onmouseenter = function () {
+        //    root.mouseHoversOnContent = true;
+        //};
+        //this.windowPaneElement.onmouseleave = function () {
+        //    root.mouseHoversOnContent = false;
+        //}
+        this.mouseHoversOnContent = false;
+        this.windowContainerElement.addEventListener("mousemove", (event) => {
             if (resized != undefined) return;
             if (this.mouseHoversOnContent) return;
 
-            let r = this.parentWindowContainerElement.getBoundingClientRect();
+            let r = this.windowContainerElement.getBoundingClientRect();
 
             let n = Math.abs(r.top - mouseY) <= 20
             let s = Math.abs(r.bottom - mouseY) <= 20
             let w = Math.abs(r.left - mouseX) <= 20
             let e = Math.abs(r.right - mouseX) <= 20
 
-            if (n && e) { resizedSide = "ne"; this.parentWindowContainerElement.style.cursor = "nesw-resize" }
-            else if (n && w) { resizedSide = "nw"; this.parentWindowContainerElement.style.cursor = "nwse-resize" }
-            else if (n) { resizedSide = "n"; this.parentWindowContainerElement.style.cursor = "ns-resize" }
-            else if (s && e) { resizedSide = "se"; this.parentWindowContainerElement.style.cursor = "nwse-resize" }
-            else if (s && w) { resizedSide = "sw"; this.parentWindowContainerElement.style.cursor = "nesw-resize" }
-            else if (s) { resizedSide = "s"; this.parentWindowContainerElement.style.cursor = "ns-resize" }
-            else if (w) { resizedSide = "w"; this.parentWindowContainerElement.style.cursor = "ew-resize" }
-            else if (e) { resizedSide = "e"; this.parentWindowContainerElement.style.cursor = "ew-resize" }
+            if (n && e) { resizedSide = "ne"; this.windowBorderElement.style.cursor = "nesw-resize" }
+            else if (n && w) { resizedSide = "nw"; this.windowBorderElement.style.cursor = "nwse-resize" }
+            else if (n) { resizedSide = "n"; this.windowBorderElement.style.cursor = "ns-resize" }
+            else if (s && e) { resizedSide = "se"; this.windowBorderElement.style.cursor = "nwse-resize" }
+            else if (s && w) { resizedSide = "sw"; this.windowBorderElement.style.cursor = "nesw-resize" }
+            else if (s) { resizedSide = "s"; this.windowBorderElement.style.cursor = "ns-resize" }
+            else if (w) { resizedSide = "w"; this.windowBorderElement.style.cursor = "ew-resize" }
+            else if (e) { resizedSide = "e"; this.windowBorderElement.style.cursor = "ew-resize" }
             else { resizedSide = "NONE"; }
         });
 
-        this.parentWindowContainerElement.addEventListener("mousedown", (event) => {
+        this.windowContainerElement.addEventListener("mousedown", (event) => {
             if (this.mouseHoversOnContent) return;
             resized = root;
         });
@@ -364,17 +382,16 @@ class Window {
         this.windowTopbarMaximizeButtonElement.onclick = () => {
             this.setMaxximized(!this.isMaxximized);
         };
-
-        //Close window
-        this.windowTopbarCloseButtonElement.onclick = () => {
-            this.remove();
-        };
+        
         this.windowTopbarMinimizeButtonElement.onclick = () => {
             this.setMinimized(true)
         };
-
+        
+        this.windowTopbarCloseButtonElement.onclick = () => {
+            this.remove();
+        };
         //Focus Window
-        this.parentWindowContainerElement.addEventListener("mousedown", (event) => {
+        this.windowContainerElement.addEventListener("mousedown", (event) => {
             this.setWindowActive();
             this.setTaskbarActive();
         });
@@ -407,27 +424,32 @@ class Window {
 
     setMaxximized(m) {
         if (!m) {
-            this.parentWindowContainerElement.style.setProperty('--x', this.windowPosX + "px");
-            this.parentWindowContainerElement.style.setProperty('--y', this.windowPosY + "px");
-            this.parentWindowContainerElement.style.setProperty('--w', this.windowWidth + "px");
-            this.parentWindowContainerElement.style.setProperty('--h', this.windowHeight + "px");
-            this.parentWindowContainerElement.style.setProperty('--window-border-radius', "5px")
+            this.windowContainerElement.style.setProperty('--x', this.windowPosX + "px");
+            this.windowContainerElement.style.setProperty('--y', this.windowPosY + "px");
+            this.windowContainerElement.style.setProperty('--w', this.windowWidth + "px");
+            this.windowContainerElement.style.setProperty('--h', this.windowHeight + "px");
+            this.windowContainerElement.style.setProperty('--window-border-radius-mul', "1")
         } else {
-            this.parentWindowContainerElement.style.setProperty('--x', 0 + "px");
-            this.parentWindowContainerElement.style.setProperty('--y', 0 + "px");
-            this.parentWindowContainerElement.style.setProperty('--w', window.innerWidth + "px");
-            this.parentWindowContainerElement.style.setProperty('--h', window.innerHeight + "px");
-            this.parentWindowContainerElement.style.setProperty('--window-border-radius', "0px")
+            this.windowContainerElement.style.setProperty('--x', "0px");
+            this.windowContainerElement.style.setProperty('--y', "0px");
+            this.windowContainerElement.style.setProperty('--w', "100vw");
+            this.windowContainerElement.style.setProperty('--h', "calc(100vh - var(--taskbar-height))");
+            this.windowContainerElement.style.setProperty('--window-border-radius-mul', "0")
         }
         this.isMaxximized = m;
     }
 
     setMinimized(m) {
         if (m) {
-            this.parentWindowContainerElement.classList.add("hidden");
+            this.windowContainerElement.classList.remove("playback_windowMinimizeAnimation_backwards");
+            void this.windowContainerElement.offsetWidth;
+            this.windowContainerElement.classList.add("playback_windowMinimizeAnimation_forwards");
             this.taskBarIcon.classList.remove("active");
         } else {
-            this.parentWindowContainerElement.classList.remove("hidden");
+            this.windowContainerElement.classList.remove("playback_windowMinimizeAnimation_forwards");
+            void this.windowContainerElement.offsetWidth;
+            this.windowContainerElement.classList.add("playback_windowMinimizeAnimation_backwards");
+            void this.windowContainerElement.offsetWidth;
             this.setWindowActive();
             this.setTaskbarActive();
         }
@@ -437,23 +459,23 @@ class Window {
     setPos(x, y) {
         if (resized != this || this.windowWidth > windowMinWidth) {
             this.windowPosX = x;
-            this.parentWindowContainerElement.style.setProperty('--x', this.windowPosX + "px");
+            this.windowContainerElement.style.setProperty('--x', this.windowPosX + "px");
         }
         if (resized != this || this.windowHeight > windowMinHeight) {
             this.windowPosY = y;
-            this.parentWindowContainerElement.style.setProperty('--y', this.windowPosY + "px");
+            this.windowContainerElement.style.setProperty('--y', this.windowPosY + "px");
         }
     }
 
     setDimensions(w, h) {
         this.windowWidth = w;
         this.windowHeight = h;
-        this.parentWindowContainerElement.style.setProperty('--w', Math.max(windowMinWidth, w) + "px");
-        this.parentWindowContainerElement.style.setProperty('--h', Math.max(windowMinHeight, h) + "px");
+        this.windowContainerElement.style.setProperty('--w', Math.max(windowMinWidth, w) + "px");
+        this.windowContainerElement.style.setProperty('--h', Math.max(windowMinHeight, h) + "px");
     }
 
     remove() {
-        this.parentWindowContainerElement.style.opacity = '0%';
+        this.windowContainerElement.style.opacity = '0%';
         if (!this.taskBarIcon.classList.contains("persistent")) {
             let t = document.getElementById("taskbar-apps");
             this.taskBarIcon.remove();
@@ -464,9 +486,9 @@ class Window {
             this.taskBarIcon.classList.remove("active");
         }
 
-        const temp = this.parentWindowContainerElement;
-        temp.classList.add("hidden");
-        setTimeout(() => { temp.remove(); }, 500);
+        const temp = this.windowContainerElement;
+        temp.classList.add("playback_windowCloseAnimation_forwards");
+        setTimeout(() => { temp.remove(); }, 300);
     }
 
     setTaskbarActive() {
@@ -477,8 +499,8 @@ class Window {
     }
 
     setWindowActive() {
-        if (this.parentWindowContainerElement.style.zIndex == windowY - 1) return;
-        this.parentWindowContainerElement.style.zIndex = windowY;
+        if (this.windowContainerElement.style.zIndex == windowY - 1) return;
+        this.windowContainerElement.style.zIndex = windowY;
         windowY++;
     }
 }
@@ -487,6 +509,13 @@ document.addEventListener("mouseup", (event) => {
     if (resized != undefined) {
         if (resized.windowWidth < windowMinWidth) resized.setDimensions(windowMinWidth, resized.windowHeight);
         if (resized.windowHeight < windowMinHeight) resized.setDimensions(resized.windowWidth, windowMinHeight);
+    }
+
+    if(isDesktopSelectionSquareActive){
+        isDesktopSelectionSquareActive = false;
+        desktopSelectionSquareStartX = 0;
+        desktopSelectionSquareStartY = 0;
+        desktopSelectionSquareElement.style.display = "none";
     }
 
     dragged = undefined;
@@ -544,6 +573,13 @@ document.addEventListener("mousemove", (event) => {
         if (resizedSide === "e") {
             resized.setDimensions(currW + offX, currH)
         }
+    }
+
+    if(isDesktopSelectionSquareActive){
+        desktopSelectionSquareElement.style.left = Math.min(desktopSelectionSquareStartX, event.clientX) + "px";
+        desktopSelectionSquareElement.style.top = Math.min(desktopSelectionSquareStartY, event.clientY) + "px";
+        desktopSelectionSquareElement.style.width = Math.abs(desktopSelectionSquareStartX - event.clientX) + "px";
+        desktopSelectionSquareElement.style.height = Math.abs(desktopSelectionSquareStartY - event.clientY) + "px";
     }
 });
 

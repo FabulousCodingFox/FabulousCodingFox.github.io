@@ -1,20 +1,23 @@
-.noInteractRecursive, .noInteractRecursive *
-    user-select: none
-    pointer-events: none
-
-.noInteract
+@mixin blockinteraction
     -webkit-touch-callout: none
     -webkit-user-select: none
     -khtml-user-select: none
     -moz-user-select: none
     -ms-user-select: none
-    user-select: none
     pointer-events: none
+    user-select: none
 
-.interact
+@mixin allowinteraction
     pointer-events: all
     user-select: text
 
-.interactRecursive, .interactRecursive *
+.noInteractRecursive, .noInteractRecursive *, .noInteract
+    @include blockinteraction
+
+
+.interactRecursive, .interactRecursive *, .interact
+    @include allowinteraction
+
+.interactNoSelect
     pointer-events: all
-    user-select: text
+    user-select: none

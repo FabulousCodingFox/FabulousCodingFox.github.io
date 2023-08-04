@@ -1,0 +1,9 @@
+{
+    "liveSassCompile.settings.showOutputWindowOn": "Error",
+    "liveSassCompile.settings.showAnnouncements": false,
+    "liveSassCompile.settings.useNewCompiler": true,
+    "liveSassCompile.settings.generateMap": false,
+    "liveSassCompile.settings.autoprefix": [
+        
+    ]
+}
