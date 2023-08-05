@@ -42,12 +42,16 @@ $HOVERCOL: rgba(204 204 204 / 20%)
 
 #desktop-pane-taskbar-content 
     padding-left: 9px
-    background-image: linear-gradient(to right,rgba(30 30 30 / 80%),rgba(30 30 30 / 30%),rgba(30 30 30 / 80%))
+    background-image: linear-gradient(to right,rgba(30 30 30 / 80%),rgba(30 30 30 / 30%),rgba(30 30 30 / 30%),rgba(30 30 30 / 80%))
 
     >.section
         >button 
             border-radius: 3px
             transition: background-color $TRANSITION
+
+            &:active img
+                transition: transform $TRANSITION
+                transform: scale(0.9)
 
             span
                 border-radius: 3px
@@ -88,6 +92,22 @@ $HOVERCOL: rgba(204 204 204 / 20%)
     100%
         opacity: 0%
 
+@keyframes taskBarIconBounceUp
+    0%
+        transform: translateY(0px) scale(0.9)
+    50%
+        transform: translateY(-20%) scale(1)
+    100%
+        transform: translateY(0px) scale(1)
+
+@keyframes taskBarIconBounceDown
+    0%
+        transform: translateY(0px) scale(0.9)
+    50%
+        transform: translateY(20%) scale(1)
+    100%
+        transform: translateY(0px) scale(1)
+
 .window-container .layerContent
     color: var(--text-color)
 
@@ -98,3 +118,13 @@ $HOVERCOL: rgba(204 204 204 / 20%)
     >div.selection
         border: 1px solid #0078d7
         background-color: rgba(0 120 215 / 20%)
+
+    button
+        border-radius: 5px
+
+        &:hover
+            background-color: rgba(120 120 120 / 20%)
+
+        .name
+            color: var(--text-color)
+            text-shadow: 1px 1px 2px black

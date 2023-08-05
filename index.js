@@ -102,6 +102,7 @@ var desktopPaneElement = document.getElementById("desktopInsertContainer");
 var desktopSelectionSquareElement = document.getElementById("desktopSelectionSquare");
 
 desktopPaneElement.addEventListener("mousedown", (event) => {
+    if (event.target !== desktopPaneElement) return;
     desktopSelectionSquareStartX = event.clientX;
     desktopSelectionSquareStartY = event.clientY;
     desktopSelectionSquareElement.style.left = desktopSelectionSquareStartX + "px";
@@ -111,6 +112,123 @@ desktopPaneElement.addEventListener("mousedown", (event) => {
     isDesktopSelectionSquareActive = true;
     desktopSelectionSquareElement.style.display = "block";
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var desktopGridSizeX = 16;
+var desktopGridSizeY = 10;
+desktopPaneElement.style.setProperty('--sx', desktopGridSizeX);
+desktopPaneElement.style.setProperty('--sy', desktopGridSizeY); 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -206,7 +324,7 @@ function windowBuilder(type) {
                     <div style="height: 100%">
                         <button class="rel nopad min"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 11h14v2H5z"></path></svg></button></button>
                         <button class="rel nopad max"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 2H7C4.243 2 2 4.243 2 7v10c0 2.757 2.243 5 5 5h10c2.757 0 5-2.243 5-5V7c0-2.757-2.243-5-5-5zm3 15c0 1.654-1.346 3-3 3H7c-1.654 0-3-1.346-3-3V7c0-1.654 1.346-3 3-3h10c1.654 0 3 1.346 3 3v10z"></path></svg></button></button>
-                        <button class="rel nopad close"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm4.207 12.793-1.414 1.414L12 13.414l-2.793 2.793-1.414-1.414L10.586 12 7.793 9.207l1.414-1.414L12 10.586l2.793-2.793 1.414 1.414L13.414 12l2.793 2.793z"></path></svg></button>
+                        <button class="rel nopad close"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/></svg></button>
                     </div>
                 </div>
             </div>
@@ -444,7 +562,13 @@ class Window {
             this.windowContainerElement.classList.remove("playback_windowMinimizeAnimation_backwards");
             void this.windowContainerElement.offsetWidth;
             this.windowContainerElement.classList.add("playback_windowMinimizeAnimation_forwards");
+
             this.taskBarIcon.classList.remove("active");
+
+            let btnIcon = this.taskBarIcon.querySelector("img");
+            btnIcon.classList.remove("playback_taskbarIconBounceUp")
+            void btnIcon.offsetWidth;
+            btnIcon.classList.add("playback_taskbarIconBounceDown")
         } else {
             this.windowContainerElement.classList.remove("playback_windowMinimizeAnimation_forwards");
             void this.windowContainerElement.offsetWidth;
@@ -452,6 +576,11 @@ class Window {
             void this.windowContainerElement.offsetWidth;
             this.setWindowActive();
             this.setTaskbarActive();
+
+            let btnIcon = this.taskBarIcon.querySelector("img");
+            btnIcon.classList.remove("playback_taskbarIconBounceDown")
+            void btnIcon.offsetWidth;
+            btnIcon.classList.add("playback_taskbarIconBounceUp")
         }
         this.isMinimized = m;
     }
