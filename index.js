@@ -101,8 +101,17 @@ var isDesktopSelectionSquareActive = false;
 var desktopPaneElement = document.getElementById("desktopInsertContainer");
 var desktopSelectionSquareElement = document.getElementById("desktopSelectionSquare");
 
+var desktopSelectedElements = [];
+
 desktopPaneElement.addEventListener("mousedown", (event) => {
     if (event.target !== desktopPaneElement) return;
+
+    for (let desktopItem of desktopSelectedElements) {
+        desktopItem.classList.remove("selected");
+    }
+    desktopSelectedElements = [];
+
+
     desktopSelectionSquareStartX = event.clientX;
     desktopSelectionSquareStartY = event.clientY;
     desktopSelectionSquareElement.style.left = desktopSelectionSquareStartX + "px";
@@ -113,72 +122,25 @@ desktopPaneElement.addEventListener("mousedown", (event) => {
     desktopSelectionSquareElement.style.display = "block";
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 var desktopGridSizeX = 16;
 var desktopGridSizeY = 10;
 desktopPaneElement.style.setProperty('--sx', desktopGridSizeX);
-desktopPaneElement.style.setProperty('--sy', desktopGridSizeY); 
+desktopPaneElement.style.setProperty('--sy', desktopGridSizeY);
 
+for (let desktopItem of desktopPaneElement.children) {
+    if(desktopItem.classList.contains("selection")) continue;
+    desktopItem.addEventListener('pointerdown', (event) => {
+        if (!event.ctrlKey && !event.shiftKey){
+            for (let desktopItem of desktopSelectedElements) {
+                desktopItem.classList.remove("selected");
+            }
+            desktopSelectedElements = [];
+        }
 
-
-
-
+        desktopItem.classList.add("selected");
+        desktopSelectedElements.push(desktopItem);
+    });
+}
 
 
 
@@ -645,6 +607,14 @@ document.addEventListener("mouseup", (event) => {
         desktopSelectionSquareStartX = 0;
         desktopSelectionSquareStartY = 0;
         desktopSelectionSquareElement.style.display = "none";
+
+        for (let desktopItem of desktopPaneElement.children) {
+            if(desktopItem.classList.contains("selected2")){
+                desktopItem.classList.add("selected");
+                desktopItem.classList.remove("selected2");
+                desktopSelectedElements.push(desktopItem);
+            }
+        }
     }
 
     dragged = undefined;
@@ -709,6 +679,23 @@ document.addEventListener("mousemove", (event) => {
         desktopSelectionSquareElement.style.top = Math.min(desktopSelectionSquareStartY, event.clientY) + "px";
         desktopSelectionSquareElement.style.width = Math.abs(desktopSelectionSquareStartX - event.clientX) + "px";
         desktopSelectionSquareElement.style.height = Math.abs(desktopSelectionSquareStartY - event.clientY) + "px";
+
+        for (let desktopItem of desktopPaneElement.children) {
+            if(desktopItem.classList.contains("selection")) continue;
+            let desktopItemRect = desktopItem.getBoundingClientRect();
+            
+            let doesItemOverlapWithSelection = !(desktopItemRect.right < Math.min(desktopSelectionSquareStartX, event.clientX) ||
+                desktopItemRect.left > Math.max(desktopSelectionSquareStartX, event.clientX) ||
+                desktopItemRect.bottom < Math.min(desktopSelectionSquareStartY, event.clientY) ||
+                desktopItemRect.top > Math.max(desktopSelectionSquareStartY, event.clientY));
+
+            if(doesItemOverlapWithSelection){
+                desktopItem.classList.add("selected2");
+            } else {
+                desktopItem.classList.remove("selected2");
+            }
+        }
+
     }
 });
 
