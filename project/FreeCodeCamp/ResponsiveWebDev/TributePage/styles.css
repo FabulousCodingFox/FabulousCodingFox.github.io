@@ -1,0 +1,20 @@
+h1{
+    text-align: center;
+    background-color: lightslategray;
+}
+
+#img-div{
+    display: block;
+    max-width: 100%;
+    float: right;
+    height: 25vw;
+}
+
+#image{
+    display: block;
+    max-width: 100%;
+}
+
+#tribute-info, #tribute-link{
+    font-size: 1.5em;
+}

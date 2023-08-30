@@ -3,33 +3,27 @@
 
 <head>
     <title>FabulousFox</title>
-
     <link rel="stylesheet" type="text/css" href="style/main.css">
-    <link rel="stylesheet" type="text/css" href="style/theme/win11.css">
-    <script src="theme.js"></script>
-    <script src="index.js" defer></script>
+    <link rel="stylesheet" type="text/css" href="ttheme.csss__">
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style id="theme-style"></style>
+    <script src="js/content.js"></script>
+    <script src="js/index.js" defer></script>
 </head>
 
 <body class="full rel nopad">
     <div class="root-desktop-pane full absTopLeft nointeract">
         <div class="full rel">
-            <div id="desktop-pane-bg" class="full absTopLeft noOverflow">
-                <video src="assets/background/synthwave.mp4" autoplay muted loop disablePictureInPicture class="mediaFullFit"></video>
-            </div>
+            <div id="desktop-pane-bg" class="full absTopLeft noOverflow"></div>
 
             <div id="desktop-pane-desktop" class="full noOverflow">
-                <div class="full rel interactNoSelect" id="desktopInsertContainer" style="--sx: 16; --sy: 10">
-                    <button style="--x: 0; --y: 0; --offx: 0%; --offy: 0%" class="nopad">
-                        <div class="full rel flexarraydown">
-                            <img src="assets/icons/folder.png">
-                            <div class="name">New Folder</div>
-                        </div> 
-                    </button>
-
+                <div class="full rel interactNoSelect" id="desktopInsertContainer" style="--sx: 2; --sy: 2">
                     <div id="desktopSelectionSquare" class="selection" style="left: 20px; top: 20px; width: 20px; height: 20px; display: none"></div>
                 </div>
             </div>
+
+            <script src="js/theme.js"></script>
 
             <div id="desktop-pane-taskbar" class="noOverflow">
                 <div class="full rel">
@@ -39,7 +33,7 @@
                             <button class="rel interactNoSelect nopad"><img class="nointeract" src="assets/icons/windows.png"></button>
                         </div>
                         <div class="section m noOverflow rel interactNoSelect" id="taskbar-apps" style="--app-amount: 0"></div>
-                        <div class="section r noOverflow rel"></div>
+                        <!--<div class="section r noOverflow rel"></div>-->
                     </div>
                 </div>
             </div>
