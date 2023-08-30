@@ -100,6 +100,10 @@ var desktopSelectionSquareStartY = 0;
 var isDesktopSelectionSquareActive = false;
 var desktopPaneElement = document.getElementById("desktopInsertContainer");
 var desktopSelectionSquareElement = document.getElementById("desktopSelectionSquare");
+var desktopGridSizeX = 16;
+var desktopGridSizeY = 10;
+desktopPaneElement.style.setProperty('--sx', desktopGridSizeX);
+desktopPaneElement.style.setProperty('--sy', desktopGridSizeY);
 
 var desktopSelectedElements = [];
 
@@ -127,8 +131,19 @@ var desktopGridSizeY = 10;
 desktopPaneElement.style.setProperty('--sx', desktopGridSizeX);
 desktopPaneElement.style.setProperty('--sy', desktopGridSizeY);
 
+let i = 0
+for(let windowType in WINDOWTYPE){
+    let d = DATA[WINDOWTYPE[windowType]];
+    desktopPaneElement.insertAdjacentHTML("afterbegin",`<button style="--x: ${i}; --y: 0; --offx: 0%; --offy: 0%" class="nopad"><div class="full rel flexarraydown"><img src="${d['logo']}"><div class="name">${d['title']}</div></div></button>`)
+    desktopPaneElement.children[0].ondblclick = () => openWindow(WINDOWTYPE[windowType]);
+    i++;
+}
+
 for (let desktopItem of desktopPaneElement.children) {
     if(desktopItem.classList.contains("selection")) continue;
+    desktopItem.addEventListener('pointerdown', (event) => {
+        desktopAppHandleDragStart(event);
+    });
     desktopItem.addEventListener('pointerdown', (event) => {
         if (!event.ctrlKey && !event.shiftKey){
             for (let desktopItem of desktopSelectedElements) {
@@ -142,6 +157,68 @@ for (let desktopItem of desktopPaneElement.children) {
     });
 }
 
+var dragged_dektop_icon_x = null;
+var dragged_dektop_icon_y = null;
+var dragged_dektop_icon_offset_x = 0;
+var dragged_dektop_icon_offset_y = 0;
+var dragged_dektop_icon_origin_x = null;
+var dragged_dektop_icon_origin_y = null;
+
+function desktopAppHandleDragStart(event) {
+    const el = event.currentTarget;
+
+    dragged_dektop_icon_x = Number(getComputedStyle(el).getPropertyValue('--x'));
+    dragged_dektop_icon_y = Number(getComputedStyle(el).getPropertyValue('--y'));
+    dragged_dektop_icon_origin_x = dragged_dektop_icon_x;
+    dragged_dektop_icon_origin_y = dragged_dektop_icon_y;
+    dragged_dektop_icon_offset_x = Math.abs(el.getBoundingClientRect().left - event.clientX);
+    dragged_dektop_icon_offset_y = Math.abs(el.getBoundingClientRect().top - event.clientY);
+
+    const move = (event) => {
+        let new_dragged_dektop_icon_center_x = event.clientX - dragged_dektop_icon_offset_x + (el.getBoundingClientRect().width / 2);
+        let new_dragged_dektop_icon_center_y = event.clientY - dragged_dektop_icon_offset_y + (el.getBoundingClientRect().height / 2);
+        let new_dragged_dektop_icon_x = Math.round((new_dragged_dektop_icon_center_x - el.clientWidth * 0.5) / el.clientWidth)
+        let new_dragged_dektop_icon_y = Math.round((new_dragged_dektop_icon_center_y - el.clientHeight * 0.5) / el.clientHeight)
+        let new_dragged_dektop_icon_offset_x = new_dragged_dektop_icon_center_x - new_dragged_dektop_icon_x * el.clientWidth - 0.5 * el.clientWidth;
+        let new_dragged_dektop_icon_offset_y = new_dragged_dektop_icon_center_y - new_dragged_dektop_icon_y * el.clientHeight - 0.5 * el.clientHeight;
+        
+        for(let desktopItem of desktopSelectedElements){
+            desktopItem.style.transform = `translate(${new_dragged_dektop_icon_offset_x}px, ${new_dragged_dektop_icon_offset_y}px)`;
+            if (new_dragged_dektop_icon_x != dragged_dektop_icon_x || new_dragged_dektop_icon_y != dragged_dektop_icon_y) {
+                desktopItem.style.setProperty('--x', new_dragged_dektop_icon_x + dragged_dektop_icon_x - Number(getComputedStyle(desktopItem).getPropertyValue('--x')));
+                desktopItem.style.setProperty('--y', new_dragged_dektop_icon_y + dragged_dektop_icon_y - Number(getComputedStyle(desktopItem).getPropertyValue('--y')));
+                dragged_dektop_icon_x = new_dragged_dektop_icon_x;
+                dragged_dektop_icon_y = new_dragged_dektop_icon_y;
+            }
+        }
+        return;
+
+    }
+
+    const up = () => {
+        /*for (let desktopIcon of desktop_apps.children) {
+            if (desktopIcon == el) continue;
+
+            let x = Number(getComputedStyle(desktopIcon).getPropertyValue('--x'));
+            let y = Number(getComputedStyle(desktopIcon).getPropertyValue('--y'));
+
+            if (x == dragged_dektop_icon_x && y == dragged_dektop_icon_y) {
+                el.style.setProperty('--x', dragged_dektop_icon_origin_x);
+                el.style.setProperty('--y', dragged_dektop_icon_origin_y);
+                break;
+            }
+        }*/
+
+        removeEventListener("pointermove", move);
+        removeEventListener("pointerup", up);
+        for(let desktopItem of desktopSelectedElements){
+            desktopItem.style.transform = "none";
+        }
+    };
+
+    addEventListener("pointermove", move);
+    addEventListener("pointerup", up);
+}
 
 
 
@@ -214,48 +291,10 @@ function openWindow(type, icon) {
 }
 
 function windowBuilder(type) {
-    let d ={
-        'img': 'assets/icons/github.png',
-        'title': 'Github',
-        'content': /*html*/`
-            <h1 align="center">Hi <span class="wave">👋</span>, I am FabulousFox</h1>
-            <h3 align="center">I mostly code useless stuff</h3>
-            <p align="center">(<a target="_blank" href="https://github.com/FabulousCodingFox">https://github.com/FabulousCodingFox</a> || <a href="javscript:void(0)">https://fabulouscodingfox.github.io/</a>)</p>
-            
-            <hr>
+    let d = DATA[type];
 
-            <h3> 💻 <b>Programming Languages</b></h3>
-            <ul>
-                <li>☕Java</li>
-                <li>🐀C++</li>
-                <li>🐍Python</li>
-                <li>🟨Javascript</li>
-            </ul>
-
-            <hr>
-        
-            <h3> 🚀 <b>APIs/Frameworks/Methods</b></h3>
-            <ul>
-                <li>🧮Databases: SQL</li>
-                <li>📜Web: Html/Css, Js/Ts, Bootstrap</li>
-                <li>⚡API: FastAPI, Flask</li>
-                <li>📗Minecraft: Bukkit/Spigot/Paper, Datapacks</li>
-                <li>👾Graphics: Pygame, (Modern OpenGL), Vulkan</li>
-            </ul>
-
-            <hr>
-
-            <h3> 📫 <b>Contact</b></h3>
-            <ul>
-                <li>💬Discord: FabulousFox#9057</li>
-            </ul>
-
-            <hr>
-
-            <img src="https://github-readme-stats.vercel.app/api/top-langs?username=FabulousCodingFox&show_icons=true&locale=en&langs_count=10&theme=dracula" alt="FabulousCodingFox" />
-            <img src="https://github-readme-stats.vercel.app/api?username=FabulousCodingFox&show_icons=true&locale=en&theme=dracula" alt="FabulousCodingFox" />
-        `
-    };
+    let content = d["content"]
+    if(d['iframe'] != undefined) content = d['iframe']
 
     let width = 0.6 * (window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth);
     let height = 0.8 * (window.innerHeight || document.documentElement.clientHeight || document.getElementsByTagName('body')[0].clientHeight);
@@ -271,7 +310,7 @@ function windowBuilder(type) {
             </div>
             <div style="transform: translateY(-200%);" class="layerContent full rel noInteract">
                 <div class="layerContent-content interact">
-                    ${d["content"]}
+                    ${content}
                 </div>
             </div>
             <div style="transform: translateY(-300%);" class="layerTopBar full rel noInteract">
@@ -296,50 +335,6 @@ function windowBuilder(type) {
         </div>
     </div>`;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 function last(array) {
     return array[array.length - 1];
@@ -389,6 +384,7 @@ class Window {
         this.windowContainerElement.style.setProperty('--x', this.windowPosX + "px");
         this.windowContainerElement.style.setProperty('--y', this.windowPosY + "px");
         this.windowContainerElement.style.setProperty('--window-border-radius-mul', "1")
+
         this.windowBorderElement.style.cursor = "nwse-resize"
 
         this.layer = windowY
@@ -699,4 +695,4 @@ document.addEventListener("mousemove", (event) => {
     }
 });
 
-openWindow("github", null)
+openWindow(WINDOWTYPE.PROJECT_FREECODECAMP_RESPONSIVEWEBDEV_TRIBUTEPAGE);
