@@ -13,7 +13,7 @@ currentTheme = THEME.WINDOWS11;
 
 const THEMEDATA = {
   [THEME.WINDOWS11]: {
-    wallpaper: `<video src="assets/background/synthwave.mp4" autoplay muted loop disablePictureInPicture class="mediaFullFit"></video>`,
+    wallpaper: `<video src="assets/background/synthwave.mp4" autoplay muted loop disablePictureInPicture disablepictureinpicture class="mediaFullFit"></video>`,
 
     css: `:root {
             --taskbar-height: 47px;

@@ -1,0 +1,128 @@
+<html>
+ <head>
+  <title>Derrote123-home</title>
+   <style>
+    body {font-family: Arial;}
+
+    /* Style the tab */
+    div.tab {
+        overflow: hidden;
+        border: 1px solid #ccc;
+        background-color: #f1f1f1;
+    }
+
+    /* Style the buttons inside the tab */
+    div.tab button {
+        background-color: inherit;
+        float: left;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding: 14px 16px;
+        transition: 0.3s;
+        font-size: 17px;
+    }
+
+    /* Change background color of buttons on hover */
+    div.tab button:hover {
+        background-color: #ddd;
+    }
+
+    /* Create an active/current tablink class */
+    div.tab button.active {
+        background-color: #ccc;
+    }
+
+    /* Style the tab content */
+    .tabcontent {
+        display: none;
+        padding: 6px 12px;
+        border: 1px solid #ccc;
+        border-top: none;
+    }
+    </style>
+    </head>
+    <body>
+    
+
+    <div class="tab">
+      <button class="tablinks" onclick="rahmen(event, 'Server')">Server</button>
+      <button class="tablinks" onclick="rahmen(event, 'Projects')">Projects</button>
+      <button class="tablinks" onclick="rahmen(event, 'more')">more</button>
+      <button class="tablinks" onclick="rahmen(event, 'youtube')">youtube</button>
+      <button class="tablinks" onclick="rahmen(event, 'shop')">shop</button>
+      <button class="tablinks" onclick="rahmen(event, 'login')">home</button>
+      <button class="tablinks" onclick="rahmen(event, 'screenshots')">screenshots</button>
+    </div>
+
+    <div id="Server" class="tabcontent">
+      <h3>Server</h3>
+      <p>the ip-adress is ---</p>
+    </div>
+
+    <div id="Projects" class="tabcontent">
+      <head>
+       <title>Derrote123-projects</title>
+      </head>
+      <h3>Projects</h3>
+      <p>View it here:</p> 
+    </div>
+
+    <div id="more" class="tabcontent">
+      <h3>more</h3>
+      <p> - - - </p>
+    </div>
+
+    <div id="youtube" class="tabcontent">
+      <h3>youtube:</h3>
+      <a href="https://www.youtube.de/" target="_blank">youtube</a>
+    </div>
+
+    <div id="shop" class="tabcontent">
+      <h3>shop</h3>
+      <p>coming soon...</p>
+    </div>
+
+    <div id="screenshots" class="tabcontent">
+      <h3>Screenshots</h3>
+      <a href="screenshots/screenshots_html.html" target="_blank">screenshots</a>
+    </div>
+
+    <div id="login" class="login">
+      <h3>login</h3>
+      <p>login for more things!</p>
+      Password: <input type="password" id="myPsw" value="1234">
+      <button onclick="check_password()">login</button>
+      <p id="demo"></p>
+      <script>
+      function check_password() {
+      var x = document.getElementById("myPsw").value;
+      document.getElementById("demo").innerHTML = x;
+      }
+      </script>
+    </div>
+
+    <script>
+    function rahmen(evt, cn) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(cn).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+    </script>
+         
+    </body>
+     </head>
+  <body>
+  <h1>Welcome to my website</h1>
+  <p><img src="bilder/sneakend.png" /></p>
+  
+ </body>
+</html>

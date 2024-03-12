@@ -1,0 +1,24 @@
+body
+{
+ background-color:#E81C1C
+}
+h1
+{
+ font-family:arial; color:white
+}
+h3
+{
+ font-family:arial; color:white
+}
+p
+{
+ color:white
+}
+a:hover
+{color:black}
+a:link
+{color:black}
+a:active
+{color:black}
+a:visited
+{color:black}

@@ -295,6 +295,7 @@ function windowBuilder(type) {
 
     let content = d["content"]
     if(d['iframe'] != undefined) content = d['iframe']
+    if(d["iframeSrc"] != undefined) content = "<iframe class=\"projRef\" src=\"" + d["iframeSrc"] + "\"></iframe>"
 
     let width = 0.6 * (window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth);
     let height = 0.8 * (window.innerHeight || document.documentElement.clientHeight || document.getElementsByTagName('body')[0].clientHeight);
@@ -447,6 +448,7 @@ class Window {
 
         this.windowContainerElement.addEventListener("mousedown", (event) => {
             if (this.mouseHoversOnContent) return;
+            if(dragged != undefined) return;
             resized = root;
         });
 
@@ -694,5 +696,3 @@ document.addEventListener("mousemove", (event) => {
 
     }
 });
-
-openWindow(WINDOWTYPE.PROJECT_FREECODECAMP_RESPONSIVEWEBDEV_TRIBUTEPAGE);
